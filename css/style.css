@@ -1,0 +1,268 @@
+:root {
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --muted: #777777;
+  --line: #e4e4e4;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Language gate ---------- */
+
+.gate {
+  position: fixed;
+  inset: 0;
+  background: var(--paper);
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.gate-inner {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: var(--ink);
+}
+
+.gate-logo {
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0 auto 2.5rem;
+}
+
+.gate-title {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+
+.lang-search {
+  width: 100%;
+  max-width: 26rem;
+  padding: 0.65rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  outline: none;
+  margin-bottom: 2rem;
+}
+
+.lang-search:focus { border-color: var(--ink); }
+
+.lang-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+  gap: 0.5rem;
+  text-align: start;
+}
+
+.lang-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.6rem 0.9rem;
+  font-family: inherit;
+  text-align: start;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.lang-option:hover, .lang-option:focus-visible {
+  border-color: var(--ink);
+  outline: none;
+}
+
+.lang-option .endonym {
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.lang-option .exonym {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.no-results {
+  color: var(--muted);
+  margin-top: 2rem;
+}
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-block-end: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.btn:hover { background: var(--ink); color: var(--paper); }
+
+.btn-ghost { border-color: transparent; }
+
+.btn-ghost:hover {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn-primary { background: var(--ink); color: var(--paper); }
+
+.btn-primary:hover { opacity: 0.85; }
+
+.icon {
+  width: 1.05em;
+  height: 1.05em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+/* ---------- Home: drifting map ---------- */
+
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+  min-height: calc(100vh - 4rem);
+  overflow: hidden;
+}
+
+.map-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.map-track {
+  display: flex;
+  width: max-content;
+  animation: drift 80s linear infinite;
+}
+
+.map {
+  height: min(58vh, 34rem);
+  width: auto;
+  margin-inline-end: 12vw;
+}
+
+/* Track slides by exactly half its width (one map + one gap) → seamless loop.
+   LTR: map drifts in the reading direction (to the right); RTL: reversed. */
+@keyframes drift {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+html[dir="rtl"] .map-track { animation-direction: reverse; }
+
+@media (prefers-reduced-motion: reduce) {
+  .map-track { animation: none; }
+}
+
+/* ---------- Account ---------- */
+
+#account {
+  display: flex;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+}
+
+.card {
+  width: 100%;
+  max-width: 22rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+#signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#signin-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+#signin-form input {
+  padding: 0.55rem 0.8rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+#signin-form input:focus { border-color: var(--ink); }
+
+#signed-in {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#signed-in p { margin: 0; }
+
+#back-btn { align-self: flex-start; padding-inline: 0.4rem; }

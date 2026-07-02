@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mouseion</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Language gate: shown before the site on first visit -->
+  <div id="language-gate" class="gate" hidden>
+    <div class="gate-inner">
+      <svg class="logo gate-logo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="currentColor"/></svg>
+      <p class="gate-title" id="gate-title" data-i18n="chooseLanguage">Choose your language</p>
+      <input id="lang-search" class="lang-search" type="search" autocomplete="off"
+             data-i18n-placeholder="searchLanguages" placeholder="Search languages"
+             aria-labelledby="gate-title">
+      <div id="lang-list" class="lang-list" role="listbox" aria-labelledby="gate-title"></div>
+      <p id="no-results" class="no-results" data-i18n="noResults" hidden>No languages found</p>
+    </div>
+  </div>
+
+  <!-- Site -->
+  <div id="site" hidden>
+    <header class="topbar">
+      <span class="brand" aria-hidden="true"><svg class="logo" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="currentColor"/></svg></span>
+      <nav class="actions">
+        <button id="lang-btn" class="btn btn-ghost" data-i18n-title="changeLanguage" title="Change language">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></svg>
+          <span id="lang-btn-label"></span>
+        </button>
+        <button id="account-btn" class="btn" data-i18n="account">Account</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Home: drifting world map -->
+      <section id="home">
+        <div class="map-marquee" aria-hidden="true">
+          <div class="map-track" dir="ltr">
+            <img class="map" src="assets/world-map.svg" alt="">
+            <img class="map" src="assets/world-map.svg" alt="">
+          </div>
+        </div>
+      </section>
+
+      <!-- Account -->
+      <section id="account" hidden>
+        <div class="card">
+          <h2 data-i18n="account">Account</h2>
+
+          <form id="signin-form">
+            <label>
+              <span data-i18n="name">Name</span>
+              <input id="acc-name" type="text" required autocomplete="name">
+            </label>
+            <label>
+              <span data-i18n="email">Email</span>
+              <input id="acc-email" type="email" required autocomplete="email">
+            </label>
+            <button type="submit" class="btn btn-primary" data-i18n="signIn">Sign in</button>
+          </form>
+
+          <div id="signed-in" hidden>
+            <p><span data-i18n="welcome">Welcome</span>, <strong id="acc-display"></strong></p>
+            <button id="signout-btn" class="btn" data-i18n="signOut">Sign out</button>
+          </div>
+
+          <button id="back-btn" class="btn btn-ghost" data-i18n="back">Back</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/languages.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
