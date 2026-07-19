@@ -70,11 +70,7 @@
       endonym.className = "endonym";
       endonym.textContent = lang.n;
 
-      const exonym = document.createElement("span");
-      exonym.className = "exonym";
-      exonym.textContent = lang.e;
-
-      btn.append(endonym, exonym);
+      btn.append(endonym);
       btn.addEventListener("click", () => selectLanguage(lang.c));
       langList.appendChild(btn);
       count++;

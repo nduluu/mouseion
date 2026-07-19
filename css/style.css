@@ -101,11 +101,6 @@ body {
   color: var(--ink);
 }
 
-.lang-option .exonym {
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
 .no-results {
   color: var(--muted);
   margin-top: 2rem;
