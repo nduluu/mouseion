@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body>
 
@@ -35,12 +35,53 @@
     </header>
 
     <main>
-      <!-- Home: drifting world map -->
+      <!-- Home: drifting world map + timeline & calendar -->
       <section id="home">
         <div class="map-marquee" aria-hidden="true">
           <div class="map-track" dir="ltr">
             <img class="map" src="assets/world-map.svg" alt="">
             <img class="map" src="assets/world-map.svg" alt="">
+          </div>
+        </div>
+
+        <div class="timepanel">
+          <div class="time-controls">
+            <label class="cal-label">
+              <span data-i18n="calendar">Calendar</span>
+              <select id="cal-system">
+                <option value="gregory" data-i18n="calGregory">Gregorian</option>
+                <option value="islamic-umalqura" data-i18n="calIslamic">Lunar Hijri (Islamic)</option>
+                <option value="persian" data-i18n="calPersian">Solar Hijri (Persian)</option>
+                <option value="hebrew" data-i18n="calHebrew">Hebrew (Jewish)</option>
+                <option value="buddhist" data-i18n="calBuddhist">Buddhist</option>
+                <option value="indian" data-i18n="calIndian">Indian (Saka)</option>
+                <option value="ethiopic" data-i18n="calEthiopic">Ethiopian</option>
+                <option value="coptic" data-i18n="calCoptic">Coptic</option>
+              </select>
+            </label>
+            <button id="cal-today" class="btn" data-i18n="today">Today</button>
+          </div>
+
+          <div id="timeline" class="timeline">
+            <div id="tl-track" class="tl-track"></div>
+          </div>
+
+          <div class="cal">
+            <div class="cal-head">
+              <div class="cal-levels">
+                <button type="button" class="lvl" data-level="millennium" data-i18n="millennia">Millennia</button>
+                <button type="button" class="lvl" data-level="century" data-i18n="centuries">Centuries</button>
+                <button type="button" class="lvl" data-level="decade" data-i18n="decades">Decades</button>
+                <button type="button" class="lvl" data-level="year" data-i18n="years">Years</button>
+                <button type="button" class="lvl" data-level="month" data-i18n="months">Months</button>
+              </div>
+              <div class="cal-nav">
+                <button type="button" id="cal-prev" class="nav-btn" aria-label="‹">‹</button>
+                <span id="cal-title"></span>
+                <button type="button" id="cal-next" class="nav-btn" aria-label="›">›</button>
+              </div>
+            </div>
+            <div id="cal-grid" class="cal-grid"></div>
           </div>
         </div>
       </section>
@@ -73,8 +114,9 @@
     </main>
   </div>
 
-  <script src="js/languages.js?v=2"></script>
-  <script src="js/i18n.js?v=2"></script>
-  <script src="js/app.js?v=2"></script>
+  <script src="js/languages.js?v=4"></script>
+  <script src="js/i18n.js?v=4"></script>
+  <script src="js/timecal.js?v=4"></script>
+  <script src="js/app.js?v=4"></script>
 </body>
 </html>

@@ -42,6 +42,7 @@
     document.documentElement.dir = lang.rtl ? "rtl" : "ltr";
     langBtnLabel.textContent = lang.n;
     translatePage();
+    if (window.TimeCal) TimeCal.setLanguage(lang.c, !!lang.rtl);
   }
 
   // ---------- Language gate ----------
