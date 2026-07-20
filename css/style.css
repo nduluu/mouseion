@@ -102,20 +102,29 @@ body {
 
 .lang-search:focus { border-color: var(--ink); }
 
-/* Family groups flow into columns. The container is forced LTR so columns
-   always fill left-to-right; RTL families (sorted last) land on the right. */
+/* A row of equal-width columns (JS fills them shortest-first for a masonry).
+   Forced LTR so the RTL column is always the rightmost, whatever the UI
+   language. The last column (.rtl-col) holds the primarily-RTL families. */
 .lang-list {
   direction: ltr;
-  columns: 14rem;
-  column-gap: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
   text-align: start;
 }
 
-.family {
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  margin-bottom: 1.5rem;
+.col {
+  flex: 1 1 0;
+  min-width: 0;
 }
+
+@media (max-width: 34rem) {
+  .lang-list { flex-direction: column; }
+  .col { flex: 0 0 auto; width: 100%; }
+}
+
+.family { margin-bottom: 1.5rem; }
+.col > .family:last-child { margin-bottom: 0; }
 
 .family-name {
   margin: 0 0 0.5rem;

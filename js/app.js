@@ -72,41 +72,79 @@
     return btn;
   }
 
-  // Render languages grouped by family. RTL-script families are sorted last so
-  // that, with the container forced to LTR, they land on the right of the grid.
+  function familyBlock(g, q) {
+    const langs = g.codes
+      .map((c) => byCode[c])
+      .filter((l) => l && matchesQuery(l, q));
+    if (!langs.length) return { block: null, count: 0 };
+
+    const family = document.createElement("div");
+    family.className = "family" + (g.rtl ? " rtl" : "");
+    if (g.rtl) family.dir = "rtl";
+
+    const heading = document.createElement("h3");
+    heading.className = "family-name";
+    heading.textContent = g.name;
+    family.appendChild(heading);
+
+    const grid = document.createElement("div");
+    grid.className = "family-grid";
+    for (const lang of langs) grid.appendChild(langCard(lang));
+    family.appendChild(grid);
+    return { block: family, count: langs.length };
+  }
+
+  const bySpeakers = (a, b) => (b.speakers || 0) - (a.speakers || 0);
+  let currentFilter = "";
+
+  // Number of masonry columns from the container width.
+  function columnCount() {
+    const avail = langList.clientWidth || 900;
+    if (avail < 34 * 16) return 1; // narrow: single stacked column
+    const colPx = 13 * 16;
+    const gap = 24;
+    return Math.max(2, Math.floor((avail + gap) / (colPx + gap)));
+  }
+
+  // Families ordered most-spoken first. The primarily-RTL families (Semitic,
+  // Iranian) are pinned to the top of the rightmost column so they stay grouped
+  // on the right; remaining families are packed shortest-first so the biggest
+  // families sit across the top and no column is left with a large empty gap.
   function renderLangList(filter) {
-    const q = (filter || "").trim().toLowerCase();
+    if (filter !== undefined) currentFilter = filter;
+    const q = (currentFilter || "").trim().toLowerCase();
     langList.textContent = "";
     let count = 0;
 
-    const groups = LANGUAGE_GROUPS.slice().sort(
-      (a, b) => (a.rtl ? 1 : 0) - (b.rtl ? 1 : 0)
-    );
-
-    for (const g of groups) {
-      const langs = g.codes
-        .map((c) => byCode[c])
-        .filter((l) => l && matchesQuery(l, q));
-      if (!langs.length) continue;
-
-      const family = document.createElement("div");
-      family.className = "family" + (g.rtl ? " rtl" : "");
-      if (g.rtl) family.dir = "rtl";
-
-      const heading = document.createElement("h3");
-      heading.className = "family-name";
-      heading.textContent = g.name;
-      family.appendChild(heading);
-
-      const grid = document.createElement("div");
-      grid.className = "family-grid";
-      for (const lang of langs) {
-        grid.appendChild(langCard(lang));
-        count++;
-      }
-      family.appendChild(grid);
-      langList.appendChild(family);
+    const n = columnCount();
+    const cols = [];
+    for (let i = 0; i < n; i++) {
+      const el = document.createElement("div");
+      el.className = "col";
+      langList.appendChild(el);
+      cols.push({ el, weight: 0 });
     }
+    const rightCol = cols[cols.length - 1];
+
+    // RTL families first, pinned to the top of the rightmost column.
+    for (const g of LANGUAGE_GROUPS.filter((x) => x.rtl).sort(bySpeakers)) {
+      const { block, count: c } = familyBlock(g, q);
+      if (!block) continue;
+      rightCol.el.appendChild(block);
+      rightCol.weight += c + 1.6;
+      count += c;
+    }
+
+    // LTR families packed into the shortest column at each step.
+    for (const g of LANGUAGE_GROUPS.filter((x) => !x.rtl).sort(bySpeakers)) {
+      const { block, count: c } = familyBlock(g, q);
+      if (!block) continue;
+      const target = cols.reduce((a, b) => (b.weight < a.weight ? b : a));
+      target.el.appendChild(block);
+      target.weight += c + 1.6; // cards + heading
+      count += c;
+    }
+
     noResults.hidden = count > 0;
   }
 
@@ -120,13 +158,21 @@
 
   function openGate() {
     langSearch.value = "";
+    gate.hidden = false; // show first so the container width is measurable
     renderLangList("");
-    gate.hidden = false;
     langSearch.focus();
   }
 
   langSearch.addEventListener("input", () => renderLangList(langSearch.value));
   langBtn.addEventListener("click", openGate);
+
+  // Re-flow the family columns when the width changes.
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    if (gate.hidden) return;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => renderLangList(), 150);
+  });
 
   // ---------- Theme ----------
 
