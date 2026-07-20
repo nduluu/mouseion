@@ -3,6 +3,35 @@
   --paper: #ffffff;
   --muted: #777777;
   --line: #e4e4e4;
+  --tick: #bbbbbb;
+  --accent: #b3402e;
+  --map-filter: none;
+  color-scheme: light;
+}
+
+/* Dark values, shared by system-preference dark and an explicit dark choice. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8e8e6;
+    --paper: #151515;
+    --muted: #9a9a97;
+    --line: #303030;
+    --tick: #565656;
+    --accent: #e0664f;
+    --map-filter: invert(1) hue-rotate(180deg);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: #e8e8e6;
+  --paper: #151515;
+  --muted: #9a9a97;
+  --line: #303030;
+  --tick: #565656;
+  --accent: #e0664f;
+  --map-filter: invert(1) hue-rotate(180deg);
+  color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -189,6 +218,7 @@ body {
   height: min(40vh, 24rem);
   width: auto;
   margin-inline-end: 12vw;
+  filter: var(--map-filter);
 }
 
 /* Track slides by exactly half its width (one map + one gap) → seamless loop.
@@ -258,7 +288,7 @@ html[dir="rtl"] .map-track { animation-direction: reverse; }
 .tl-cent {
   flex: none;
   position: relative;
-  border-inline-start: 1px solid #bbb;
+  border-inline-start: 1px solid var(--tick);
   background-image: repeating-linear-gradient(
     90deg,
     transparent 0,
@@ -291,7 +321,7 @@ html[dir="rtl"] .map-track { animation-direction: reverse; }
 }
 
 .tl-marker { background: var(--ink); }
-.tl-today { background: #b3402e; }
+.tl-today { background: var(--accent); }
 
 .cal {
   border: 1px solid var(--line);
@@ -385,7 +415,7 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
 
 .cell:hover { border-color: var(--ink); }
 
-.cell.now { border-color: #b3402e; }
+.cell.now { border-color: var(--accent); }
 
 .daycell { padding: 0.45rem 0.2rem; }
 
@@ -454,5 +484,24 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
 }
 
 #signed-in p { margin: 0; }
+
+.setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.setting select {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+}
 
 #back-btn { align-self: flex-start; padding-inline: 0.4rem; }

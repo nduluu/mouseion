@@ -15,6 +15,7 @@
   const signinForm = document.getElementById("signin-form");
   const signedIn = document.getElementById("signed-in");
   const accDisplay = document.getElementById("acc-display");
+  const themeSelect = document.getElementById("theme-select");
 
   const byCode = Object.fromEntries(LANGUAGES.map((l) => [l.c, l]));
 
@@ -96,14 +97,40 @@
   langSearch.addEventListener("input", () => renderLangList(langSearch.value));
   langBtn.addEventListener("click", openGate);
 
+  // ---------- Theme ----------
+
+  // "system" follows prefers-color-scheme (no attribute); "light"/"dark" force it.
+  function applyTheme(theme) {
+    if (theme === "light" || theme === "dark") {
+      document.documentElement.setAttribute("data-theme", theme);
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+  }
+
   // ---------- Account ----------
 
+  function getUser() {
+    return JSON.parse(localStorage.getItem(USER_KEY) || "null");
+  }
+
   function renderAccount() {
-    const user = JSON.parse(localStorage.getItem(USER_KEY) || "null");
+    const user = getUser();
     signinForm.hidden = !!user;
     signedIn.hidden = !user;
-    if (user) accDisplay.textContent = user.name;
+    if (user) {
+      accDisplay.textContent = user.name;
+      themeSelect.value = user.theme || "system";
+    }
   }
+
+  themeSelect.addEventListener("change", () => {
+    const user = getUser();
+    if (!user) return;
+    user.theme = themeSelect.value;
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    applyTheme(user.theme);
+  });
 
   function showAccount(show) {
     accountSection.hidden = !show;
@@ -116,23 +143,28 @@
 
   signinForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    localStorage.setItem(
-      USER_KEY,
-      JSON.stringify({
-        name: document.getElementById("acc-name").value.trim(),
-        email: document.getElementById("acc-email").value.trim(),
-      })
-    );
+    const existing = getUser();
+    const user = {
+      name: document.getElementById("acc-name").value.trim(),
+      email: document.getElementById("acc-email").value.trim(),
+      theme: (existing && existing.theme) || "system",
+    };
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    applyTheme(user.theme);
     renderAccount();
   });
 
   document.getElementById("signout-btn").addEventListener("click", () => {
     localStorage.removeItem(USER_KEY);
     signinForm.reset();
+    applyTheme("system");
     renderAccount();
   });
 
   // ---------- Init ----------
+
+  const initUser = getUser();
+  if (initUser && initUser.theme) applyTheme(initUser.theme);
 
   const saved = localStorage.getItem(LANG_KEY);
   if (saved && byCode[saved]) {

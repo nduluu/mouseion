@@ -4,7 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
+  <script>
+    // Apply a signed-in user's saved theme before first paint (avoids a flash).
+    // With no override, CSS follows the system's prefers-color-scheme.
+    try {
+      var u = JSON.parse(localStorage.getItem("mouseion.user") || "null");
+      if (u && u.theme && u.theme !== "system") {
+        document.documentElement.setAttribute("data-theme", u.theme);
+      }
+    } catch (e) {}
+  </script>
 </head>
 <body>
 
@@ -105,6 +115,14 @@
 
           <div id="signed-in" hidden>
             <p><span data-i18n="welcome">Welcome</span>, <strong id="acc-display"></strong></p>
+            <label class="setting">
+              <span data-i18n="theme">Theme</span>
+              <select id="theme-select">
+                <option value="system" data-i18n="themeSystem">System</option>
+                <option value="light" data-i18n="themeLight">Light</option>
+                <option value="dark" data-i18n="themeDark">Dark</option>
+              </select>
+            </label>
             <button id="signout-btn" class="btn" data-i18n="signOut">Sign out</button>
           </div>
 
@@ -114,9 +132,9 @@
     </main>
   </div>
 
-  <script src="js/languages.js?v=4"></script>
-  <script src="js/i18n.js?v=4"></script>
-  <script src="js/timecal.js?v=4"></script>
-  <script src="js/app.js?v=4"></script>
+  <script src="js/languages.js?v=5"></script>
+  <script src="js/i18n.js?v=5"></script>
+  <script src="js/timecal.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
 </body>
 </html>
