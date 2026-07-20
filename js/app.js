@@ -34,6 +34,9 @@
     document.querySelectorAll("[data-i18n-title]").forEach((el) => {
       el.title = t(el.dataset.i18nTitle);
     });
+    document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+      el.setAttribute("aria-label", t(el.dataset.i18nAria));
+    });
   }
 
   function applyLanguage(code) {
@@ -48,34 +51,61 @@
 
   // ---------- Language gate ----------
 
+  function matchesQuery(lang, q) {
+    return (
+      !q ||
+      lang.n.toLowerCase().includes(q) ||
+      lang.e.toLowerCase().includes(q) ||
+      lang.c.toLowerCase().includes(q)
+    );
+  }
+
+  function langCard(lang) {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "lang-option";
+    btn.setAttribute("role", "option");
+    btn.dir = lang.rtl ? "rtl" : "ltr";
+    btn.lang = lang.c;
+    btn.textContent = lang.n;
+    btn.addEventListener("click", () => selectLanguage(lang.c));
+    return btn;
+  }
+
+  // Render languages grouped by family. RTL-script families are sorted last so
+  // that, with the container forced to LTR, they land on the right of the grid.
   function renderLangList(filter) {
     const q = (filter || "").trim().toLowerCase();
     langList.textContent = "";
     let count = 0;
-    for (const lang of LANGUAGES) {
-      if (
-        q &&
-        !lang.n.toLowerCase().includes(q) &&
-        !lang.e.toLowerCase().includes(q) &&
-        !lang.c.toLowerCase().includes(q)
-      ) {
-        continue;
+
+    const groups = LANGUAGE_GROUPS.slice().sort(
+      (a, b) => (a.rtl ? 1 : 0) - (b.rtl ? 1 : 0)
+    );
+
+    for (const g of groups) {
+      const langs = g.codes
+        .map((c) => byCode[c])
+        .filter((l) => l && matchesQuery(l, q));
+      if (!langs.length) continue;
+
+      const family = document.createElement("div");
+      family.className = "family" + (g.rtl ? " rtl" : "");
+      if (g.rtl) family.dir = "rtl";
+
+      const heading = document.createElement("h3");
+      heading.className = "family-name";
+      heading.textContent = g.name;
+      family.appendChild(heading);
+
+      const grid = document.createElement("div");
+      grid.className = "family-grid";
+      for (const lang of langs) {
+        grid.appendChild(langCard(lang));
+        count++;
       }
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "lang-option";
-      btn.setAttribute("role", "option");
-      btn.dir = lang.rtl ? "rtl" : "ltr";
-      btn.lang = lang.c;
-
-      const endonym = document.createElement("span");
-      endonym.className = "endonym";
-      endonym.textContent = lang.n;
-
-      btn.append(endonym);
-      btn.addEventListener("click", () => selectLanguage(lang.c));
-      langList.appendChild(btn);
-      count++;
+      family.appendChild(grid);
+      langList.appendChild(family);
     }
     noResults.hidden = count > 0;
   }
