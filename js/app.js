@@ -85,6 +85,7 @@
     applyLanguage(code);
     gate.hidden = true;
     site.hidden = false;
+    routeFromHash();
   }
 
   function openGate() {
@@ -132,14 +133,34 @@
     applyTheme(user.theme);
   });
 
-  function showAccount(show) {
-    accountSection.hidden = !show;
-    home.hidden = show;
-    if (show) renderAccount();
+  // ---------- Navigation (hash routing) ----------
+
+  // View name -> section element. "home" is the default landing view.
+  const VIEWS = {
+    home: home,
+    account: accountSection,
+    about: document.getElementById("about"),
+    privacy: document.getElementById("privacy"),
+    terms: document.getElementById("terms"),
+    app: document.getElementById("app"),
+    legal: document.getElementById("legal"),
+  };
+
+  function showView(name) {
+    if (!VIEWS[name]) name = "home";
+    for (const v in VIEWS) VIEWS[v].hidden = v !== name;
+    if (name === "account") renderAccount();
+    window.scrollTo(0, 0);
   }
 
-  accountBtn.addEventListener("click", () => showAccount(true));
-  document.getElementById("back-btn").addEventListener("click", () => showAccount(false));
+  function routeFromHash() {
+    const name = location.hash.replace(/^#\/?/, "");
+    showView(VIEWS[name] ? name : "home");
+  }
+
+  window.addEventListener("hashchange", routeFromHash);
+  accountBtn.addEventListener("click", () => { location.hash = "#/account"; });
+  document.getElementById("back-btn").addEventListener("click", () => { location.hash = "#/home"; });
 
   signinForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -163,6 +184,8 @@
 
   // ---------- Init ----------
 
+  document.getElementById("copyright-year").textContent = new Date().getFullYear();
+
   const initUser = getUser();
   if (initUser && initUser.theme) applyTheme(initUser.theme);
 
@@ -170,6 +193,7 @@
   if (saved && byCode[saved]) {
     applyLanguage(saved);
     site.hidden = false;
+    routeFromHash();
   } else {
     openGate();
   }

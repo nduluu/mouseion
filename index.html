@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=7">
   <script>
     // Apply a signed-in user's saved theme before first paint (avoids a flash).
     // With no override, CSS follows the system's prefers-color-scheme.
@@ -129,12 +129,40 @@
           <button id="back-btn" class="btn btn-ghost" data-i18n="back">Back</button>
         </div>
       </section>
+
+      <!-- Footer pages (blank for now) -->
+      <section id="about" class="page" hidden>
+        <h1 class="page-title" data-i18n="about">About</h1>
+      </section>
+      <section id="privacy" class="page" hidden>
+        <h1 class="page-title" data-i18n="privacyPolicy">Privacy Policy</h1>
+      </section>
+      <section id="terms" class="page" hidden>
+        <h1 class="page-title" data-i18n="termsOfUse">Terms of Use</h1>
+      </section>
+      <section id="app" class="page" hidden>
+        <h1 class="page-title" data-i18n="app">App</h1>
+      </section>
+      <section id="legal" class="page" hidden>
+        <h1 class="page-title" data-i18n="legal">Legal</h1>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <span class="copyright">© <span id="copyright-year">2026</span> MOUSEION. <span data-i18n="rightsReserved">All rights reserved.</span></span>
+      <nav class="footer-links">
+        <a href="#/about" data-i18n="about">About</a>
+        <a href="#/privacy" data-i18n="privacyPolicy">Privacy Policy</a>
+        <a href="#/terms" data-i18n="termsOfUse">Terms of Use</a>
+        <a href="#/app" data-i18n="app">App</a>
+        <a href="#/legal" data-i18n="legal">Legal</a>
+      </nav>
+    </footer>
   </div>
 
-  <script src="js/languages.js?v=6"></script>
-  <script src="js/i18n.js?v=6"></script>
-  <script src="js/timecal.js?v=6"></script>
-  <script src="js/app.js?v=6"></script>
+  <script src="js/languages.js?v=7"></script>
+  <script src="js/i18n.js?v=7"></script>
+  <script src="js/timecal.js?v=7"></script>
+  <script src="js/app.js?v=7"></script>
 </body>
 </html>
