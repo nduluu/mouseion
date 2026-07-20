@@ -34,6 +34,11 @@ const TimeCal = (() => {
   const NOW = Date.now();
 
   let locale = "en";
+  // Locale actually used for month/weekday names and digits. Equals `locale`
+  // when the browser has date data for it, else "en" — this avoids silently
+  // falling back to the browser's own default locale (e.g. Italian) for the
+  // ~100 languages without ICU calendar data.
+  let dispLocale = "en";
   let cal = CALS[0];
   let state = { level: "month", Y: 0, M: 0 };
   let els = null;
@@ -65,14 +70,26 @@ const TimeCal = (() => {
     return o;
   }
 
+  // Resolve the best display locale for `lang`: itself if the browser has date
+  // data for it, otherwise "en" (consistent) rather than the browser default.
+  function resolveDispLocale(lang) {
+    try {
+      const base = lang.split("-")[0];
+      const got = new Intl.DateTimeFormat(lang, { month: "long" }).resolvedOptions().locale;
+      return got.split("-")[0] === base ? lang : "en";
+    } catch (e) {
+      return "en";
+    }
+  }
+
   function fmt(opts) {
-    const key = locale + "|" + cal.id + "|" + JSON.stringify(opts);
-    return (fmtCache[key] ||= new Intl.DateTimeFormat(locale + "-u-ca-" + cal.id, { timeZone: "UTC", ...opts }));
+    const key = dispLocale + "|" + cal.id + "|" + JSON.stringify(opts);
+    return (fmtCache[key] ||= new Intl.DateTimeFormat(dispLocale + "-u-ca-" + cal.id, { timeZone: "UTC", ...opts }));
   }
 
   function nf() {
-    const key = "nf|" + locale;
-    return (fmtCache[key] ||= new Intl.NumberFormat(locale, { useGrouping: false }));
+    const key = "nf|" + dispLocale;
+    return (fmtCache[key] ||= new Intl.NumberFormat(dispLocale, { useGrouping: false }));
   }
 
   // First day (noon UTC) of calendar year Y, or null if the calendar can't resolve it.
@@ -338,6 +355,7 @@ const TimeCal = (() => {
 
   function setLanguage(lang, isRtl) {
     locale = lang;
+    dispLocale = resolveDispLocale(lang);
     for (const k in fmtCache) delete fmtCache[k];
     cal = byId[LANG_CAL[lang] || "gregory"];
     els.select.value = cal.id;
