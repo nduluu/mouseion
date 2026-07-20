@@ -97,10 +97,9 @@
   const bySpeakers = (a, b) => (b.speakers || 0) - (a.speakers || 0);
   let currentFilter = "";
 
-  // Number of masonry columns from the container width.
+  // Number of masonry columns from the container width (always at least two).
   function columnCount() {
     const avail = langList.clientWidth || 900;
-    if (avail < 34 * 16) return 1; // narrow: single stacked column
     const colPx = 13 * 16;
     const gap = 24;
     return Math.max(2, Math.floor((avail + gap) / (colPx + gap)));

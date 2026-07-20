@@ -118,9 +118,9 @@ body {
   min-width: 0;
 }
 
+/* Keep at least two columns even when narrow; just tighten the gap. */
 @media (max-width: 34rem) {
-  .lang-list { flex-direction: column; }
-  .col { flex: 0 0 auto; width: 100%; }
+  .lang-list { gap: 0.6rem; }
 }
 
 .family { margin-bottom: 1.5rem; }
