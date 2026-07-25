@@ -256,8 +256,31 @@ body {
 #home {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  padding-block: 2rem 3rem;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+/* World map (left, smaller) and timeline/calendar (right) side by side. */
+.home-top {
+  display: grid;
+  grid-template-columns: 4fr 5fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  padding: 1.25rem;
+}
+
+.map-panel {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .map-marquee {
@@ -272,11 +295,71 @@ body {
 }
 
 .map {
-  height: min(40vh, 24rem);
+  height: min(38vh, 20rem);
   width: auto;
-  margin-inline-end: 12vw;
+  margin-inline-end: 6vw;
   filter: var(--map-filter);
 }
+
+@media (max-width: 48rem) {
+  .home-top { grid-template-columns: 1fr; }
+}
+
+/* ---------- Home search + categories ---------- */
+
+.home-search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.home-search:focus-within { border-color: var(--ink); }
+
+.home-search .search-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--muted);
+  flex: none;
+}
+
+.home-search input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: none;
+  outline: none;
+  font: inherit;
+  color: var(--ink);
+}
+
+.categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.category {
+  padding: 1rem 1.25rem;
+  font-family: inherit;
+  font-size: 1rem;
+  text-align: start;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  cursor: pointer;
+}
+
+.category:hover { border-color: var(--ink); }
 
 /* Track slides by exactly half its width (one map + one gap) → seamless loop.
    LTR: map drifts in the reading direction (to the right); RTL: reversed. */
@@ -294,13 +377,10 @@ html[dir="rtl"] .map-track { animation-direction: reverse; }
 /* ---------- Timeline & calendar ---------- */
 
 .timepanel {
-  width: 100%;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0;
 }
 
 .time-controls {
