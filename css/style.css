@@ -309,6 +309,77 @@ body {
   .home-top { grid-template-columns: 1fr; }
 }
 
+/* ---------- Map tools + full-screen viewer ---------- */
+
+.map-tool {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.map-tool:hover { border-color: var(--ink); }
+
+.map-tool .icon { width: 1.05rem; height: 1.05rem; }
+
+/* Expand button, top corner of the map card (right for LTR, left for RTL). */
+#map-expand {
+  position: absolute;
+  top: 0.6rem;
+  inset-inline-end: 0.6rem;
+  z-index: 2;
+}
+
+/* Pause the drift and lock scrolling while the viewer is open. */
+body.map-expanded { overflow: hidden; }
+body.map-expanded .map-track { animation-play-state: paused; }
+
+.map-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+}
+
+.map-viewer-bar {
+  position: absolute;
+  top: 1rem;
+  inset-inline-end: 1rem;
+  z-index: 2;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.map-viewer-stage {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+}
+
+.map-viewer-stage.grabbing { cursor: grabbing; }
+
+.map-full {
+  max-width: 100%;
+  max-height: 100%;
+  transform-origin: center;
+  will-change: transform;
+  filter: var(--map-filter);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 /* ---------- Home search + categories ---------- */
 
 .home-search {
