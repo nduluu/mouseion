@@ -264,7 +264,7 @@ body {
 /* World map (left, smaller) and timeline/calendar (right) side by side. */
 .home-top {
   display: grid;
-  grid-template-columns: 4fr 5fr;
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   align-items: stretch;
 }
@@ -275,27 +275,33 @@ body {
   padding: 1.25rem;
 }
 
+/* The map fills its whole card (no padding); a full-height slice drifts.
+   The marquee is positioned absolutely so the map's intrinsic size doesn't
+   drive the panel height — the panel matches the calendar's height instead. */
 .map-panel {
-  display: flex;
-  align-items: center;
+  position: relative;
+  padding: 0;
   overflow: hidden;
+  min-height: 18rem;
 }
 
 .map-marquee {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
-  width: 100%;
 }
 
 .map-track {
   display: flex;
   width: max-content;
+  height: 100%;
   animation: drift 80s linear infinite;
 }
 
 .map {
-  height: min(38vh, 20rem);
+  height: 100%;
   width: auto;
-  margin-inline-end: 6vw;
+  margin-inline-end: 3vw;
   filter: var(--map-filter);
 }
 
@@ -310,6 +316,8 @@ body {
   align-items: center;
   gap: 0.6rem;
   width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
   padding: 0.7rem 1.2rem;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -339,6 +347,8 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
   width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
 }
 
 .category {
