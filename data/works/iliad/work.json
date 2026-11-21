@@ -450,7 +450,15 @@
           "name": "Vincenzo Monti",
           "died": 1828
         }
-      ]
+      ],
+      "note": "First published 1810; the text in Mouseion is the fourth edition of 1825, revised by Monti.",
+      "text": {
+        "path": "texts/ita-monti",
+        "format": "verse",
+        "align": "book",
+        "source": "Wikisource, transcription of the 4th edition (1825), revised by the translator (CC BY-SA 4.0)",
+        "sourceUrl": "https://it.wikisource.org/wiki/Iliade_%28Monti%29"
+      }
     },
     {
       "id": "gnedich",
