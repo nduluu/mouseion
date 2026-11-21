@@ -47,6 +47,11 @@ SOURCES = {
         "page": lambda b: f"Iliade/Rhapsodie {ROMAN[b]}",
         "out": "data/works/iliad/texts/fra-leconte",
     },
+    "roure": {
+        "host": "ca.wikisource.org", "format": "plain",
+        "page": lambda b: f"Iliada/Cant {ROMAN[b]}",
+        "out": "data/works/iliad/texts/cat-roure",
+    },
     "segala": {
         "host": "es.wikisource.org", "format": "prose",
         "page": lambda b: f"La Ilíada (Luis Segalá y Estalella)/Canto {ROMAN[b]}",
@@ -228,11 +233,24 @@ def prose(html_text):
     return {"passages": passages}
 
 
+class PlainParser(ProseParser):
+    """Like ProseParser, but a <br> inside a paragraph also starts a new one:
+    some transcriptions put a whole chapter in one <p>, one line per paragraph."""
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "br" and self.in_p and not self.skip:
+            self._end_para()
+            return
+        super().handle_starttag(tag, attrs)
+
+
 def plain(html_text):
-    """Prose without markers: every paragraph, in order (shown book by book)."""
-    p = ProseParser()
+    """Prose without markers: every paragraph, in order (shown book by book).
+    Decorative rules ("______", "* * *") are dropped."""
+    p = PlainParser()
     p.feed(html_text)
-    return {"passages": [{"from": None, "text": text} for _, text in p.paras]}
+    paras = [text for _, text in p.paras if re.search(r"\w", text.replace("_", ""))]
+    return {"passages": [{"from": None, "text": text} for text in paras]}
 
 
 def run(name):

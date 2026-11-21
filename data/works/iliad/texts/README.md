@@ -26,9 +26,10 @@ Each book is one file (`01.json` … `24.json`):
 | `rus-gnedich/` | Илиада, trans. Н. И. Гнедич (1829), from the Moscow 1978 edition | [ru.wikisource](https://ru.wikisource.org/wiki/%D0%98%D0%BB%D0%B8%D0%B0%D0%B4%D0%B0_(%D0%93%D0%BE%D0%BC%D0%B5%D1%80;_%D0%93%D0%BD%D0%B5%D0%B4%D0%B8%D1%87)) |
 | `ita-monti/` | Iliade, trans. Vincenzo Monti, 4th edition revised by the translator, 1825 | [it.wikisource](https://it.wikisource.org/wiki/Iliade_(Monti)) |
 | `fra-leconte/` | Iliade, trans. Leconte de Lisle, Paris 1866 (Lemerre) | [fr.wikisource](https://fr.wikisource.org/wiki/Iliade_(trad._Leconte_de_Lisle)) |
+| `cat-roure/` | Iliada, trans. Conrad Roure, Barcelona 1879 (prose) | [ca.wikisource](https://ca.wikisource.org/wiki/Iliada), via Wikimedia's HTML dump |
 
 Wikisource transcriptions are licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/);
 these folders are adaptations (converted with `tools/import_wikisource.py`; notes,
 page numbers and editors' summaries removed) shared under the same licence.
 Alignment: Segalá by passage (it prints the Greek line numbers), Gnedich by line,
-Monti and Leconte de Lisle by book only.
+Monti, Leconte de Lisle and Roure by book only.

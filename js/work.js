@@ -89,6 +89,7 @@ const Work = (() => {
     const st = status(ed);
     if (st === "locked") s += " · " + t("lockedShort");
     else if (st === "notext") s += " · " + t("notDigitisedShort");
+    if (ed.needsReview) s += " · " + t("unreviewed");
     return s;
   }
 

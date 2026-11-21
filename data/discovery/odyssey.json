@@ -1,0 +1,1183 @@
+{
+ "work": "odyssey",
+ "wikidata": "Q35160",
+ "matched": {
+  "pope": "Q15628433",
+  "cowper": "Q15628436",
+  "pindemonte": "Q18908081",
+  "lecontedelisle": "Q21705251",
+  "butler": "Q15628440",
+  "segala": "Q32845653",
+  "lattimore": "Q131403609",
+  "fagles": "Q131428357",
+  "wilson": "Q60320583",
+  "wd-q19090449": "Q19090449",
+  "wd-q19531329": "Q19531329",
+  "wd-q21666130": "Q21666130",
+  "wd-q21666129": "Q21666129",
+  "wd-q25820489": "Q25820489",
+  "wd-q33082985": "Q33082985",
+  "wd-q54460006": "Q54460006",
+  "wd-q102917585": "Q102917585",
+  "wd-q108850848": "Q108850848",
+  "wd-q109652097": "Q109652097",
+  "wd-q110625978": "Q110625978",
+  "wd-q110626000": "Q110626000",
+  "wd-q110626292": "Q110626292",
+  "wd-q110626366": "Q110626366",
+  "wd-q110626390": "Q110626390",
+  "wd-q110626392": "Q110626392",
+  "wd-q132817395": "Q132817395",
+  "wd-q140068888": "Q140068888",
+  "wd-q21705476": "Q21705476",
+  "wd-q21714862": "Q21714862",
+  "wd-q21715294": "Q21715294",
+  "wd-q21715298": "Q21715298",
+  "wd-q24208371": "Q24208371",
+  "wd-q48225652": "Q48225652",
+  "wd-q65556404": "Q65556404",
+  "wd-q87415702": "Q87415702",
+  "wd-q125623135": "Q125623135",
+  "wd-q125803908": "Q125803908",
+  "wd-q127230258": "Q127230258",
+  "wd-q136098355": "Q136098355",
+  "wd-q138411271": "Q138411271",
+  "wd-q140761857": "Q140761857"
+ },
+ "items": {
+  "Q15628433": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q164047": {
+     "name": "Alexander Pope",
+     "role": "translator",
+     "died": 1744
+    }
+   },
+   "pub": 1725,
+   "titles": [
+    "The Odyssey of Homer"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/Odyssey_(Pope)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Odyssey of Homer",
+   "rights": "translator died 1744: public domain under life+70 from 1815; US from 1821"
+  },
+  "Q15628436": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q315537": {
+     "name": "William Cowper",
+     "role": "translator",
+     "died": 1800
+    }
+   },
+   "pub": 1791,
+   "titles": [
+    "The Odyssey of Homer"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/The_Iliad_and_Odyssey_of_Homer_(Cowper)/Volume_2"
+   ],
+   "gutenberg": [
+    "24269"
+   ],
+   "ia": [],
+   "label": "The Odyssey of Homer",
+   "rights": "translator died 1800: public domain under life+70 from 1871; US from 1887"
+  },
+  "Q15628440": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q312829": {
+     "name": "Samuel Butler",
+     "role": "translator",
+     "died": 1902
+    }
+   },
+   "pub": 1900,
+   "titles": [
+    "The Odyssey"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/The_Odyssey_(Butler)"
+   ],
+   "gutenberg": [],
+   "ia": [
+    "odysseyrenderedi00homerich"
+   ],
+   "label": "The Odyssey",
+   "rights": "translator died 1902: public domain under life+70 from 1973; US from 1996"
+  },
+  "Q18908081": {
+   "langs": [
+    "it"
+   ],
+   "people": {
+    "Q1236766": {
+     "name": "Ippolito Pindemonte",
+     "role": "translator",
+     "died": 1828
+    }
+   },
+   "pub": 1822,
+   "titles": [
+    "Odissea (Pindemonte)"
+   ],
+   "wikisource": [
+    "https://it.wikisource.org/wiki/Odissea_(Pindemonte)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odissea (Pindemonte)",
+   "rights": "translator died 1828: public domain under life+70 from 1899; US from 1918"
+  },
+  "Q19090449": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q315537": {
+     "name": "William Cowper",
+     "role": "translator",
+     "died": 1800
+    }
+   },
+   "pub": 1791,
+   "titles": [
+    "The Iliad and Odyssey of Homer"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/The_Iliad_and_Odyssey_of_Homer_(Cowper)/Volume_1/The_Iliad"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad and Odyssey of Homer",
+   "rights": "translator died 1800: public domain under life+70 from 1871; US from 1887"
+  },
+  "Q19531329": {
+   "langs": [
+    "cs"
+   ],
+   "people": {
+    "Q15830175": {
+     "name": "Jan Šafránek",
+     "role": "translator",
+     "died": 1924
+    }
+   },
+   "pub": 1887,
+   "titles": [
+    "Příběhy Odysseovy"
+   ],
+   "wikisource": [
+    "https://cs.wikisource.org/wiki/P%C5%99%C3%ADb%C4%9Bhy_Odysseovy"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Příběhy Odysseovy",
+   "rights": "translator died 1924: public domain under life+70 from 1995; US from 1983"
+  },
+  "Q21666126": {
+   "langs": [
+    "fr",
+    "grc"
+   ],
+   "people": {
+    "Q11288891": {
+     "name": "Eugène Bareste",
+     "role": "translator",
+     "died": 1861
+    }
+   },
+   "pub": 1842,
+   "titles": [
+    "Odyssée"
+   ],
+   "wikisource": [
+    "https://fr.wikisource.org/wiki/L%E2%80%99Odyss%C3%A9e/Traduction_Bareste"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odyssée",
+   "rights": "translator died 1861: public domain under life+70 from 1932; US from 1938"
+  },
+  "Q21666127": {
+   "langs": [
+    "fr",
+    "grc"
+   ],
+   "people": {
+    "Q18117902": {
+     "name": "Édouard Sommer",
+     "role": "translator",
+     "died": 1866
+    }
+   },
+   "pub": 1886,
+   "titles": [
+    "L'Odyssée"
+   ],
+   "wikisource": [
+    "https://fr.wikisource.org/wiki/L%E2%80%99Odyss%C3%A9e/Traduction_Sommer"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L'Odyssée",
+   "rights": "translator died 1866: public domain under life+70 from 1937; US from 1982"
+  },
+  "Q21666130": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q16681666": {
+     "name": "Ulysse-François-Ange de Séguier",
+     "role": "translator",
+     "died": 1909
+    }
+   },
+   "pub": 1896,
+   "titles": [
+    "L’Odyssée"
+   ],
+   "wikisource": [
+    "https://fr.wikisource.org/wiki/L%E2%80%99Odyss%C3%A9e/Traduction_S%C3%A9guier"
+   ],
+   "gutenberg": [],
+   "ia": [
+    "lodyssedhomreml00homegoog"
+   ],
+   "label": "L’Odyssée",
+   "rights": "translator died 1909: public domain under life+70 from 1980; US from 1992"
+  },
+  "Q21666129": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q309704": {
+     "name": "Charles Marie René Leconte de Lisle",
+     "role": "translator",
+     "died": 1894
+    }
+   },
+   "pub": 1893,
+   "titles": [
+    "Odyssée"
+   ],
+   "wikisource": [
+    "https://fr.wikisource.org/wiki/L%E2%80%99Odyss%C3%A9e/Traduction_Leconte_de_Lisle"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odyssée",
+   "rights": "translator died 1894: public domain under life+70 from 1965; US from 1989"
+  },
+  "Q25820489": {
+   "langs": [
+    "ru"
+   ],
+   "people": {
+    "Q157623": {
+     "name": "Vasily Zhukovsky",
+     "role": "translator",
+     "died": 1852
+    }
+   },
+   "pub": 1869,
+   "titles": [
+    "Одиссея"
+   ],
+   "wikisource": [
+    "https://ru.wikisource.org/wiki/%D0%9E%D0%B4%D0%B8%D1%81%D1%81%D0%B5%D1%8F_(%D0%93%D0%BE%D0%BC%D0%B5%D1%80;_%D0%96%D1%83%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Одиссея",
+   "rights": "translator died 1852: public domain under life+70 from 1923; US from 1965"
+  },
+  "Q32845653": {
+   "langs": [
+    "es"
+   ],
+   "people": {
+    "Q9025362": {
+     "name": "Lluís Segalà i Estalella",
+     "role": "translator",
+     "died": 1938
+    }
+   },
+   "pub": 1910,
+   "titles": [
+    "La Odisea"
+   ],
+   "wikisource": [
+    "https://es.wikisource.org/wiki/La_Odisea_(Luis_Segal%C3%A1_y_Estalella)"
+   ],
+   "gutenberg": [
+    "58221"
+   ],
+   "ia": [
+    "odisea_images"
+   ],
+   "label": "La Odisea",
+   "rights": "translator died 1938: public domain under life+70 from 2009; US from 2006"
+  },
+  "Q33082985": {
+   "langs": [
+    "es"
+   ],
+   "people": {
+    "Q27043809": {
+     "name": "Antoni de Gironella i Aiguals",
+     "role": "translator",
+     "died": 1855
+    }
+   },
+   "pub": 1851,
+   "titles": [
+    "La Odisea",
+    "La Odisea de Homero"
+   ],
+   "wikisource": [
+    "https://es.wikisource.org/wiki/La_Odisea_(Antonio_de_Gironella)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "La Odisea de Homero",
+   "rights": "translator died 1855: public domain under life+70 from 1926; US from 1947"
+  },
+  "Q54460006": {
+   "langs": [
+    "cs"
+   ],
+   "people": {
+    "Q24208183": {
+     "name": "Antonín Liška",
+     "role": "translator",
+     "died": 1847
+    }
+   },
+   "pub": 1848,
+   "titles": [
+    "Homérowa Odyssea"
+   ],
+   "wikisource": [
+    "https://cs.wikisource.org/wiki/Hom%C3%A9rowa_Odyssea"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Q54460006",
+   "rights": "translator died 1847: public domain under life+70 from 1918; US from 1944"
+  },
+  "Q102917585": {
+   "langs": [
+    "pt"
+   ],
+   "people": {
+    "Q10340294": {
+     "name": "Manuel Odorico Mendes",
+     "role": "translator",
+     "died": 1864
+    }
+   },
+   "pub": 1928,
+   "titles": [
+    "Odysséa de Homero"
+   ],
+   "wikisource": [
+    "https://pt.wikisource.org/wiki/Odyss%C3%A9a_de_Homero"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odysséa de Homero",
+   "rights": "translator died 1864: public domain under life+70 from 1935; US from 2024"
+  },
+  "Q108850848": {
+   "langs": [
+    "pl"
+   ],
+   "people": {
+    "Q1873662": {
+     "name": "Lucjan Siemieński",
+     "role": "translator",
+     "died": 1877
+    }
+   },
+   "pub": 1895,
+   "titles": [
+    "Odyseja"
+   ],
+   "wikisource": [
+    "https://pl.wikisource.org/wiki/Odyseja_(Homer,_t%C5%82um._Siemie%C5%84ski,_1895)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odyseja",
+   "rights": "translator died 1877: public domain under life+70 from 1948; US from 1991"
+  },
+  "Q109652097": {
+   "langs": [
+    "he"
+   ],
+   "people": {
+    "Q521410": {
+     "name": "Shaul Tchernichovsky",
+     "role": "translator",
+     "died": 1943
+    }
+   },
+   "pub": 1953,
+   "titles": [
+    "אודיסיה"
+   ],
+   "wikisource": [
+    "https://he.wikisource.org/wiki/%D7%9B%D7%9C_%D7%9B%D7%AA%D7%91%D7%99_%D7%A9%D7%90%D7%95%D7%9C_%D7%98%D7%A9%D7%A8%D7%A0%D7%99%D7%97%D7%95%D7%91%D7%A1%D7%A7%D7%99/%D7%9B%D7%A8%D7%9A_%D7%93:_%D7%90%D7%95%D7%93%D7%99%D7%A1%D7%99%D7%94"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Q109652097",
+   "rights": "translator died 1943: public domain under life+70 from 2014; US from 2049"
+  },
+  "Q110625978": {
+   "langs": [
+    "pl"
+   ],
+   "people": {
+    "Q1873662": {
+     "name": "Lucjan Siemieński",
+     "role": "translator",
+     "died": 1877
+    }
+   },
+   "pub": 1873,
+   "titles": [
+    "Odysseja"
+   ],
+   "wikisource": [
+    "https://pl.wikisource.org/wiki/Odysseja"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odysseja",
+   "rights": "translator died 1877: public domain under life+70 from 1948; US from 1969"
+  },
+  "Q110626000": {
+   "langs": [
+    "ro"
+   ],
+   "people": {
+    "Q473257": {
+     "name": "George Coșbuc",
+     "role": "translator",
+     "died": 1918
+    }
+   },
+   "pub": null,
+   "titles": [
+    "Odiseea"
+   ],
+   "wikisource": [
+    "https://ro.wikisource.org/wiki/Odiseea"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odiseea",
+   "rights": "translator died 1918: public domain under life+70 from 1989"
+  },
+  "Q110626218": {
+   "langs": [],
+   "people": {},
+   "pub": null,
+   "titles": [
+    "Οδύσσεια (Μετάφραση Εφταλιώτη)"
+   ],
+   "wikisource": [
+    "https://el.wikisource.org/wiki/%CE%9F%CE%B4%CF%8D%CF%83%CF%83%CE%B5%CE%B9%CE%B1_(%CE%9C%CE%B5%CF%84%CE%AC%CF%86%CF%81%CE%B1%CF%83%CE%B7_%CE%95%CF%86%CF%84%CE%B1%CE%BB%CE%B9%CF%8E%CF%84%CE%B7)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odysseia",
+   "rights": "translator unknown"
+  },
+  "Q110626292": {
+   "langs": [
+    "it"
+   ],
+   "people": {
+    "Q1867806": {
+     "name": "Lodovico Dolce",
+     "role": "translator",
+     "died": 1568
+    }
+   },
+   "pub": 1573,
+   "titles": [
+    "L'Ulisse"
+   ],
+   "wikisource": [
+    "https://it.wikisource.org/wiki/L%27Ulisse"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L'Ulisse",
+   "rights": "translator died 1568: public domain under life+70 from 1639; US from 1669"
+  },
+  "Q110626330": {
+   "langs": [
+    "ru"
+   ],
+   "people": {},
+   "pub": null,
+   "titles": [
+    "Одиссея"
+   ],
+   "wikisource": [
+    "https://ru.wikisource.org/wiki/%D0%9E%D0%B4%D0%B8%D1%81%D1%81%D0%B5%D1%8F_(%D0%93%D0%BE%D0%BC%D0%B5%D1%80;_%D0%9F%D1%83%D1%88%D0%BA%D0%B8%D0%BD)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Одиссея",
+   "rights": "translator unknown"
+  },
+  "Q110626366": {
+   "langs": [
+    "it"
+   ],
+   "people": {
+    "Q15677268": {
+     "name": "Tito Morino",
+     "role": "translator",
+     "died": 1934
+    }
+   },
+   "pub": 1926,
+   "titles": [
+    "Odissea"
+   ],
+   "wikisource": [
+    "https://it.wikisource.org/wiki/Odissea_(Morino)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odissea",
+   "rights": "translator died 1934: public domain under life+70 from 2005; US from 2022"
+  },
+  "Q110626390": {
+   "langs": [
+    "it"
+   ],
+   "people": {
+    "Q32862": {
+     "name": "Ettore Romagnoli",
+     "role": "translator",
+     "died": 1938
+    }
+   },
+   "pub": 1926,
+   "titles": [
+    "Odissea"
+   ],
+   "wikisource": [
+    "https://it.wikisource.org/wiki/Odissea_(Romagnoli)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odissea",
+   "rights": "translator died 1938: public domain under life+70 from 2009; US from 2022"
+  },
+  "Q110626392": {
+   "langs": [
+    "it"
+   ],
+   "people": {
+    "Q349065": {
+     "name": "Anton Maria Salvini",
+     "role": "translator",
+     "died": 1729
+    }
+   },
+   "pub": 1742,
+   "titles": [
+    "Odissea"
+   ],
+   "wikisource": [
+    "https://it.wikisource.org/wiki/Odissea_(Salvini)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odissea",
+   "rights": "translator died 1729: public domain under life+70 from 1800; US from 1838"
+  },
+  "Q132817395": {
+   "langs": [
+    "nb"
+   ],
+   "people": {
+    "Q11995485": {
+     "name": "Peter Østbye",
+     "role": "translator",
+     "died": 1943
+    }
+   },
+   "pub": 1922,
+   "titles": [
+    "Odysseen"
+   ],
+   "wikisource": [
+    "https://no.wikisource.org/wiki/Odysseen"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odysseen",
+   "rights": "translator died 1943: public domain under life+70 from 2014; US from 2018"
+  },
+  "Q140068888": {
+   "langs": [
+    "nn"
+   ],
+   "people": {
+    "Q467497": {
+     "name": "Arne Garborg",
+     "role": "translator",
+     "died": 1924
+    }
+   },
+   "pub": 1919,
+   "titles": [
+    "Odyssevskvædet"
+   ],
+   "wikisource": [
+    "https://no.wikisource.org/wiki/Odyssevskv%C3%A6det"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odyssevskvædet",
+   "rights": "translator died 1924: public domain under life+70 from 1995; US from 2015"
+  },
+  "Q21705251": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q309704": {
+     "name": "Charles Marie René Leconte de Lisle",
+     "role": "translator",
+     "died": 1894
+    }
+   },
+   "pub": 1868,
+   "titles": [
+    "Odyssée"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odyssée",
+   "rights": "translator died 1894: public domain under life+70 from 1965; US from 1964"
+  },
+  "Q21705476": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q21705546": {
+     "name": "Frédéric Mugler",
+     "role": "translator",
+     "died": 2018
+    }
+   },
+   "pub": 1995,
+   "titles": [
+    "L'Odyssée"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L'Odyssée",
+   "rights": "translator died 2018: public domain under life+70 from 2089"
+  },
+  "Q21714862": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q272609": {
+     "name": "Anne Dacier",
+     "role": "translator",
+     "died": 1720
+    }
+   },
+   "pub": 1716,
+   "titles": [
+    "L'Odyssée d'Homère"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L'Odyssée d'Homère",
+   "rights": "translator died 1720: public domain under life+70 from 1791; US from 1812"
+  },
+  "Q21715294": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q2484224": {
+     "name": "Victor Bérard",
+     "role": "translator",
+     "died": 1931
+    }
+   },
+   "pub": 1924,
+   "titles": [
+    "L’Odyssée"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L’Odyssée, « Poésie homérique »",
+   "rights": "translator died 1931: public domain under life+70 from 2002; US from 2020"
+  },
+  "Q21715298": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q123521": {
+     "name": "Philippe Jaccottet",
+     "role": "translator",
+     "died": 2021
+    }
+   },
+   "pub": 1955,
+   "titles": [
+    "Odyssée"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odyssée",
+   "rights": "translator died 2021: public domain under life+70 from 2092; US from 2051"
+  },
+  "Q24208371": {
+   "langs": [
+    "cs"
+   ],
+   "people": {
+    "Q24208183": {
+     "name": "Antonín Liška",
+     "role": "translator",
+     "died": 1847
+    }
+   },
+   "pub": 1848,
+   "titles": [
+    "Homérowa Odyssea"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homérowa Odyssea",
+   "rights": "translator died 1847: public domain under life+70 from 1918; US from 1944"
+  },
+  "Q48225652": {
+   "langs": [
+    "cs"
+   ],
+   "people": {
+    "Q12043250": {
+     "name": "Otmar Vaňorný",
+     "role": "translator",
+     "died": 1947
+    }
+   },
+   "pub": 1940,
+   "titles": [
+    "Homérova Odysseia"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homérova Odysseia",
+   "rights": "translator died 1947: public domain under life+70 from 2018; US from 2036"
+  },
+  "Q55743802": {
+   "langs": [
+    "en"
+   ],
+   "people": {},
+   "pub": 1884,
+   "titles": [
+    "The Odyssey of Homer"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Odyssey of Homer",
+   "rights": "translator unknown"
+  },
+  "Q60320583": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q5372429": {
+     "name": "Emily Wilson",
+     "role": "translator",
+     "died": null
+    }
+   },
+   "pub": 2017,
+   "titles": [
+    "The Odyssey"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Odyssey",
+   "rights": "translator's death date unknown (perhaps living)"
+  },
+  "Q65556404": {
+   "langs": [
+    "es"
+   ],
+   "people": {
+    "Q5883198": {
+     "name": "Gonzalo Pérez",
+     "role": "translator",
+     "died": 1566
+    }
+   },
+   "pub": 1767,
+   "titles": [
+    "La Ulyxea",
+    "La Ulyxea de Homero"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "La Ulyxea",
+   "rights": "translator died 1566: public domain under life+70 from 1637; US from 1863"
+  },
+  "Q87415702": {
+   "langs": [
+    "es"
+   ],
+   "people": {
+    "Q19862301": {
+     "name": "Jenaro Alenda y Mira",
+     "role": "translator",
+     "died": 1893
+    },
+    "Q1276479": {
+     "name": "Federico Baraibar y Zumárraga",
+     "role": "translator",
+     "died": 1918
+    }
+   },
+   "pub": 1886,
+   "titles": [
+    "La Odisea"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "La Odisea",
+   "rights": "translator died 1918: public domain under life+70 from 1989; US from 1982"
+  },
+  "Q125521546": {
+   "langs": [
+    "en"
+   ],
+   "people": {},
+   "pub": 1998,
+   "titles": [
+    "The Poem of Odysseus"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Poem of Odysseus",
+   "rights": "translator unknown"
+  },
+  "Q125623135": {
+   "langs": [
+    "ar"
+   ],
+   "people": {
+    "Q12211742": {
+     "name": "Dirīnī Khashabah",
+     "role": "translator",
+     "died": 1965
+    }
+   },
+   "pub": 1945,
+   "titles": [
+    "الأوديسة"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [
+    "odysseypenguincl00home"
+   ],
+   "label": "الأوديسة",
+   "rights": "translator died 1965: public domain under life+70 from 2036; US from 2041"
+  },
+  "Q125803908": {
+   "langs": [
+    "la"
+   ],
+   "people": {
+    "Q3638810": {
+     "name": "Bernardo Zamagna",
+     "role": "translator",
+     "died": 1820
+    }
+   },
+   "pub": null,
+   "titles": [
+    "Homeri Odyssea Latinis versibus expressa"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homeri Odyssea",
+   "rights": "translator died 1820: public domain under life+70 from 1891"
+  },
+  "Q127230258": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q5322191": {
+     "name": "E. V. Rieu",
+     "role": "translator",
+     "died": 1972
+    },
+    "Q5203524": {
+     "name": "D. C. H. Rieu",
+     "role": "translator",
+     "died": 2008
+    }
+   },
+   "pub": 2003,
+   "titles": [
+    "The Odyssey"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [
+    "odyssey00home_4"
+   ],
+   "label": "The Odyssey",
+   "rights": "translator died 2008: public domain under life+70 from 2079"
+  },
+  "Q131403609": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q5939791": {
+     "name": "Richmond Lattimore",
+     "role": "translator",
+     "died": 1984
+    }
+   },
+   "pub": 1965,
+   "titles": [
+    "The Odyssey of Homer"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odyssey of Homer",
+   "rights": "translator died 1984: public domain under life+70 from 2055; US from 2061"
+  },
+  "Q131428357": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q7344237": {
+     "name": "Robert Fagles",
+     "role": "translator",
+     "died": 2008
+    }
+   },
+   "pub": 1996,
+   "titles": [
+    "Odyssey"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odyssey",
+   "rights": "translator died 2008: public domain under life+70 from 2079"
+  },
+  "Q135903229": {
+   "langs": [],
+   "people": {},
+   "pub": null,
+   "titles": [],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "translations of the Odyssey",
+   "rights": "translator unknown"
+  },
+  "Q136098355": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q5590851": {
+     "name": "Samuel H. Butcher",
+     "role": "translator",
+     "died": 1910
+    },
+    "Q505827": {
+     "name": "Andrew Lang",
+     "role": "translator",
+     "died": 1912
+    }
+   },
+   "pub": null,
+   "titles": [
+    "The Odyssey of Homer"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Odyssey of Homer",
+   "rights": "translator died 1912: public domain under life+70 from 1983"
+  },
+  "Q136373674": {
+   "langs": [
+    "grc",
+    "la"
+   ],
+   "people": {
+    "Q833886": {
+     "name": "Richard Payne Knight",
+     "role": "editor",
+     "died": 1824
+    }
+   },
+   "pub": 1820,
+   "titles": [
+    "Carmina Homerica a Rhapsodorum interpolationibus repurgata et in pristinam formam, quatenus recuperanda esset, tam e veterum monumentorum fide et auctoritate, quam ex antiqui sermonis indole ac ratione, redacta"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [
+    "carminahomeric00home"
+   ],
+   "label": "Carmina Homerica",
+   "rights": "translator unknown"
+  },
+  "Q138411271": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q7344237": {
+     "name": "Robert Fagles",
+     "role": "translator",
+     "died": 2008
+    }
+   },
+   "pub": 1996,
+   "titles": [
+    "The Odyssey"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [
+    "odyssey00"
+   ],
+   "label": "The Odyssey",
+   "rights": "translator died 2008: public domain under life+70 from 2079"
+  },
+  "Q138515543": {
+   "langs": [
+    "en"
+   ],
+   "people": {},
+   "pub": 2010,
+   "titles": [
+    "The Odyssey"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Odyssey",
+   "rights": "translator unknown"
+  },
+  "Q139798802": {
+   "langs": [
+    "en"
+   ],
+   "people": {},
+   "pub": 2010,
+   "titles": [
+    "The Odyssey"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [
+    "odyssey00gare"
+   ],
+   "label": "The Odyssey",
+   "rights": "translator unknown"
+  },
+  "Q140761857": {
+   "langs": [
+    "pt"
+   ],
+   "people": {
+    "Q28799892": {
+     "name": "Frederico Lourenço",
+     "role": "translator",
+     "died": null
+    }
+   },
+   "pub": 2018,
+   "titles": [],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Odisseia",
+   "rights": "translator's death date unknown (perhaps living)"
+  },
+  "Q140971562": {
+   "langs": [
+    "grc"
+   ],
+   "people": {
+    "Q312114": {
+     "name": "Aristarchus of Samothrace",
+     "role": "editor",
+     "died": -143
+    }
+   },
+   "pub": null,
+   "titles": [],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Aristarchian recension of Homer",
+   "rights": "translator unknown"
+  }
+ }
+}

@@ -388,3 +388,9 @@ Object.assign(I18N.ru, {
   };
   for (const l in S) I18N[l].bookOnly = S[l];
 })();
+
+(() => {
+  const S = { en: "from Wikidata, not yet reviewed", de: "aus Wikidata, noch nicht geprüft", fr: "d’après Wikidata, pas encore vérifié",
+    it: "da Wikidata, non ancora verificato", es: "de Wikidata, aún sin revisar", ru: "из Викиданных, ещё не проверено" };
+  for (const l in S) I18N[l].unreviewed = S[l];
+})();

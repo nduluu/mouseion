@@ -1,0 +1,1251 @@
+{
+ "work": "iliad",
+ "wikidata": "Q8275",
+ "matched": {
+  "chapman": "Q30918410",
+  "pope": "Q16547641",
+  "cowper": "Q19090449",
+  "monti": "Q3796407",
+  "gnedich": "Q60552957",
+  "lecontedelisle": "Q21666067",
+  "butler": "Q19090438",
+  "segala": "Q32845498",
+  "murray": "Q19090444",
+  "fagles": "Q138411281"
+ },
+ "items": {
+  "Q3796407": {
+   "langs": [
+    "it"
+   ],
+   "people": {
+    "Q723643": {
+     "name": "Vincenzo Monti",
+     "role": "translator",
+     "died": 1828
+    }
+   },
+   "pub": 1810,
+   "titles": [
+    "Iliade di Omero"
+   ],
+   "wikisource": [
+    "https://it.wikisource.org/wiki/Iliade_(Monti)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliade (Monti)",
+   "rights": "translator died 1828: public domain under life+70 from 1899; US from 1906"
+  },
+  "Q16547641": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q164047": {
+     "name": "Alexander Pope",
+     "role": "translator",
+     "died": 1744
+    }
+   },
+   "pub": 1720,
+   "titles": [
+    "The Iliad of Homer"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/The_Iliad_of_Homer_(Pope)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad of Homer",
+   "rights": "translator died 1744: public domain under life+70 from 1815; US from 1816"
+  },
+  "Q17559055": {
+   "langs": [
+    "ca"
+   ],
+   "people": {
+    "Q5783562": {
+     "name": "Conrad Roure",
+     "role": "translator",
+     "died": 1928
+    }
+   },
+   "pub": 1879,
+   "titles": [
+    "Iliada"
+   ],
+   "wikisource": [
+    "https://ca.wikisource.org/wiki/Iliada"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliad",
+   "rights": "translator died 1928: public domain under life+70 from 1999; US from 1975"
+  },
+  "Q17566229": {
+   "langs": [
+    "cs"
+   ],
+   "people": {
+    "Q10854209": {
+     "name": "Antonín Škoda",
+     "role": "translator",
+     "died": 1919
+    }
+   },
+   "pub": 1886,
+   "titles": [
+    "Homérova Ilias",
+    "Ilias"
+   ],
+   "wikisource": [
+    "https://cs.wikisource.org/wiki/Hom%C3%A9rova_Ilias_(%C5%A0koda)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homérova Ilias",
+   "rights": "translator died 1919: public domain under life+70 from 1990; US from 1982"
+  },
+  "Q19090438": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q312829": {
+     "name": "Samuel Butler",
+     "role": "translator",
+     "died": 1902
+    }
+   },
+   "pub": 1898,
+   "titles": [
+    "The Iliad"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/The_Iliad_(Butler)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad",
+   "rights": "translator died 1902: public domain under life+70 from 1973; US from 1994"
+  },
+  "Q19090444": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q16943920": {
+     "name": "Augustus Taber Murray",
+     "role": "translator",
+     "died": 1940
+    }
+   },
+   "pub": 1924,
+   "titles": [
+    "The Iliad"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/The_Iliad_(Murray)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad",
+   "rights": "translator died 1940: public domain under life+70 from 2011; US from 2020"
+  },
+  "Q19090449": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q315537": {
+     "name": "William Cowper",
+     "role": "translator",
+     "died": 1800
+    }
+   },
+   "pub": 1791,
+   "titles": [
+    "The Iliad and Odyssey of Homer"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/The_Iliad_and_Odyssey_of_Homer_(Cowper)/Volume_1/The_Iliad"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad and Odyssey of Homer",
+   "rights": "translator died 1800: public domain under life+70 from 1871; US from 1887"
+  },
+  "Q19141031": {
+   "langs": [
+    "pl"
+   ],
+   "people": {
+    "Q556568": {
+     "name": "Franciszek Ksawery Dmochowski",
+     "role": "translator",
+     "died": 1808
+    }
+   },
+   "pub": 1804,
+   "titles": [
+    "Iliada"
+   ],
+   "wikisource": [
+    "https://pl.wikisource.org/wiki/Iliada_(Dmochowski)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliad",
+   "rights": "translator died 1808: public domain under life+70 from 1879; US from 1900"
+  },
+  "Q19141036": {
+   "langs": [
+    "pl"
+   ],
+   "people": {
+    "Q56256846": {
+     "name": "Paweł Popiel",
+     "role": "translator",
+     "died": 1910
+    }
+   },
+   "pub": 1880,
+   "titles": [
+    "Iliada"
+   ],
+   "wikisource": [
+    "https://pl.wikisource.org/wiki/Iliada_(Popiel)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliada",
+   "rights": "translator died 1910: public domain under life+70 from 1981; US from 1976"
+  },
+  "Q19210515": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q3142670": {
+     "name": "Hugues Salel",
+     "role": "translator",
+     "died": 1553
+    }
+   },
+   "pub": 1545,
+   "titles": [
+    "Les Dix Premiers Livres de l’Iliade d’Homère"
+   ],
+   "wikisource": [
+    "https://fr.wikisource.org/wiki/Les_Dix_Premiers_Livres_de_l%E2%80%99Iliade_d%E2%80%99Hom%C3%A8re"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Les Dix Premiers Livres de l’Iliade d’Homère",
+   "rights": "translator died 1553: public domain under life+70 from 1624; US from 1641"
+  },
+  "Q19559486": {
+   "langs": [],
+   "people": {
+    "Q10340294": {
+     "name": "Manuel Odorico Mendes",
+     "role": "translator",
+     "died": 1864
+    }
+   },
+   "pub": null,
+   "titles": [],
+   "wikisource": [
+    "https://pt.wikisource.org/wiki/Il%C3%ADada_(Odorico_Mendes)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliada",
+   "rights": "translator died 1864: public domain under life+70 from 1935"
+  },
+  "Q19828573": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q7781676": {
+     "name": "Theodore Alois Buckley",
+     "role": "translator",
+     "died": 1856
+    }
+   },
+   "pub": 1860,
+   "titles": [
+    "The Iliad of Homer"
+   ],
+   "wikisource": [
+    "https://en.wikisource.org/wiki/The_Iliad_of_Homer_(Buckley)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad of Homer",
+   "rights": "translator died 1856: public domain under life+70 from 1927; US from 1956"
+  },
+  "Q21666067": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q309704": {
+     "name": "Charles Marie René Leconte de Lisle",
+     "role": "translator",
+     "died": 1894
+    }
+   },
+   "pub": 1866,
+   "titles": [
+    "Iliade"
+   ],
+   "wikisource": [
+    "https://fr.wikisource.org/wiki/Iliade_(trad._Leconte_de_Lisle)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliade",
+   "rights": "translator died 1894: public domain under life+70 from 1965; US from 1962"
+  },
+  "Q23758941": {
+   "langs": [],
+   "people": {
+    "Q3156518": {
+     "name": "Iákovos Polylás",
+     "role": "translator",
+     "died": 1896
+    }
+   },
+   "pub": null,
+   "titles": [
+    "Ιλιάδα"
+   ],
+   "wikisource": [
+    "https://el.wikisource.org/wiki/%CE%99%CE%BB%CE%B9%CE%AC%CE%B4%CE%B1_(%CE%A0%CE%BF%CE%BB%CF%85%CE%BB%CE%AC%CF%82)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Ιλιάδα",
+   "rights": "translator died 1896: public domain under life+70 from 1967"
+  },
+  "Q32845498": {
+   "langs": [
+    "es"
+   ],
+   "people": {
+    "Q9025362": {
+     "name": "Lluís Segalà i Estalella",
+     "role": "translator",
+     "died": 1938
+    }
+   },
+   "pub": 1908,
+   "titles": [
+    "La Ilíada"
+   ],
+   "wikisource": [
+    "https://es.wikisource.org/wiki/La_Il%C3%ADada_(Luis_Segal%C3%A1_y_Estalella)"
+   ],
+   "gutenberg": [
+    "57654"
+   ],
+   "ia": [
+    "lailadaversindi00estagoog"
+   ],
+   "label": "La Ilíada",
+   "rights": "translator died 1938: public domain under life+70 from 2009; US from 2004"
+  },
+  "Q49160069": {
+   "langs": [
+    "es"
+   ],
+   "people": {
+    "Q5992316": {
+     "name": "Ignacio García Malo",
+     "role": "translator",
+     "died": 1812
+    }
+   },
+   "pub": 1788,
+   "titles": [
+    "La Ilíada de Homero",
+    "La Ilíada de Homero. Tomo I"
+   ],
+   "wikisource": [
+    "https://es.wikisource.org/wiki/La_Il%C3%ADada_de_Homero_(Garc%C3%ADa_Malo)"
+   ],
+   "gutenberg": [],
+   "ia": [
+    "A087234048",
+    "A087234049",
+    "A087234050"
+   ],
+   "label": "La Ilíada de Homero",
+   "rights": "translator died 1812: public domain under life+70 from 1883; US from 1884"
+  },
+  "Q60552922": {
+   "langs": [
+    "ru"
+   ],
+   "people": {
+    "Q157623": {
+     "name": "Vasily Zhukovsky",
+     "role": "translator",
+     "died": 1852
+    }
+   },
+   "pub": 1850,
+   "titles": [
+    "Илиада"
+   ],
+   "wikisource": [
+    "https://ru.wikisource.org/wiki/%D0%98%D0%BB%D0%B8%D0%B0%D0%B4%D0%B0_(%D0%93%D0%BE%D0%BC%D0%B5%D1%80;_%D0%96%D1%83%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Илиада",
+   "rights": "translator died 1852: public domain under life+70 from 1923; US from 1946"
+  },
+  "Q60552957": {
+   "langs": [
+    "ru"
+   ],
+   "people": {
+    "Q665996": {
+     "name": "Nikolay Gnedich",
+     "role": "translator",
+     "died": 1833
+    }
+   },
+   "pub": 1829,
+   "titles": [
+    "Илиада"
+   ],
+   "wikisource": [
+    "https://ru.wikisource.org/wiki/%D0%98%D0%BB%D0%B8%D0%B0%D0%B4%D0%B0_(%D0%93%D0%BE%D0%BC%D0%B5%D1%80;_%D0%93%D0%BD%D0%B5%D0%B4%D0%B8%D1%87)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliada",
+   "rights": "translator died 1833: public domain under life+70 from 1904; US from 1925"
+  },
+  "Q106691407": {
+   "langs": [
+    "grc"
+   ],
+   "people": {},
+   "pub": 1920,
+   "titles": [
+    "Ἰλιάς"
+   ],
+   "wikisource": [
+    "https://el.wikisource.org/wiki/%CE%99%CE%BB%CE%B9%CE%AC%CF%82"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Ilias",
+   "rights": "translator unknown"
+  },
+  "Q108764261": {
+   "langs": [
+    "be"
+   ],
+   "people": {},
+   "pub": 1935,
+   "titles": [
+    "Іліяда"
+   ],
+   "wikisource": [
+    "https://be.wikisource.org/wiki/%D0%86%D0%BB%D1%96%D1%8F%D0%B4%D0%B0_(%D0%93%D0%B0%D0%BC%D1%8D%D1%80/%D0%A2%D0%B0%D1%80%D0%B0%D1%88%D0%BA%D0%B5%D0%B2%D1%96%D1%87)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Іліяда",
+   "rights": "translator unknown"
+  },
+  "Q108847478": {
+   "langs": [
+    "pl"
+   ],
+   "people": {},
+   "pub": 1895,
+   "titles": [
+    "Iliada"
+   ],
+   "wikisource": [
+    "https://pl.wikisource.org/wiki/Iliada_(Homer,_wyb%C3%B3r_przek%C5%82ad%C3%B3w,_1895)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Q108847478",
+   "rights": "translator unknown"
+  },
+  "Q108859774": {
+   "langs": [
+    "pl"
+   ],
+   "people": {
+    "Q1436828": {
+     "name": "Władysław Orkan",
+     "role": "translator",
+     "died": 1930
+    }
+   },
+   "pub": 1968,
+   "titles": [
+    "Przekład z „Iliady”"
+   ],
+   "wikisource": [
+    "https://pl.wikisource.org/wiki/Iliada_(Orkan)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Przekład z „Iliady”",
+   "rights": "translator died 1930: public domain under life+70 from 2001; US from 2064"
+  },
+  "Q117086864": {
+   "langs": [
+    "eo"
+   ],
+   "people": {},
+   "pub": 1896,
+   "titles": [
+    "Iliado"
+   ],
+   "wikisource": [
+    "https://eo.wikisource.org/wiki/Iliado"
+   ],
+   "gutenberg": [],
+   "ia": [
+    "Iliado"
+   ],
+   "label": "Iliado",
+   "rights": "translator unknown"
+  },
+  "Q125179019": {
+   "langs": [],
+   "people": {
+    "Q2584375": {
+     "name": "Alexandros Pallis",
+     "role": "translator",
+     "died": 1935
+    }
+   },
+   "pub": 1936,
+   "titles": [
+    "Ιλιάδα"
+   ],
+   "wikisource": [
+    "https://el.wikisource.org/wiki/%CE%99%CE%BB%CE%B9%CE%AC%CE%B4%CE%B1_(%CE%9C%CE%B5%CF%84%CE%AC%CF%86%CF%81%CE%B1%CF%83%CE%B7_%CE%A0%CE%AC%CE%BB%CE%BB%CE%B7)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Ιλιάδα",
+   "rights": "translator died 1935: public domain under life+70 from 2006; US from 2032"
+  },
+  "Q130378436": {
+   "langs": [
+    "nb"
+   ],
+   "people": {
+    "Q11995485": {
+     "name": "Peter Østbye",
+     "role": "translator",
+     "died": 1943
+    }
+   },
+   "pub": 1920,
+   "titles": [
+    "Iliaden"
+   ],
+   "wikisource": [
+    "https://no.wikisource.org/wiki/Iliaden"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliaden",
+   "rights": "translator died 1943: public domain under life+70 from 2014; US from 2016"
+  },
+  "Q137342539": {
+   "langs": [
+    "fro"
+   ],
+   "people": {
+    "Q286107": {
+     "name": "Émile Littré",
+     "role": "translator",
+     "died": 1881
+    }
+   },
+   "pub": 1847,
+   "titles": [
+    "Iliade"
+   ],
+   "wikisource": [
+    "https://fr.wikisource.org/wiki/Iliade_-_Chant_premier"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L'Iliade - Chant premier",
+   "rights": "translator died 1881: public domain under life+70 from 1952; US from 1943"
+  },
+  "Q137793702": {
+   "langs": [
+    "la"
+   ],
+   "people": {
+    "Q2060582": {
+     "name": "Francisco Javier Alegre",
+     "role": "translator",
+     "died": 1788
+    }
+   },
+   "pub": 1788,
+   "titles": [
+    "Homeri Ilias Latino carmine expressa. Editio Romana venustior et emendatior"
+   ],
+   "wikisource": [
+    "https://la.wikisource.org/wiki/Ilias_(Alegrius)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homeri Ilias",
+   "rights": "translator died 1788: public domain under life+70 from 1859; US from 1884"
+  },
+  "Q141442411": {
+   "langs": [
+    "es"
+   ],
+   "people": {
+    "Q9025362": {
+     "name": "Lluís Segalà i Estalella",
+     "role": "translator",
+     "died": 1938
+    }
+   },
+   "pub": 1927,
+   "titles": [
+    "Ilíada"
+   ],
+   "wikisource": [
+    "https://es.wikisource.org/wiki/Il%C3%ADada_(1927)"
+   ],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Ilíada",
+   "rights": "translator died 1938: public domain under life+70 from 2009; US from 2023"
+  },
+  "Q21714772": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q3142670": {
+     "name": "Hugues Salel",
+     "role": "translator",
+     "died": 1553
+    }
+   },
+   "pub": 1554,
+   "titles": [
+    "Les Unzième, et Douzième Livres de l’Iliade d'Homère"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Les Unzième, et Douzième Livres de l’Iliade d'Homère",
+   "rights": "translator died 1553: public domain under life+70 from 1624; US from 1650"
+  },
+  "Q21716706": {
+   "langs": [
+    "fr",
+    "grc"
+   ],
+   "people": {
+    "Q3164045": {
+     "name": "Jean-Baptiste Dugas-Montbel",
+     "role": "translator",
+     "died": 1834
+    }
+   },
+   "pub": 1828,
+   "titles": [
+    "L'Iliade"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L'Iliade",
+   "rights": "translator died 1834: public domain under life+70 from 1905; US from 1924"
+  },
+  "Q21716786": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q272609": {
+     "name": "Anne Dacier",
+     "role": "translator",
+     "died": 1720
+    }
+   },
+   "pub": 1711,
+   "titles": [
+    "L'Iliade"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L'Iliade",
+   "rights": "translator died 1720: public domain under life+70 from 1791; US from 1807"
+  },
+  "Q21716827": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q3371815": {
+     "name": "Paul Mazon",
+     "role": "translator",
+     "died": 1955
+    }
+   },
+   "pub": 1937,
+   "titles": [
+    "Iliade"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliade",
+   "rights": "translator died 1955: public domain under life+70 from 2026; US from 2033"
+  },
+  "Q21716838": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q21705546": {
+     "name": "Frédéric Mugler",
+     "role": "translator",
+     "died": 2018
+    }
+   },
+   "pub": 1995,
+   "titles": [
+    "L'Iliade"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [
+    "liliade0000home_q0x0"
+   ],
+   "label": "L'Iliade",
+   "rights": "translator died 2018: public domain under life+70 from 2089"
+  },
+  "Q21716844": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q21716851": {
+     "name": "Jean-Louis Backès",
+     "role": "translator",
+     "died": null
+    }
+   },
+   "pub": 2013,
+   "titles": [
+    "Iliade"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliade",
+   "rights": "translator's death date unknown (perhaps living)"
+  },
+  "Q21716866": {
+   "langs": [
+    "fr"
+   ],
+   "people": {
+    "Q3379465": {
+     "name": "Philippe Brunet",
+     "role": "translator",
+     "died": null
+    }
+   },
+   "pub": 2010,
+   "titles": [
+    "L'Iliade"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "L'Iliade",
+   "rights": "translator's death date unknown (perhaps living)"
+  },
+  "Q30918410": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q342720": {
+     "name": "George Chapman",
+     "role": "translator",
+     "died": 1634
+    }
+   },
+   "pub": 1600,
+   "titles": [
+    "The Iliads of Homer Prince of Poetts"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliads of Homer Prince of Poetts",
+   "rights": "translator died 1634: public domain under life+70 from 1705; US from 1696"
+  },
+  "Q48227927": {
+   "langs": [
+    "cs"
+   ],
+   "people": {
+    "Q12043250": {
+     "name": "Otmar Vaňorný",
+     "role": "translator",
+     "died": 1947
+    }
+   },
+   "pub": 1934,
+   "titles": [
+    "Homérova Ílias"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homérova Ílias",
+   "rights": "translator died 1947: public domain under life+70 from 2018; US from 2030"
+  },
+  "Q55816319": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q4722962": {
+     "name": "Alfred John Church",
+     "role": "translator",
+     "died": 1912
+    }
+   },
+   "pub": 1891,
+   "titles": [
+    "The story of the Iliad"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The story of the Iliad",
+   "rights": "translator died 1912: public domain under life+70 from 1983; US from 1987"
+  },
+  "Q59872993": {
+   "langs": [
+    "cs"
+   ],
+   "people": {
+    "Q224544": {
+     "name": "Jan Nejedlý",
+     "role": "translator",
+     "died": 1834
+    }
+   },
+   "pub": 1802,
+   "titles": [
+    "Homerowa Iliada"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homerowa Iliada",
+   "rights": "translator died 1834: public domain under life+70 from 1905; US from 1898"
+  },
+  "Q64692417": {
+   "langs": [
+    "es"
+   ],
+   "people": {
+    "Q6292949": {
+     "name": "José Mamerto Gómez Hermosilla",
+     "role": "translator",
+     "died": 1837
+    }
+   },
+   "pub": 1848,
+   "titles": [
+    "La Ilíada"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "La Ilíada",
+   "rights": "translator died 1837: public domain under life+70 from 1908; US from 1944"
+  },
+  "Q100388853": {
+   "langs": [
+    "sk"
+   ],
+   "people": {
+    "Q13449966": {
+     "name": "Miloslav Okál",
+     "role": "translator",
+     "died": 1997
+    },
+    "Q12050263": {
+     "name": "Rudolf Sloboda",
+     "role": "translator",
+     "died": 1995
+    }
+   },
+   "pub": 1973,
+   "titles": [
+    "Ílias"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Ílias",
+   "rights": "translator died 1997: public domain under life+70 from 2068; US from 2069"
+  },
+  "Q105970742": {
+   "langs": [
+    "la"
+   ],
+   "people": {},
+   "pub": null,
+   "titles": [
+    "Ilias"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Ilias",
+   "rights": "translator unknown"
+  },
+  "Q112035656": {
+   "langs": [
+    "bn"
+   ],
+   "people": {
+    "Q112035644": {
+     "name": "Jogendranath Kabyabinod",
+     "role": "translator",
+     "died": null
+    }
+   },
+   "pub": 1908,
+   "titles": [
+    "ইলিয়ড্"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Iliad",
+   "rights": "translator's death date unknown (perhaps living)"
+  },
+  "Q123158568": {
+   "langs": [
+    "nl"
+   ],
+   "people": {
+    "Q4885435": {
+     "name": "Carel Vosmaer",
+     "role": "translator",
+     "died": 1888
+    }
+   },
+   "pub": 1880,
+   "titles": [
+    "De Ilias van Homeros"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "De Ilias van Homeros",
+   "rights": "translator died 1888: public domain under life+70 from 1959; US from 1976"
+  },
+  "Q124752215": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q14945513": {
+     "name": "Ernest Myers",
+     "role": "translator",
+     "died": 1921
+    },
+    "Q5942182": {
+     "name": "Walter Leaf",
+     "role": "translator",
+     "died": 1927
+    },
+    "Q505827": {
+     "name": "Andrew Lang",
+     "role": "translator",
+     "died": 1912
+    }
+   },
+   "pub": 1911,
+   "titles": [
+    "Iliad of Homer"
+   ],
+   "wikisource": [],
+   "gutenberg": [
+    "3059"
+   ],
+   "ia": [],
+   "label": "The Iliad of Homer",
+   "rights": "translator died 1927: public domain under life+70 from 1998; US from 2007"
+  },
+  "Q125518202": {
+   "langs": [
+    "la"
+   ],
+   "people": {
+    "Q3513653": {
+     "name": "Rajmundo Kunić",
+     "role": "translator",
+     "died": 1794
+    }
+   },
+   "pub": 1776,
+   "titles": [
+    "Homeri Ilias"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homeri Ilias",
+   "rights": "translator died 1794: public domain under life+70 from 1865; US from 1872"
+  },
+  "Q126617362": {
+   "langs": [
+    "el"
+   ],
+   "people": {
+    "Q1684643": {
+     "name": "Jean-Baptiste Gaspard d'Ansse de Villoison",
+     "role": "editor",
+     "died": 1805
+    }
+   },
+   "pub": 1788,
+   "titles": [
+    "Homeri Ilias ad veteris codicis Veneti fidem recensita"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Homeri Ilias",
+   "rights": "translator unknown"
+  },
+  "Q136373674": {
+   "langs": [
+    "grc",
+    "la"
+   ],
+   "people": {
+    "Q833886": {
+     "name": "Richard Payne Knight",
+     "role": "editor",
+     "died": 1824
+    }
+   },
+   "pub": 1820,
+   "titles": [
+    "Carmina Homerica a Rhapsodorum interpolationibus repurgata et in pristinam formam, quatenus recuperanda esset, tam e veterum monumentorum fide et auctoritate, quam ex antiqui sermonis indole ac ratione, redacta"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [
+    "carminahomeric00home"
+   ],
+   "label": "Carmina Homerica",
+   "rights": "translator unknown"
+  },
+  "Q136677440": {
+   "langs": [
+    "it"
+   ],
+   "people": {
+    "Q919900": {
+     "name": "Melchiore Cesarotti",
+     "role": "translator",
+     "died": 1808
+    },
+    "Q723643": {
+     "name": "Vincenzo Monti",
+     "role": "translator",
+     "died": 1828
+    },
+    "Q166234": {
+     "name": "Ugo Foscolo",
+     "role": "translator",
+     "died": 1827
+    }
+   },
+   "pub": 1807,
+   "titles": [
+    "Esperimento di traduzione della Iliade di Omero"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Esperimento di traduzione della Iliade di Omero",
+   "rights": "translator died 1828: public domain under life+70 from 1899; US from 1903"
+  },
+  "Q137797006": {
+   "langs": [
+    "la"
+   ],
+   "people": {
+    "Q532384": {
+     "name": "Helius Eobanus Hessus",
+     "role": "translator",
+     "died": 1540
+    }
+   },
+   "pub": 1540,
+   "titles": [
+    "Poetarum omnium saeculorum longe principis Homeri Ilias, hoc est, de rebus ad Troiam gestis descriptio, iam recens Latino carmine reddita, Helio Eobano Hesso interprete"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Q137797006",
+   "rights": "translator died 1540: public domain under life+70 from 1611; US from 1636"
+  },
+  "Q138411281": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "Q7344237": {
+     "name": "Robert Fagles",
+     "role": "translator",
+     "died": 2008
+    }
+   },
+   "pub": 1998,
+   "titles": [
+    "The Iliad"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad",
+   "rights": "translator died 2008: public domain under life+70 from 2079"
+  },
+  "Q138507390": {
+   "langs": [
+    "en"
+   ],
+   "people": {},
+   "pub": 1991,
+   "titles": [
+    "The Iliad"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [
+    "iliad00home"
+   ],
+   "label": "The Iliad",
+   "rights": "translator unknown"
+  },
+  "Q138507467": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "520cca2861c8c0932890b05ef9588c6d": {
+     "name": "unknown",
+     "role": "translator",
+     "died": null
+    }
+   },
+   "pub": 2003,
+   "titles": [
+    "The Iliad"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad",
+   "rights": "translator's death date unknown (perhaps living)"
+  },
+  "Q138515742": {
+   "langs": [
+    "en"
+   ],
+   "people": {
+    "c279111f52387438f37a2aebf0a95fd3": {
+     "name": "unknown",
+     "role": "translator",
+     "died": null
+    }
+   },
+   "pub": 2015,
+   "titles": [
+    "The Iliad"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "The Iliad",
+   "rights": "translator's death date unknown (perhaps living)"
+  },
+  "Q140971562": {
+   "langs": [
+    "grc"
+   ],
+   "people": {
+    "Q312114": {
+     "name": "Aristarchus of Samothrace",
+     "role": "editor",
+     "died": -143
+    }
+   },
+   "pub": null,
+   "titles": [],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Aristarchian recension of Homer",
+   "rights": "translator unknown"
+  },
+  "Q141221737": {
+   "langs": [
+    "nn"
+   ],
+   "people": {
+    "Q11978717": {
+     "name": "Johan Eberhard Nielsen",
+     "role": "translator",
+     "died": 1916
+    }
+   },
+   "pub": 1907,
+   "titles": [
+    "Akillevs og Patroklos : sekstande Bolk av Ilioskvæde"
+   ],
+   "wikisource": [],
+   "gutenberg": [],
+   "ia": [],
+   "label": "Q141221737",
+   "rights": "translator died 1916: public domain under life+70 from 1987; US from 2003"
+  }
+ }
+}

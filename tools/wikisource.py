@@ -57,8 +57,16 @@ def _get(url):
     raise RuntimeError("gave up on " + url)
 
 
-def parse(host, title):
-    """Rendered HTML of a page and its list of links to other pages (main namespace)."""
+def parse(host, title, live_only=False):
+    """Rendered HTML of a page and its list of links to other pages (main namespace).
+
+    Reads the local bulk dump first (tools/wikisource_dump.py), and only asks
+    the live site for pages the dump doesn't have."""
+    if not live_only and host.endswith(".wikisource.org"):
+        import wikisource_dump
+        html = wikisource_dump.page(host.split(".")[0], title)
+        if html is not None:
+            return html, wikisource_dump.links(html)
     q = urllib.parse.urlencode({
         "action": "parse", "page": title, "prop": "text|links",
         "redirects": 1, "format": "json", "formatversion": 2,

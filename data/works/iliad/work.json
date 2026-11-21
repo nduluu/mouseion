@@ -1,5 +1,6 @@
 {
   "id": "iliad",
+  "wikidata": "Q8275",
   "status": "Draft catalog record: dates and descriptions should be reviewed by a classicist.",
   "originalLanguage": "grc",
   "bookLetters": "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ",
@@ -64,7 +65,59 @@
     "ja": "イーリアス",
     "ko": "일리아스",
     "vi": "Iliad",
-    "id": "Iliad"
+    "id": "Iliad",
+    "mk": "Илијада",
+    "ml": "ഇലിയഡ്",
+    "mn": "Илиада",
+    "mni": "ꯏꯂꯤꯌꯥꯗ",
+    "mr": "इलियड",
+    "mt": "Ilijade",
+    "my": "အိလိယဒ်",
+    "oc": "Iliada",
+    "or": "ଇଲିଆଡ଼",
+    "pa": "ਇਲੀਆਡ",
+    "ps": "ایلیاد",
+    "qu": "Iliada",
+    "sd": "ايليڊ",
+    "si": "ඉලියඩ්",
+    "sk": "Iliada",
+    "ta": "இலியட்",
+    "te": "ఇలియడ్",
+    "tg": "Илиада",
+    "th": "อีเลียด",
+    "tt": "Илиада",
+    "ur": "ایلیڈ",
+    "uz": "Iliada",
+    "yi": "איליאדע",
+    "yue": "伊利亞德",
+    "be": "Іліяда",
+    "ms": "Iliad",
+    "hy": "Իլիական",
+    "af": "Ilias",
+    "br": "Ilias",
+    "lb": "Ilias",
+    "sw": "Ilias",
+    "am": "ኢሊያዳ",
+    "as": "ইলিয়াড",
+    "az": "İliada",
+    "ba": "Илиада",
+    "bn": "ইলিয়াড",
+    "bo": "ཨེ་ལི་ཡེ་ཏེ།",
+    "ce": "Илиада",
+    "ckb": "ئیلیادە",
+    "cv": "Илиада",
+    "cy": "Iliad",
+    "fy": "Ilias",
+    "ga": "Iliad",
+    "gn": "Ilíada",
+    "gu": "ઇલિયડ",
+    "ilo": "Iliada",
+    "is": "Ilíonskviða",
+    "kk": "Илиада",
+    "kn": "ಇಲಿಯಡ್",
+    "ks": "اِلیڈ",
+    "ku": "Îlyada",
+    "ky": "«Илиада» поэмасы"
   },
   "author": {
     "grc": "Ὅμηρος",
@@ -398,7 +451,8 @@
           "name": "George Chapman",
           "died": 1634
         }
-      ]
+      ],
+      "wikidata": "Q30918410"
     },
     {
       "id": "pope",
@@ -411,7 +465,13 @@
           "name": "Alexander Pope",
           "died": 1744
         }
-      ]
+      ],
+      "wikidata": "Q16547641",
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/The_Iliad_of_Homer_(Pope)"
+        ]
+      }
     },
     {
       "id": "cowper",
@@ -424,7 +484,13 @@
           "name": "William Cowper",
           "died": 1800
         }
-      ]
+      ],
+      "wikidata": "Q19090449",
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/The_Iliad_and_Odyssey_of_Homer_(Cowper)/Volume_1/The_Iliad"
+        ]
+      }
     },
     {
       "id": "voss",
@@ -458,6 +524,12 @@
         "align": "book",
         "source": "Wikisource, transcription of the 4th edition (1825), revised by the translator (CC BY-SA 4.0)",
         "sourceUrl": "https://it.wikisource.org/wiki/Iliade_%28Monti%29"
+      },
+      "wikidata": "Q3796407",
+      "sources": {
+        "wikisource": [
+          "https://it.wikisource.org/wiki/Iliade_(Monti)"
+        ]
       }
     },
     {
@@ -478,6 +550,12 @@
         "align": "lines",
         "source": "Wikisource, from the Moscow 1978 edition (Khudozhestvennaya literatura) (CC BY-SA 4.0)",
         "sourceUrl": "https://ru.wikisource.org/wiki/%D0%98%D0%BB%D0%B8%D0%B0%D0%B4%D0%B0_%28%D0%93%D0%BE%D0%BC%D0%B5%D1%80%3B_%D0%93%D0%BD%D0%B5%D0%B4%D0%B8%D1%87%29"
+      },
+      "wikidata": "Q60552957",
+      "sources": {
+        "wikisource": [
+          "https://ru.wikisource.org/wiki/%D0%98%D0%BB%D0%B8%D0%B0%D0%B4%D0%B0_(%D0%93%D0%BE%D0%BC%D0%B5%D1%80;_%D0%93%D0%BD%D0%B5%D0%B4%D0%B8%D1%87)"
+        ]
       }
     },
     {
@@ -498,6 +576,12 @@
         "align": "book",
         "source": "Wikisource, transcription of the Paris 1866 edition (Alphonse Lemerre) (CC BY-SA 4.0)",
         "sourceUrl": "https://fr.wikisource.org/wiki/Iliade_%28trad._Leconte_de_Lisle%29"
+      },
+      "wikidata": "Q21666067",
+      "sources": {
+        "wikisource": [
+          "https://fr.wikisource.org/wiki/Iliade_(trad._Leconte_de_Lisle)"
+        ]
       }
     },
     {
@@ -511,7 +595,13 @@
           "name": "Samuel Butler",
           "died": 1902
         }
-      ]
+      ],
+      "wikidata": "Q19090438",
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/The_Iliad_(Butler)"
+        ]
+      }
     },
     {
       "id": "segala",
@@ -531,6 +621,18 @@
         "align": "passages",
         "source": "Wikisource, transcription of the 1908 Barcelona edition (Montaner y Simón) (CC BY-SA 4.0)",
         "sourceUrl": "https://es.wikisource.org/wiki/La_Il%C3%ADada_%28Luis_Segal%C3%A1_y_Estalella%29"
+      },
+      "wikidata": "Q32845498",
+      "sources": {
+        "wikisource": [
+          "https://es.wikisource.org/wiki/La_Il%C3%ADada_(Luis_Segal%C3%A1_y_Estalella)"
+        ],
+        "gutenberg": [
+          "57654"
+        ],
+        "internetArchive": [
+          "lailadaversindi00estagoog"
+        ]
       }
     },
     {
@@ -550,6 +652,12 @@
         "format": "prose",
         "source": "Perseus Digital Library, Tufts University (CC BY-SA 4.0)",
         "sourceUrl": "https://github.com/PerseusDL/canonical-greekLit/blob/master/data/tlg0012/tlg001/tlg0012.tlg001.perseus-eng3.xml"
+      },
+      "wikidata": "Q19090444",
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/The_Iliad_(Murray)"
+        ]
       }
     },
     {
@@ -589,7 +697,8 @@
           "name": "Robert Fagles",
           "died": 2008
         }
-      ]
+      ],
+      "wikidata": "Q138411281"
     },
     {
       "id": "wilson",
@@ -603,6 +712,558 @@
           "died": null
         }
       ]
+    },
+    {
+      "id": "roure",
+      "wikidata": "Q17559055",
+      "lang": "ca",
+      "title": "Iliada",
+      "date": "1879",
+      "year": 1879,
+      "creators": [
+        {
+          "name": "Conrad Roure i Bofill",
+          "died": 1928
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://ca.wikisource.org/wiki/Iliada"
+        ]
+      },
+      "note": "Prose translation, Barcelona 1879 (Biblioteca del Diari Català; Leopoldo Domenech).",
+      "text": {
+        "path": "texts/cat-roure",
+        "format": "prose",
+        "align": "book",
+        "source": "Wikisource, transcription of the Barcelona 1879 edition (CC BY-SA 4.0)",
+        "sourceUrl": "https://ca.wikisource.org/wiki/Iliada"
+      }
+    },
+    {
+      "id": "wd-q17566229",
+      "wikidata": "Q17566229",
+      "lang": "cs",
+      "title": "Ilias",
+      "date": "1886",
+      "year": 1886,
+      "creators": [
+        {
+          "name": "Antonín Škoda",
+          "died": 1919
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://cs.wikisource.org/wiki/Hom%C3%A9rova_Ilias_(%C5%A0koda)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q19141031",
+      "wikidata": "Q19141031",
+      "lang": "pl",
+      "title": "Iliada",
+      "date": "1804",
+      "year": 1804,
+      "creators": [
+        {
+          "name": "Franciszek Ksawery Dmochowski",
+          "died": 1808
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://pl.wikisource.org/wiki/Iliada_(Dmochowski)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q19141036",
+      "wikidata": "Q19141036",
+      "lang": "pl",
+      "title": "Iliada",
+      "date": "1880",
+      "year": 1880,
+      "creators": [
+        {
+          "name": "Paweł Popiel",
+          "died": 1910
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://pl.wikisource.org/wiki/Iliada_(Popiel)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q19210515",
+      "wikidata": "Q19210515",
+      "lang": "fr",
+      "title": "Les Dix Premiers Livres de l’Iliade d’Homère",
+      "date": "1545",
+      "year": 1545,
+      "creators": [
+        {
+          "name": "Hugues Salel",
+          "died": 1553
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://fr.wikisource.org/wiki/Les_Dix_Premiers_Livres_de_l%E2%80%99Iliade_d%E2%80%99Hom%C3%A8re"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q19828573",
+      "wikidata": "Q19828573",
+      "lang": "en",
+      "title": "The Iliad of Homer",
+      "date": "1860",
+      "year": 1860,
+      "creators": [
+        {
+          "name": "Theodore Alois Buckley",
+          "died": 1856
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/The_Iliad_of_Homer_(Buckley)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q49160069",
+      "wikidata": "Q49160069",
+      "lang": "es",
+      "title": "La Ilíada de Homero. Tomo I",
+      "date": "1788",
+      "year": 1788,
+      "creators": [
+        {
+          "name": "Ignacio García Malo",
+          "died": 1812
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://es.wikisource.org/wiki/La_Il%C3%ADada_de_Homero_(Garc%C3%ADa_Malo)"
+        ],
+        "internetArchive": [
+          "A087234048",
+          "A087234049",
+          "A087234050"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q60552922",
+      "wikidata": "Q60552922",
+      "lang": "ru",
+      "title": "Илиада",
+      "date": "1850",
+      "year": 1850,
+      "creators": [
+        {
+          "name": "Vasily Zhukovsky",
+          "died": 1852
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://ru.wikisource.org/wiki/%D0%98%D0%BB%D0%B8%D0%B0%D0%B4%D0%B0_(%D0%93%D0%BE%D0%BC%D0%B5%D1%80;_%D0%96%D1%83%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q108859774",
+      "wikidata": "Q108859774",
+      "lang": "pl",
+      "title": "Przekład z „Iliady”",
+      "date": "1968",
+      "year": 1968,
+      "creators": [
+        {
+          "name": "Władysław Orkan",
+          "died": 1930
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://pl.wikisource.org/wiki/Iliada_(Orkan)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q130378436",
+      "wikidata": "Q130378436",
+      "lang": "no",
+      "title": "Iliaden",
+      "date": "1920",
+      "year": 1920,
+      "creators": [
+        {
+          "name": "Peter Østbye",
+          "died": 1943
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://no.wikisource.org/wiki/Iliaden"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q137793702",
+      "wikidata": "Q137793702",
+      "lang": "la",
+      "title": "Homeri Ilias Latino carmine expressa. Editio Romana venustior et emendatior",
+      "date": "1788",
+      "year": 1788,
+      "creators": [
+        {
+          "name": "Francisco Javier Alegre",
+          "died": 1788
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://la.wikisource.org/wiki/Ilias_(Alegrius)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q141442411",
+      "wikidata": "Q141442411",
+      "lang": "es",
+      "title": "Ilíada",
+      "date": "1927",
+      "year": 1927,
+      "creators": [
+        {
+          "name": "Lluís Segalà i Estalella",
+          "died": 1938
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://es.wikisource.org/wiki/Il%C3%ADada_(1927)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21714772",
+      "wikidata": "Q21714772",
+      "lang": "fr",
+      "title": "Les Unzième, et Douzième Livres de l’Iliade d'Homère",
+      "date": "1554",
+      "year": 1554,
+      "creators": [
+        {
+          "name": "Hugues Salel",
+          "died": 1553
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21716786",
+      "wikidata": "Q21716786",
+      "lang": "fr",
+      "title": "L'Iliade",
+      "date": "1711",
+      "year": 1711,
+      "creators": [
+        {
+          "name": "Anne Dacier",
+          "died": 1720
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21716827",
+      "wikidata": "Q21716827",
+      "lang": "fr",
+      "title": "Iliade",
+      "date": "1937",
+      "year": 1937,
+      "creators": [
+        {
+          "name": "Paul Mazon",
+          "died": 1955
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21716838",
+      "wikidata": "Q21716838",
+      "lang": "fr",
+      "title": "L'Iliade",
+      "date": "1995",
+      "year": 1995,
+      "creators": [
+        {
+          "name": "Frédéric Mugler",
+          "died": 2018
+        }
+      ],
+      "sources": {
+        "internetArchive": [
+          "liliade0000home_q0x0"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21716844",
+      "wikidata": "Q21716844",
+      "lang": "fr",
+      "title": "Iliade",
+      "date": "2013",
+      "year": 2013,
+      "creators": [
+        {
+          "name": "Jean-Louis Backès",
+          "died": null
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21716866",
+      "wikidata": "Q21716866",
+      "lang": "fr",
+      "title": "L'Iliade",
+      "date": "2010",
+      "year": 2010,
+      "creators": [
+        {
+          "name": "Philippe Brunet",
+          "died": null
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q48227927",
+      "wikidata": "Q48227927",
+      "lang": "cs",
+      "title": "Homérova Ílias",
+      "date": "1934",
+      "year": 1934,
+      "creators": [
+        {
+          "name": "Otmar Vaňorný",
+          "died": 1947
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q55816319",
+      "wikidata": "Q55816319",
+      "lang": "en",
+      "title": "The story of the Iliad",
+      "date": "1891",
+      "year": 1891,
+      "creators": [
+        {
+          "name": "Alfred John Church",
+          "died": 1912
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q59872993",
+      "wikidata": "Q59872993",
+      "lang": "cs",
+      "title": "Homerowa Iliada",
+      "date": "1802",
+      "year": 1802,
+      "creators": [
+        {
+          "name": "Jan Nejedlý",
+          "died": 1834
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q64692417",
+      "wikidata": "Q64692417",
+      "lang": "es",
+      "title": "La Ilíada",
+      "date": "1848",
+      "year": 1848,
+      "creators": [
+        {
+          "name": "José Mamerto Gómez Hermosilla",
+          "died": 1837
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q100388853",
+      "wikidata": "Q100388853",
+      "lang": "sk",
+      "title": "Ílias",
+      "date": "1973",
+      "year": 1973,
+      "creators": [
+        {
+          "name": "Miloslav Okál",
+          "died": 1997
+        },
+        {
+          "name": "Rudolf Sloboda",
+          "died": 1995
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q112035656",
+      "wikidata": "Q112035656",
+      "lang": "bn",
+      "title": "ইলিয়ড্",
+      "date": "1908",
+      "year": 1908,
+      "creators": [
+        {
+          "name": "Jogendranath Kabyabinod",
+          "died": null
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q123158568",
+      "wikidata": "Q123158568",
+      "lang": "nl",
+      "title": "De Ilias van Homeros",
+      "date": "1880",
+      "year": 1880,
+      "creators": [
+        {
+          "name": "Carel Vosmaer",
+          "died": 1888
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q124752215",
+      "wikidata": "Q124752215",
+      "lang": "en",
+      "title": "Iliad of Homer",
+      "date": "1911",
+      "year": 1911,
+      "creators": [
+        {
+          "name": "Ernest Myers",
+          "died": 1921
+        },
+        {
+          "name": "Walter Leaf",
+          "died": 1927
+        },
+        {
+          "name": "Andrew Lang",
+          "died": 1912
+        }
+      ],
+      "sources": {
+        "gutenberg": [
+          "3059"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q125518202",
+      "wikidata": "Q125518202",
+      "lang": "la",
+      "title": "Homeri Ilias",
+      "date": "1776",
+      "year": 1776,
+      "creators": [
+        {
+          "name": "Rajmundo Kunić",
+          "died": 1794
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q136677440",
+      "wikidata": "Q136677440",
+      "lang": "it",
+      "title": "Esperimento di traduzione della Iliade di Omero",
+      "date": "1807",
+      "year": 1807,
+      "creators": [
+        {
+          "name": "Melchiore Cesarotti",
+          "died": 1808
+        },
+        {
+          "name": "Vincenzo Monti",
+          "died": 1828
+        },
+        {
+          "name": "Ugo Foscolo",
+          "died": 1827
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q137797006",
+      "wikidata": "Q137797006",
+      "lang": "la",
+      "title": "Poetarum omnium saeculorum longe principis Homeri Ilias, hoc est, de rebus ad Troiam gestis descriptio, iam recens Latino carmine reddita, Helio Eobano Hesso interprete",
+      "date": "1540",
+      "year": 1540,
+      "creators": [
+        {
+          "name": "Helius Eobanus Hessus",
+          "died": 1540
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q141221737",
+      "wikidata": "Q141221737",
+      "lang": "no",
+      "title": "Akillevs og Patroklos : sekstande Bolk av Ilioskvæde",
+      "date": "1907",
+      "year": 1907,
+      "creators": [
+        {
+          "name": "Johan Eberhard Nielsen",
+          "died": 1916
+        }
+      ],
+      "needsReview": true
     }
   ]
 }

@@ -1,5 +1,6 @@
 {
   "id": "odyssey",
+  "wikidata": "Q35160",
   "status": "Draft catalog record: dates and descriptions should be reviewed by a classicist.",
   "originalLanguage": "grc",
   "bookLetters": "αβγδεζηθικλμνξοπρστυφχψω",
@@ -63,7 +64,61 @@
     "ja": "オデュッセイア",
     "ko": "오디세이아",
     "vi": "Odyssey",
-    "id": "Odisseia"
+    "id": "Odisseia",
+    "oc": "Odissèa",
+    "om": "Odyssey",
+    "pa": "ਓਡੇਸੀ",
+    "pap": "Odisea",
+    "qu": "Odisya",
+    "sd": "اوڊيسي",
+    "sw": "Odisei",
+    "tg": "Одиссея",
+    "th": "โอดิสซีย์",
+    "tpi": "Odysseia",
+    "tt": "Одиссея",
+    "uz": "Odisseya",
+    "yi": "אדיסעע",
+    "yue": "奧德賽",
+    "jv": "Odyssey",
+    "ur": "اوڈیسی",
+    "gd": "Odusseia",
+    "bho": "ओडिसी",
+    "eu": "Odisea",
+    "br": "Odysseia",
+    "mk": "Одисеја",
+    "sk": "Odysea",
+    "or": "ଓଡ଼ିଶୀ",
+    "sat": "ᱳᱰᱤᱥᱤ",
+    "si": "ඔඩිසි",
+    "ta": "ஒடிசி",
+    "te": "ఒడిస్సీ",
+    "bn": "ওডিসি",
+    "ml": "ഒഡീസ്സി",
+    "co": "Udissea",
+    "af": "Odusseia",
+    "am": "ኦዴሲያ",
+    "as": "ওডিছী",
+    "az": "Odisseya",
+    "ba": "Одиссея",
+    "be": "Адысея",
+    "bo": "ཨ་ངྷི་སེའུ།",
+    "ckb": "ئۆدیسە",
+    "cy": "Odyseia",
+    "fy": "Odyssee",
+    "ga": "An Odaisé",
+    "hy": "Ոդիսական",
+    "is": "Ódysseifskviða",
+    "kk": "Одиссея",
+    "kn": "ಒಡಿಸ್ಸಿ",
+    "ks": "اوڈیسی",
+    "ku": "Odîseya",
+    "ky": "Одиссей",
+    "lb": "Odyssee",
+    "mn": "Одиссей",
+    "mr": "ओडिसी",
+    "ms": "Odyssey",
+    "mt": "Odissea",
+    "my": "အောဒဆီ"
   },
   "author": {
     "grc": "Ὅμηρος",
@@ -272,7 +327,13 @@
           "name": "Elijah Fenton",
           "died": 1730
         }
-      ]
+      ],
+      "wikidata": "Q15628433",
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/Odyssey_(Pope)"
+        ]
+      }
     },
     {
       "id": "voss",
@@ -306,7 +367,16 @@
           "name": "William Cowper",
           "died": 1800
         }
-      ]
+      ],
+      "wikidata": "Q15628436",
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/The_Iliad_and_Odyssey_of_Homer_(Cowper)/Volume_2"
+        ],
+        "gutenberg": [
+          "24269"
+        ]
+      }
     },
     {
       "id": "pindemonte",
@@ -319,7 +389,13 @@
           "name": "Ippolito Pindemonte",
           "died": 1828
         }
-      ]
+      ],
+      "wikidata": "Q18908081",
+      "sources": {
+        "wikisource": [
+          "https://it.wikisource.org/wiki/Odissea_(Pindemonte)"
+        ]
+      }
     },
     {
       "id": "zhukovsky",
@@ -345,7 +421,8 @@
           "name": "Leconte de Lisle",
           "died": 1894
         }
-      ]
+      ],
+      "wikidata": "Q21705251"
     },
     {
       "id": "butler",
@@ -358,7 +435,16 @@
           "name": "Samuel Butler",
           "died": 1902
         }
-      ]
+      ],
+      "wikidata": "Q15628440",
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/The_Odyssey_(Butler)"
+        ],
+        "internetArchive": [
+          "odysseyrenderedi00homerich"
+        ]
+      }
     },
     {
       "id": "segala",
@@ -371,7 +457,19 @@
           "name": "Luis Segalá y Estalella",
           "died": 1938
         }
-      ]
+      ],
+      "wikidata": "Q32845653",
+      "sources": {
+        "wikisource": [
+          "https://es.wikisource.org/wiki/La_Odisea_(Luis_Segal%C3%A1_y_Estalella)"
+        ],
+        "gutenberg": [
+          "58221"
+        ],
+        "internetArchive": [
+          "odisea_images"
+        ]
+      }
     },
     {
       "id": "murray",
@@ -403,7 +501,8 @@
           "name": "Richmond Lattimore",
           "died": 1984
         }
-      ]
+      ],
+      "wikidata": "Q131403609"
     },
     {
       "id": "fagles",
@@ -416,7 +515,8 @@
           "name": "Robert Fagles",
           "died": 2008
         }
-      ]
+      ],
+      "wikidata": "Q131428357"
     },
     {
       "id": "wilson",
@@ -429,7 +529,608 @@
           "name": "Emily Wilson",
           "died": null
         }
-      ]
+      ],
+      "wikidata": "Q60320583"
+    },
+    {
+      "id": "wd-q19090449",
+      "wikidata": "Q19090449",
+      "lang": "en",
+      "title": "The Iliad and Odyssey of Homer",
+      "date": "1791",
+      "year": 1791,
+      "creators": [
+        {
+          "name": "William Cowper",
+          "died": 1800
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://en.wikisource.org/wiki/The_Iliad_and_Odyssey_of_Homer_(Cowper)/Volume_1/The_Iliad"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q19531329",
+      "wikidata": "Q19531329",
+      "lang": "cs",
+      "title": "Příběhy Odysseovy",
+      "date": "1887",
+      "year": 1887,
+      "creators": [
+        {
+          "name": "Jan Šafránek",
+          "died": 1924
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://cs.wikisource.org/wiki/P%C5%99%C3%ADb%C4%9Bhy_Odysseovy"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21666130",
+      "wikidata": "Q21666130",
+      "lang": "fr",
+      "title": "L’Odyssée",
+      "date": "1896",
+      "year": 1896,
+      "creators": [
+        {
+          "name": "Ulysse-François-Ange de Séguier",
+          "died": 1909
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://fr.wikisource.org/wiki/L%E2%80%99Odyss%C3%A9e/Traduction_S%C3%A9guier"
+        ],
+        "internetArchive": [
+          "lodyssedhomreml00homegoog"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21666129",
+      "wikidata": "Q21666129",
+      "lang": "fr",
+      "title": "Odyssée",
+      "date": "1893",
+      "year": 1893,
+      "creators": [
+        {
+          "name": "Charles Marie René Leconte de Lisle",
+          "died": 1894
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://fr.wikisource.org/wiki/L%E2%80%99Odyss%C3%A9e/Traduction_Leconte_de_Lisle"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q25820489",
+      "wikidata": "Q25820489",
+      "lang": "ru",
+      "title": "Одиссея",
+      "date": "1869",
+      "year": 1869,
+      "creators": [
+        {
+          "name": "Vasily Zhukovsky",
+          "died": 1852
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://ru.wikisource.org/wiki/%D0%9E%D0%B4%D0%B8%D1%81%D1%81%D0%B5%D1%8F_(%D0%93%D0%BE%D0%BC%D0%B5%D1%80;_%D0%96%D1%83%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q33082985",
+      "wikidata": "Q33082985",
+      "lang": "es",
+      "title": "La Odisea de Homero",
+      "date": "1851",
+      "year": 1851,
+      "creators": [
+        {
+          "name": "Antoni de Gironella i Aiguals",
+          "died": 1855
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://es.wikisource.org/wiki/La_Odisea_(Antonio_de_Gironella)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q54460006",
+      "wikidata": "Q54460006",
+      "lang": "cs",
+      "title": "Homérowa Odyssea",
+      "date": "1848",
+      "year": 1848,
+      "creators": [
+        {
+          "name": "Antonín Liška",
+          "died": 1847
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://cs.wikisource.org/wiki/Hom%C3%A9rowa_Odyssea"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q102917585",
+      "wikidata": "Q102917585",
+      "lang": "pt",
+      "title": "Odysséa de Homero",
+      "date": "1928",
+      "year": 1928,
+      "creators": [
+        {
+          "name": "Manuel Odorico Mendes",
+          "died": 1864
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://pt.wikisource.org/wiki/Odyss%C3%A9a_de_Homero"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q108850848",
+      "wikidata": "Q108850848",
+      "lang": "pl",
+      "title": "Odyseja",
+      "date": "1895",
+      "year": 1895,
+      "creators": [
+        {
+          "name": "Lucjan Siemieński",
+          "died": 1877
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://pl.wikisource.org/wiki/Odyseja_(Homer,_t%C5%82um._Siemie%C5%84ski,_1895)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q109652097",
+      "wikidata": "Q109652097",
+      "lang": "he",
+      "title": "אודיסיה",
+      "date": "1953",
+      "year": 1953,
+      "creators": [
+        {
+          "name": "Shaul Tchernichovsky",
+          "died": 1943
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://he.wikisource.org/wiki/%D7%9B%D7%9C_%D7%9B%D7%AA%D7%91%D7%99_%D7%A9%D7%90%D7%95%D7%9C_%D7%98%D7%A9%D7%A8%D7%A0%D7%99%D7%97%D7%95%D7%91%D7%A1%D7%A7%D7%99/%D7%9B%D7%A8%D7%9A_%D7%93:_%D7%90%D7%95%D7%93%D7%99%D7%A1%D7%99%D7%94"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q110625978",
+      "wikidata": "Q110625978",
+      "lang": "pl",
+      "title": "Odysseja",
+      "date": "1873",
+      "year": 1873,
+      "creators": [
+        {
+          "name": "Lucjan Siemieński",
+          "died": 1877
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://pl.wikisource.org/wiki/Odysseja"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q110626000",
+      "wikidata": "Q110626000",
+      "lang": "ro",
+      "title": "Odiseea",
+      "date": "?",
+      "year": null,
+      "creators": [
+        {
+          "name": "George Coșbuc",
+          "died": 1918
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://ro.wikisource.org/wiki/Odiseea"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q110626292",
+      "wikidata": "Q110626292",
+      "lang": "it",
+      "title": "L'Ulisse",
+      "date": "1573",
+      "year": 1573,
+      "creators": [
+        {
+          "name": "Lodovico Dolce",
+          "died": 1568
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://it.wikisource.org/wiki/L%27Ulisse"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q110626366",
+      "wikidata": "Q110626366",
+      "lang": "it",
+      "title": "Odissea",
+      "date": "1926",
+      "year": 1926,
+      "creators": [
+        {
+          "name": "Tito Morino",
+          "died": 1934
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://it.wikisource.org/wiki/Odissea_(Morino)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q110626390",
+      "wikidata": "Q110626390",
+      "lang": "it",
+      "title": "Odissea",
+      "date": "1926",
+      "year": 1926,
+      "creators": [
+        {
+          "name": "Ettore Romagnoli",
+          "died": 1938
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://it.wikisource.org/wiki/Odissea_(Romagnoli)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q110626392",
+      "wikidata": "Q110626392",
+      "lang": "it",
+      "title": "Odissea",
+      "date": "1742",
+      "year": 1742,
+      "creators": [
+        {
+          "name": "Anton Maria Salvini",
+          "died": 1729
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://it.wikisource.org/wiki/Odissea_(Salvini)"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q132817395",
+      "wikidata": "Q132817395",
+      "lang": "no",
+      "title": "Odysseen",
+      "date": "1922",
+      "year": 1922,
+      "creators": [
+        {
+          "name": "Peter Østbye",
+          "died": 1943
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://no.wikisource.org/wiki/Odysseen"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q140068888",
+      "wikidata": "Q140068888",
+      "lang": "no",
+      "title": "Odyssevskvædet",
+      "date": "1919",
+      "year": 1919,
+      "creators": [
+        {
+          "name": "Arne Garborg",
+          "died": 1924
+        }
+      ],
+      "sources": {
+        "wikisource": [
+          "https://no.wikisource.org/wiki/Odyssevskv%C3%A6det"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21705476",
+      "wikidata": "Q21705476",
+      "lang": "fr",
+      "title": "L'Odyssée",
+      "date": "1995",
+      "year": 1995,
+      "creators": [
+        {
+          "name": "Frédéric Mugler",
+          "died": 2018
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21714862",
+      "wikidata": "Q21714862",
+      "lang": "fr",
+      "title": "L'Odyssée d'Homère",
+      "date": "1716",
+      "year": 1716,
+      "creators": [
+        {
+          "name": "Anne Dacier",
+          "died": 1720
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21715294",
+      "wikidata": "Q21715294",
+      "lang": "fr",
+      "title": "L’Odyssée",
+      "date": "1924",
+      "year": 1924,
+      "creators": [
+        {
+          "name": "Victor Bérard",
+          "died": 1931
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q21715298",
+      "wikidata": "Q21715298",
+      "lang": "fr",
+      "title": "Odyssée",
+      "date": "1955",
+      "year": 1955,
+      "creators": [
+        {
+          "name": "Philippe Jaccottet",
+          "died": 2021
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q24208371",
+      "wikidata": "Q24208371",
+      "lang": "cs",
+      "title": "Homérowa Odyssea",
+      "date": "1848",
+      "year": 1848,
+      "creators": [
+        {
+          "name": "Antonín Liška",
+          "died": 1847
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q48225652",
+      "wikidata": "Q48225652",
+      "lang": "cs",
+      "title": "Homérova Odysseia",
+      "date": "1940",
+      "year": 1940,
+      "creators": [
+        {
+          "name": "Otmar Vaňorný",
+          "died": 1947
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q65556404",
+      "wikidata": "Q65556404",
+      "lang": "es",
+      "title": "La Ulyxea de Homero",
+      "date": "1767",
+      "year": 1767,
+      "creators": [
+        {
+          "name": "Gonzalo Pérez",
+          "died": 1566
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q87415702",
+      "wikidata": "Q87415702",
+      "lang": "es",
+      "title": "La Odisea",
+      "date": "1886",
+      "year": 1886,
+      "creators": [
+        {
+          "name": "Jenaro Alenda y Mira",
+          "died": 1893
+        },
+        {
+          "name": "Federico Baraibar y Zumárraga",
+          "died": 1918
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q125623135",
+      "wikidata": "Q125623135",
+      "lang": "ar",
+      "title": "الأوديسة",
+      "date": "1945",
+      "year": 1945,
+      "creators": [
+        {
+          "name": "Dirīnī Khashabah",
+          "died": 1965
+        }
+      ],
+      "sources": {
+        "internetArchive": [
+          "odysseypenguincl00home"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q125803908",
+      "wikidata": "Q125803908",
+      "lang": "la",
+      "title": "Homeri Odyssea Latinis versibus expressa",
+      "date": "?",
+      "year": null,
+      "creators": [
+        {
+          "name": "Bernardo Zamagna",
+          "died": 1820
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q127230258",
+      "wikidata": "Q127230258",
+      "lang": "en",
+      "title": "The Odyssey",
+      "date": "2003",
+      "year": 2003,
+      "creators": [
+        {
+          "name": "E. V. Rieu",
+          "died": 1972
+        },
+        {
+          "name": "D. C. H. Rieu",
+          "died": 2008
+        }
+      ],
+      "sources": {
+        "internetArchive": [
+          "odyssey00home_4"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q136098355",
+      "wikidata": "Q136098355",
+      "lang": "en",
+      "title": "The Odyssey of Homer",
+      "date": "?",
+      "year": null,
+      "creators": [
+        {
+          "name": "Samuel H. Butcher",
+          "died": 1910
+        },
+        {
+          "name": "Andrew Lang",
+          "died": 1912
+        }
+      ],
+      "needsReview": true
+    },
+    {
+      "id": "wd-q138411271",
+      "wikidata": "Q138411271",
+      "lang": "en",
+      "title": "The Odyssey",
+      "date": "1996",
+      "year": 1996,
+      "creators": [
+        {
+          "name": "Robert Fagles",
+          "died": 2008
+        }
+      ],
+      "sources": {
+        "internetArchive": [
+          "odyssey00"
+        ]
+      },
+      "needsReview": true
+    },
+    {
+      "id": "wd-q140761857",
+      "wikidata": "Q140761857",
+      "lang": "pt",
+      "title": "Odisseia",
+      "date": "2018",
+      "year": 2018,
+      "creators": [
+        {
+          "name": "Frederico Lourenço",
+          "died": null
+        }
+      ],
+      "needsReview": true
     }
   ]
 }
