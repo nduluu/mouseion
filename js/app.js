@@ -225,6 +225,7 @@
     if (!VIEWS[name]) name = "home";
     for (const v in VIEWS) VIEWS[v].hidden = v !== name;
     if (name === "account") renderAccount();
+    if (name === "home" && window.TimeCal) TimeCal.onShow();
     window.scrollTo(0, 0);
   }
 

@@ -212,8 +212,23 @@ const TimeCal = (() => {
     setState({ level: "year", Y });
   }
 
+  // Centre the timeline on today by setting the strip's own scroll position
+  // (scrollIntoView would also scroll the page). While the timeline is hidden
+  // it has no width, so remember the request and retry when it's shown.
+  let pendingScroll = false;
   function scrollToToday() {
-    els.today.scrollIntoView({ inline: "center", block: "nearest" });
+    const box = els.track.parentElement;
+    if (!box.clientWidth) { pendingScroll = true; return; }
+    pendingScroll = false;
+    const x = parseFloat(els.today.style.insetInlineStart) || 0;
+    const target = Math.max(0, x - box.clientWidth / 2);
+    // In RTL the strip starts at the right and scrollLeft runs negative.
+    box.scrollLeft = document.documentElement.dir === "rtl" ? -target : target;
+  }
+
+  // Called when the home view becomes visible.
+  function onShow() {
+    if (pendingScroll) scrollToToday();
   }
 
   // ---------- calendar grid ----------
@@ -401,6 +416,6 @@ const TimeCal = (() => {
   }
 
   init();
-  return { setLanguage };
+  return { setLanguage, onShow };
 })();
 window.TimeCal = TimeCal;
