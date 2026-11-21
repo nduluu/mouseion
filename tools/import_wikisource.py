@@ -42,6 +42,11 @@ SOURCES = {
         "page": lambda b: f"Илиада (Гомер; Гнедич)/Песнь {RU_ORD[b]}",
         "out": "data/works/iliad/texts/rus-gnedich",
     },
+    "lecontedelisle": {
+        "host": "fr.wikisource.org", "format": "plain",
+        "page": lambda b: f"Iliade/Rhapsodie {ROMAN[b]}",
+        "out": "data/works/iliad/texts/fra-leconte",
+    },
     "segala": {
         "host": "es.wikisource.org", "format": "prose",
         "page": lambda b: f"La Ilíada (Luis Segalá y Estalella)/Canto {ROMAN[b]}",
@@ -223,6 +228,13 @@ def prose(html_text):
     return {"passages": passages}
 
 
+def plain(html_text):
+    """Prose without markers: every paragraph, in order (shown book by book)."""
+    p = ProseParser()
+    p.feed(html_text)
+    return {"passages": [{"from": None, "text": text} for _, text in p.paras]}
+
+
 def run(name):
     cfg = SOURCES[name]
     out = os.path.join(ROOT, cfg["out"])
@@ -237,6 +249,10 @@ def run(name):
             n = len(data["lines"])
             note = f"  ({len(mism)} line-number mismatches, first: {mism[:3]})" if mism else ""
             print(f"{name} book {b:2d}: {n} lines{note}", flush=True)
+        elif cfg["format"] == "plain":
+            data = plain(h)
+            n = len(data["passages"])
+            print(f"{name} book {b:2d}: {n} paragraphs", flush=True)
         else:
             data = prose(h)
             n = len(data["passages"])
