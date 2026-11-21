@@ -491,7 +491,14 @@
           "name": "Leconte de Lisle",
           "died": 1894
         }
-      ]
+      ],
+      "text": {
+        "path": "texts/fra-leconte",
+        "format": "prose",
+        "align": "book",
+        "source": "Wikisource, transcription of the Paris 1866 edition (Alphonse Lemerre) (CC BY-SA 4.0)",
+        "sourceUrl": "https://fr.wikisource.org/wiki/Iliade_%28trad._Leconte_de_Lisle%29"
+      }
     },
     {
       "id": "butler",

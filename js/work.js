@@ -530,7 +530,7 @@ const Work = (() => {
         if (!columns) cell.appendChild(paneLabel(p));
         if (!p.data) cell.appendChild(messageBox(p));
         else {
-          if (p.align === "book") cell.appendChild(el("p", "reader-note", t("ownNumbering")));
+          if (p.align === "book") cell.appendChild(el("p", "reader-note", t(p.data.lines ? "ownNumbering" : "bookOnly")));
           cell.appendChild(paneContent(p, p.data));
         }
         row.appendChild(cell);

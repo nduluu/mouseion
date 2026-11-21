@@ -112,6 +112,7 @@
    "readableLanguages": [
     "en",
     "es",
+    "fr",
     "it",
     "ru"
    ]
@@ -225,6 +226,7 @@
     "ru"
    ],
    "readableLanguages": [
+    "de",
     "en"
    ]
   }

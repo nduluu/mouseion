@@ -285,7 +285,15 @@
           "name": "Johann Heinrich Voß",
           "died": 1826
         }
-      ]
+      ],
+      "note": "Original 1781 spelling, as transcribed by the Deutsches Textarchiv.",
+      "text": {
+        "path": "texts/deu-voss",
+        "format": "verse",
+        "align": "lines",
+        "source": "Deutsches Textarchiv, Berlin-Brandenburgische Akademie der Wissenschaften (CC BY-SA 4.0)",
+        "sourceUrl": "https://www.deutschestextarchiv.de/book/show/voss_oduessee_1781"
+      }
     },
     {
       "id": "cowper",

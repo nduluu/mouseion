@@ -376,3 +376,15 @@ Object.assign(I18N.ru, {
   };
   for (const l in S) I18N[l].lineDrift = S[l];
 })();
+
+(() => {
+  const S = {
+    en: "This translation has no line references, so it is shown book by book.",
+    de: "Diese Übersetzung hat keine Versangaben und wird daher buchweise gezeigt.",
+    fr: "Cette traduction n’indique pas les vers : elle est présentée chant par chant.",
+    it: "Questa traduzione non indica i versi, quindi è mostrata libro per libro.",
+    es: "Esta traducción no indica los versos, así que se muestra canto por canto.",
+    ru: "В этом переводе нет указаний на строки, поэтому он показан целой песнью.",
+  };
+  for (const l in S) I18N[l].bookOnly = S[l];
+})();
