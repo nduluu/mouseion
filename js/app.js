@@ -214,6 +214,7 @@
   const VIEWS = {
     home: home,
     search: document.getElementById("search"),
+    work: document.getElementById("work"),
     account: accountSection,
     about: document.getElementById("about"),
     privacy: document.getElementById("privacy"),
@@ -222,19 +223,23 @@
     legal: document.getElementById("legal"),
   };
 
-  function showView(name, params) {
+  function showView(name, params, args) {
     if (!VIEWS[name]) name = "home";
     for (const v in VIEWS) VIEWS[v].hidden = v !== name;
     if (name === "account") renderAccount();
     if (name === "home" && window.TimeCal) TimeCal.onShow();
     if (name === "search" && window.Search) Search.run(params.get("q"));
+    if (name === "work" && window.Work) Work.render(args[0]);
     window.scrollTo(0, 0);
   }
 
-  // Hashes look like "#/view" or "#/view?key=value" (e.g. "#/search?q=homer").
+  // Hashes look like "#/view", "#/view/arg" or "#/view?key=value"
+  // (e.g. "#/work/iliad", "#/search?q=homer").
   function routeFromHash() {
-    const [name, query] = location.hash.replace(/^#\/?/, "").split("?");
-    showView(VIEWS[name] ? name : "home", new URLSearchParams(query || ""));
+    const [path, query] = location.hash.replace(/^#\/?/, "").split("?");
+    const [name, ...args] = path.split("/");
+    if (name === "work" && !args[0]) return showView("home");
+    showView(VIEWS[name] ? name : "home", new URLSearchParams(query || ""), args);
   }
 
   window.addEventListener("hashchange", routeFromHash);
