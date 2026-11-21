@@ -244,49 +244,181 @@ const Work = (() => {
     box.appendChild(l);
   }
 
-  function fillOriginalSelect() {
-    const sel = $("ed-original");
-    sel.textContent = "";
-    for (const ed of editions().filter((e) => e.lang === work.originalLanguage)) {
-      const o = el("option", null, optionLabel(ed));
-      o.value = ed.id;
-      sel.appendChild(o);
+  // ---------- reader: panes ----------
+  //
+  // The visitor chooses 1–4 texts ("panes"): any edition of the original or
+  // any translation. Pane ids are "o:<edition id>" or "t:<translation id>";
+  // "none" stands for "no translation in your language yet".
+  // Layout, text size and line numbers are remembered between visits, and
+  // the chosen panes are remembered per work.
+
+  const MAX_PANES = 4;
+  const PREFS_KEY = "mouseion.reader";
+
+  function loadPrefs() {
+    try {
+      return { layout: "columns", size: 0, numbers: true, ...JSON.parse(localStorage.getItem(PREFS_KEY) || "{}") };
+    } catch (e) {
+      return { layout: "columns", size: 0, numbers: true };
     }
-    sel.value = state.orig;
   }
 
-  function fillTranslationSelect() {
-    const sel = $("ed-translation");
-    sel.textContent = "";
-    const mine = lang().split("-")[0];
-    const langs = [...new Set(work.translations.map((x) => x.lang))];
-    // Visitor's language first, then the others by name.
-    const coll = new Intl.Collator(lang());
-    langs.sort((a, b) => (b === mine) - (a === mine) || coll.compare(langName(a), langName(b)));
+  let prefs = loadPrefs();
 
-    if (!work.translations.some((x) => x.lang === mine)) {
-      const o = el("option", null, t("noTranslationOption", { language: langName(mine) }));
-      o.value = "";
+  function savePrefs() {
+    localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+  }
+
+  function savePanes() {
+    localStorage.setItem("mouseion.panes." + work.id, JSON.stringify(state.panes));
+  }
+
+  function resolvePane(id) {
+    if (id === "none") return { id, kind: "none" };
+    const [k, ref] = id.split(":");
+    const ed = k === "o" ? byId(ref) : transById(ref);
+    if (!ed) return null;
+    const isOrig = k === "o";
+    return {
+      id, ed, kind: isOrig ? "orig" : "trans",
+      lang: isOrig ? work.originalLanguage : ed.lang,
+      st: status(ed),
+      // How a text lines up with the original's line numbers.
+      align: isOrig ? "lines" : (ed.text && ed.text.align) || "passages",
+    };
+  }
+
+  function shortName(p) {
+    if (p.kind === "none") return t("translation");
+    const ed = p.ed;
+    if (p.kind === "orig") return ed.label + (ed.year ? " " + ed.year : "");
+    return (ed.creators || []).map((c) => c.name).join(", ") + ", " + ed.date;
+  }
+
+  // Default panes: the first readable original, then a translation in the
+  // visitor's language (or the "none yet" notice).
+  function defaultPanes() {
+    const readable = (list) => list.find((e) => status(e) === "read");
+    const digitised = (list) => list.find((e) => e.text);
+    const origs = editions().filter((e) => e.lang === work.originalLanguage);
+    const orig = readable(origs) || digitised(origs) || origs[origs.length - 1];
+    const mine = lang().split("-")[0];
+    const inMine = work.translations.filter((x) => x.lang === mine);
+    const tr = readable(inMine) || inMine[0];
+    return ["o:" + orig.id, tr ? "t:" + tr.id : "none"];
+  }
+
+  function choosePanes() {
+    let saved = null;
+    try { saved = JSON.parse(localStorage.getItem("mouseion.panes." + work.id) || "null"); } catch (e) { /* ignore */ }
+    const valid = Array.isArray(saved) && saved.length && saved.every((id) => resolvePane(id));
+    state.panes = valid ? saved.slice(0, MAX_PANES) : defaultPanes();
+  }
+
+  // A <select> listing every text: originals first, then translations by
+  // language with the visitor's language first.
+  function textSelect(current) {
+    const sel = el("select", "pane-select");
+    sel.setAttribute("aria-label", t("chooseText"));
+    if (current === "none") {
+      const o = el("option", null, t("noTranslationOption", { language: langName(lang().split("-")[0]) }));
+      o.value = "none";
       sel.appendChild(o);
     }
+    const og = el("optgroup");
+    og.label = t("originalGroup", { language: langName(work.originalLanguage) });
+    for (const ed of editions().filter((e) => e.lang === work.originalLanguage)) {
+      const o = el("option", null, optionLabel(ed));
+      o.value = "o:" + ed.id;
+      og.appendChild(o);
+    }
+    sel.appendChild(og);
+    const mine = lang().split("-")[0];
+    const coll = new Intl.Collator(lang());
+    const langs = [...new Set(work.translations.map((x) => x.lang))]
+      .sort((a, b) => (b === mine) - (a === mine) || coll.compare(langName(a), langName(b)));
     for (const l of langs) {
       const g = el("optgroup");
       g.label = langName(l);
       for (const tr of work.translations.filter((x) => x.lang === l)) {
         const o = el("option", null, optionLabel(tr));
-        o.value = tr.id;
+        o.value = "t:" + tr.id;
         g.appendChild(o);
       }
       sel.appendChild(g);
     }
-    sel.value = state.trans || "";
+    sel.value = current;
+    return sel;
+  }
+
+  function iconButton(label, text, onClick, disabled) {
+    const b = el("button", "pane-btn", text);
+    b.type = "button";
+    b.title = label;
+    b.setAttribute("aria-label", label);
+    b.disabled = !!disabled;
+    b.addEventListener("click", onClick);
+    return b;
+  }
+
+  function setPanes(panes) {
+    state.panes = panes;
+    savePanes();
+    renderPaneBar();
+    renderReader();
+  }
+
+  // Header with one control group per pane: choose text, move, remove.
+  function renderPaneBar() {
+    const bar = $("pane-bar");
+    bar.textContent = "";
+    bar.className = "pane-bar " + prefs.layout;
+    bar.style.setProperty("--panes", state.panes.length);
+    state.panes.forEach((id, i) => {
+      const box = el("div", "pane-head");
+      const sel = textSelect(id);
+      sel.addEventListener("change", () => {
+        const next = state.panes.slice();
+        next[i] = sel.value;
+        setPanes(next);
+      });
+      box.appendChild(sel);
+      const swap = (a, b) => { const n = state.panes.slice(); [n[a], n[b]] = [n[b], n[a]]; setPanes(n); };
+      const rtl = document.documentElement.dir === "rtl";
+      const before = prefs.layout === "columns" ? (rtl ? "→" : "←") : "↑";
+      const after = prefs.layout === "columns" ? (rtl ? "←" : "→") : "↓";
+      box.appendChild(iconButton(t("moveEarlier"), before, () => swap(i, i - 1), i === 0));
+      box.appendChild(iconButton(t("moveLater"), after, () => swap(i, i + 1), i === state.panes.length - 1));
+      box.appendChild(iconButton(t("removeText"), "×", () => setPanes(state.panes.filter((_, j) => j !== i)), state.panes.length === 1));
+      bar.appendChild(box);
+    });
+    $("add-pane").disabled = state.panes.length >= MAX_PANES;
+    document.querySelectorAll("#reader-panel [data-layout]").forEach((b) => {
+      b.setAttribute("aria-pressed", String(b.dataset.layout === prefs.layout));
+    });
+    $("toggle-numbers").checked = prefs.numbers;
+  }
+
+  // Add a pane: the next text not yet shown (readable first).
+  function addPane(id) {
+    if (state.panes.length >= MAX_PANES) return;
+    if (!id) {
+      const all = [
+        ...editions().filter((e) => e.lang === work.originalLanguage).map((e) => "o:" + e.id),
+        ...work.translations.map((x) => "t:" + x.id),
+      ].filter((x) => !state.panes.includes(x));
+      id = all.find((x) => resolvePane(x).st === "read") || all[0];
+      if (!id) return;
+    }
+    if (state.panes.includes(id)) return;
+    setPanes([...state.panes, id]);
   }
 
   function fillBookSelect() {
     const sel = $("ed-book");
     sel.textContent = "";
+    const letters = work.bookLetters || BOOK_LETTERS;
     for (let b = 1; b <= 24; b++) {
-      const letters = work.bookLetters || BOOK_LETTERS;
       const o = el("option", null, t("book") + " " + b + " · " + letters[b - 1]);
       o.value = b;
       sel.appendChild(o);
@@ -294,35 +426,17 @@ const Work = (() => {
     sel.value = state.book;
   }
 
-  // Default choices: the first readable original; a readable translation in
-  // the visitor's language if there is one.
-  function chooseDefaults() {
-    const readable = (list) => list.find((e) => status(e) === "read");
-    // If nothing is readable here, prefer an edition whose text Mouseion has,
-    // so the visitor sees its countdown.
-    const digitised = (list) => list.find((e) => e.text);
-    const origs = editions().filter((e) => e.lang === work.originalLanguage);
-    if (!state.orig || !byId(state.orig)) {
-      state.orig = (readable(origs) || digitised(origs) || origs[origs.length - 1]).id;
-    }
-    const mine = lang().split("-")[0];
-    const inMine = work.translations.filter((x) => x.lang === mine);
-    state.trans = (readable(inMine) || inMine[0] || {}).id || null;
-  }
-
-  // ---------- reader ----------
-
-  function messageBox(ed, kind) {
+  function messageBox(p) {
     const box = el("div", "reader-msg");
-    if (kind === "none") {
+    if (p.kind === "none") {
       const mine = langName(lang().split("-")[0]);
       box.appendChild(el("p", "reader-msg-title", t("noTranslation", { language: mine })));
       box.appendChild(el("p", null, t("noTranslationHint")));
       return box;
     }
-    box.appendChild(el("p", "reader-msg-title", ed.title + " (" + ed.date + ")"));
-    if (kind === "notext") box.appendChild(el("p", null, t("notDigitised")));
-    box.appendChild(rightsBlock(ed));
+    box.appendChild(el("p", "reader-msg-title", p.ed.title + " (" + p.ed.date + ")"));
+    if (p.st === "notext") box.appendChild(el("p", null, t("notDigitised")));
+    if (p.st !== "notext") box.appendChild(rightsBlock(p.ed));
     return box;
   }
 
@@ -330,103 +444,138 @@ const Work = (() => {
     return getJSON(base() + ed.text.path + "/" + String(state.book).padStart(2, "0") + ".json");
   }
 
-  function linesBlock(lines) {
-    const div = el("div", "orig");
-    div.lang = work.originalLanguage;
+  function linesBlock(lines, l, cls) {
+    const div = el("div", cls || "orig");
+    div.lang = l;
     for (const [n, text] of lines) {
       const line = el("div", "line");
-      const num = el("span", "ln", n % 5 === 0 ? String(n) : "");
-      line.appendChild(num);
+      line.appendChild(el("span", "ln", n % 5 === 0 ? String(n) : ""));
       line.appendChild(el("span", "lt", text));
       div.appendChild(line);
     }
     return div;
   }
 
-  // Verse translation lines, numbered with the translation's own count.
-  function transLines(lines, l) {
-    const div = linesBlock(lines);
-    div.className = "trans verse";
-    div.lang = l;
-    return div;
-  }
-
-  // The whole book of a translation, whatever its format.
-  function wholeTranslation(tr, l) {
-    return tr.passages
-      ? passageBlock(tr.passages.map((p) => p.text).join("\n\n"), l)
-      : transLines(tr.lines, l);
-  }
-
-  function passageBlock(text, l) {
+  function passageBlock(texts, l) {
     const div = el("div", "trans");
     div.lang = l;
-    for (const para of text.split("\n\n")) div.appendChild(el("p", null, para));
+    for (const text of texts) for (const para of text.split("\n\n")) div.appendChild(el("p", null, para));
     return div;
+  }
+
+  // A pane's content between original lines [from, end); or all of it.
+  function paneContent(p, data, from = -Infinity, end = Infinity) {
+    const inRange = ([n]) => n >= from && n < end;
+    if (data.passages) {
+      const ps = data.passages.filter((x) => x.from >= from && x.from < end);
+      return ps.length ? passageBlock(ps.map((x) => x.text), p.lang) : null;
+    }
+    const lines = data.lines.filter(inRange);
+    if (!lines.length) return null;
+    return linesBlock(lines, p.lang, p.kind === "orig" ? "orig" : "trans verse");
+  }
+
+  // Where rows break: the first text with passages or stanza breaks sets the
+  // rhythm; otherwise every 20 lines.
+  function segmentStarts(panes) {
+    for (const p of panes) {
+      if (!p.data || p.align === "book") continue;
+      if (p.data.passages) return p.data.passages.map((x) => x.from);
+      if (p.data.breaks && p.kind === "trans") return p.data.breaks;
+    }
+    const origLines = panes.find((p) => p.data && p.kind === "orig");
+    const last = origLines ? origLines.data.lines[origLines.data.lines.length - 1][0] : 0;
+    const starts = [];
+    for (let n = 1; n <= last; n += 20) starts.push(n);
+    return starts;
+  }
+
+  function paneLabel(p) {
+    const s = el("p", "pane-label", shortName(p));
+    return s;
   }
 
   async function renderReader() {
     const token = ++renderToken;
     const reader = $("reader");
     const credit = $("reader-credit");
-    const orig = byId(state.orig);
-    const trans = state.trans ? transById(state.trans) : null;
-    const origOK = orig && status(orig) === "read";
-    const transOK = trans && status(trans) === "read";
+    const panes = state.panes.map(resolvePane).filter(Boolean);
 
     reader.setAttribute("aria-busy", "true");
-    let g = null, tr = null;
     try {
-      [g, tr] = await Promise.all([origOK ? bookText(orig) : null, transOK ? bookText(trans) : null]);
+      await Promise.all(panes.map(async (p) => {
+        p.data = p.st === "read" ? await bookText(p.ed) : null;
+      }));
     } catch (e) {
       console.error(e);
     }
     if (token !== renderToken) return; // a newer render started meanwhile
     reader.textContent = "";
     reader.removeAttribute("aria-busy");
+    reader.className = "reader " + prefs.layout + (prefs.numbers ? "" : " no-numbers");
+    reader.style.setProperty("--panes", panes.length);
+    reader.style.setProperty("--reader-scale", String(1 + prefs.size * 0.12));
 
-    // How the translation lines up with the original:
-    //   passages: prose passages that start at a given original line
-    //   lines:    verse numbered like the original (stanza breaks start rows)
-    //   book:     only book by book (the translation has its own line count)
-    const align = trans && trans.text ? trans.text.align || "passages" : null;
+    const readable = panes.filter((p) => p.data);
+    const unreadable = panes.filter((p) => !p.data);
+    // A translation with its own line count can only be shown book by book.
+    const free = panes.length > 1 && readable.some((p) => p.align === "book");
+    const columns = prefs.layout === "columns" && panes.length > 1;
 
-    if (g && tr && align !== "book") {
-      const starts = align === "lines" ? tr.breaks : tr.passages.map((p) => p.from);
-      starts.forEach((from, i) => {
-        const end = i + 1 < starts.length ? starts[i + 1] : Infinity;
-        const inRange = ([n]) => n >= from && n < end;
-        const row = el("div", "reader-row");
-        row.appendChild(linesBlock(g.lines.filter(inRange)));
-        row.appendChild(align === "lines"
-          ? transLines(tr.lines.filter(inRange), trans.lang)
-          : passageBlock(tr.passages[i].text, trans.lang));
-        reader.appendChild(row);
-      });
-    } else {
-      const row = el("div", "reader-row" + (g && tr ? "" : " single"));
-      row.appendChild(g ? linesBlock(g.lines) : messageBox(orig, status(orig)));
-      if (tr) {
-        const side = el("div");
-        if (align === "book") side.appendChild(el("p", "reader-note", t("ownNumbering")));
-        side.appendChild(wholeTranslation(tr, trans.lang));
-        row.appendChild(side);
-      } else {
-        row.appendChild(messageBox(trans, trans ? status(trans) : "none"));
+    if (free || !readable.length) {
+      // Each text whole, side by side or one after another.
+      const row = el("div", "reader-row");
+      for (const p of panes) {
+        const cell = el("div", "pane-cell");
+        if (!columns) cell.appendChild(paneLabel(p));
+        if (!p.data) cell.appendChild(messageBox(p));
+        else {
+          if (p.align === "book") cell.appendChild(el("p", "reader-note", t("ownNumbering")));
+          cell.appendChild(paneContent(p, p.data));
+        }
+        row.appendChild(cell);
       }
       reader.appendChild(row);
+    } else {
+      // Texts that can't be shown: their notice first (stacked) or at the top of their column.
+      if (!columns) for (const p of unreadable) reader.appendChild(messageBox(p));
+      const starts = segmentStarts(panes);
+      starts.forEach((from, i) => {
+        const end = i + 1 < starts.length ? starts[i + 1] : Infinity;
+        const row = el("div", "reader-row");
+        let filled = false;
+        for (const p of columns ? panes : readable) {
+          const cell = el("div", "pane-cell");
+          if (!p.data) {
+            if (i === 0) cell.appendChild(messageBox(p));
+          } else {
+            const content = paneContent(p, p.data, from, end);
+            if (i === 0 && p.data.lineCounts) {
+              const c = p.data.lineCounts;
+              cell.appendChild(el("p", "reader-note", t("lineDrift", { a: c.translation, b: c.original })));
+            }
+            if (content) {
+              if (!columns && readable.length > 1) cell.appendChild(paneLabel(p));
+              cell.appendChild(content);
+              filled = true;
+            }
+          }
+          row.appendChild(cell);
+        }
+        if (filled || i === 0) reader.appendChild(row);
+      });
     }
 
     // Credits for the digital texts shown.
     credit.textContent = "";
-    for (const ed of [origOK && orig, transOK && trans].filter(Boolean)) {
-      const p = el("span", null, ed.title + ": " + t("digitalText") + " ");
-      const a = el("a", null, ed.text.source);
-      a.href = ed.text.sourceUrl;
+    for (const p of readable) {
+      const line = el("span", null, p.ed.title + ": " + t("digitalText") + " ");
+      const a = el("a", null, p.ed.text.source);
+      a.href = p.ed.text.sourceUrl;
       a.target = "_blank";
       a.rel = "noopener";
-      p.appendChild(a);
-      credit.appendChild(p);
+      line.appendChild(a);
+      credit.appendChild(line);
     }
     startTicker();
   }
@@ -571,15 +720,24 @@ const Work = (() => {
     if (n.kind === "edition") {
       box.appendChild(rightsBlock(n));
       if (status(n) === "read") {
-        const b = el("button", "btn", t("readThis"));
-        b.type = "button";
-        b.addEventListener("click", () => {
-          state.orig = n.id;
-          fillOriginalSelect();
-          renderReader();
-          $("reader-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+        const actions = el("div", "detail-actions");
+        const go = () => $("reader-panel").scrollIntoView({ behavior: "smooth", block: "start" });
+        const read = el("button", "btn", t("readThis"));
+        read.type = "button";
+        read.addEventListener("click", () => {
+          const next = state.panes.slice();
+          next[0] = "o:" + n.id;
+          setPanes([...new Set(next)]);
+          go();
         });
-        box.appendChild(b);
+        actions.appendChild(read);
+        if (!state.panes.includes("o:" + n.id) && state.panes.length < MAX_PANES) {
+          const cmp = el("button", "btn", t("compare"));
+          cmp.type = "button";
+          cmp.addEventListener("click", () => { addPane("o:" + n.id); go(); });
+          actions.appendChild(cmp);
+        }
+        box.appendChild(actions);
       } else if (status(n) === "notext") {
         box.appendChild(el("p", "detail-hint", t("notDigitised")));
       }
@@ -598,12 +756,11 @@ const Work = (() => {
       return;
     }
     if (state.workId !== id) {
-      state = { workId: id, orig: null, trans: null, book: 1, selected: "omega" };
+      state = { workId: id, panes: [], book: 1, selected: "omega" };
+      choosePanes();
     }
-    chooseDefaults();
     renderHeader();
-    fillOriginalSelect();
-    fillTranslationSelect();
+    renderPaneBar();
     fillBookSelect();
     $("stemma-note").textContent = work.stemmaNote;
     renderStemma();
@@ -613,8 +770,7 @@ const Work = (() => {
 
   function rerender() {
     if (!work) return;
-    fillOriginalSelect();
-    fillTranslationSelect();
+    renderPaneBar();
     renderStemma();
     renderDetail();
     renderReader();
@@ -625,8 +781,27 @@ const Work = (() => {
       Rights.setCountry(e.target.value);
       rerender();
     });
-    $("ed-original").addEventListener("change", (e) => { state.orig = e.target.value; renderReader(); });
-    $("ed-translation").addEventListener("change", (e) => { state.trans = e.target.value || null; renderReader(); });
+    document.querySelectorAll("#reader-panel [data-layout]").forEach((b) => {
+      b.addEventListener("click", () => {
+        prefs.layout = b.dataset.layout;
+        savePrefs();
+        renderPaneBar();
+        renderReader();
+      });
+    });
+    const resize = (d) => {
+      prefs.size = Math.max(-2, Math.min(4, prefs.size + d));
+      savePrefs();
+      $("reader").style.setProperty("--reader-scale", String(1 + prefs.size * 0.12));
+    };
+    $("text-smaller").addEventListener("click", () => resize(-1));
+    $("text-larger").addEventListener("click", () => resize(1));
+    $("toggle-numbers").addEventListener("change", (e) => {
+      prefs.numbers = e.target.checked;
+      savePrefs();
+      $("reader").classList.toggle("no-numbers", !prefs.numbers);
+    });
+    $("add-pane").addEventListener("click", () => addPane());
     $("ed-book").addEventListener("change", (e) => { state.book = Number(e.target.value); renderReader(); });
     const step = (d) => {
       state.book = Math.min(24, Math.max(1, state.book + d));

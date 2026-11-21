@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=22">
+  <link rel="stylesheet" href="css/style.css?v=24">
   <script>
     // Apply a signed-in user's saved theme before first paint (avoids a flash).
     // With no override, CSS follows the system's prefers-color-scheme.
@@ -166,21 +166,26 @@
         </header>
 
         <div id="reader-panel" class="panel reader-panel">
-          <div class="reader-bar">
-            <label class="ed-pick">
-              <span data-i18n="original">Original</span>
-              <select id="ed-original"></select>
-            </label>
+          <div class="reader-toolbar">
             <div class="book-nav">
               <button type="button" id="book-prev" class="nav-btn" data-i18n-aria="previousBook" aria-label="Previous book">‹</button>
               <select id="ed-book" data-i18n-aria="book" aria-label="Book"></select>
               <button type="button" id="book-next" class="nav-btn" data-i18n-aria="nextBook" aria-label="Next book">›</button>
             </div>
-            <label class="ed-pick">
-              <span data-i18n="translation">Translation</span>
-              <select id="ed-translation"></select>
-            </label>
+            <div class="reader-tools">
+              <div class="seg" role="group" data-i18n-aria="layout" aria-label="Layout">
+                <button type="button" data-layout="columns" data-i18n="layoutColumns">Side by side</button>
+                <button type="button" data-layout="stacked" data-i18n="layoutStacked">One under another</button>
+              </div>
+              <div class="seg" role="group" data-i18n-aria="textSize" aria-label="Text size">
+                <button type="button" id="text-smaller" data-i18n-title="smallerText" data-i18n-aria="smallerText" title="Smaller text" aria-label="Smaller text">A−</button>
+                <button type="button" id="text-larger" data-i18n-title="largerText" data-i18n-aria="largerText" title="Larger text" aria-label="Larger text">A+</button>
+              </div>
+              <label class="check"><input type="checkbox" id="toggle-numbers" checked> <span data-i18n="lineNumbers">Line numbers</span></label>
+              <button type="button" id="add-pane" class="btn" data-i18n="addText">+ Add a text</button>
+            </div>
           </div>
+          <div id="pane-bar" class="pane-bar"></div>
           <div id="reader" class="reader"></div>
           <p id="reader-credit" class="credit"></p>
         </div>
@@ -267,12 +272,12 @@
   </div>
 
   <script src="js/languages.js?v=20"></script>
-  <script src="js/i18n.js?v=23"></script>
+  <script src="js/i18n.js?v=25"></script>
   <script src="js/timecal.js?v=20"></script>
   <script src="js/mapviewer.js?v=20"></script>
   <script src="js/common.js?v=2"></script>
   <script src="js/rights.js?v=21"></script>
-  <script src="js/work.js?v=23"></script>
+  <script src="js/work.js?v=25"></script>
   <script src="js/search.js?v=23"></script>
   <script src="js/browse.js?v=1"></script>
   <script src="js/app.js?v=22"></script>

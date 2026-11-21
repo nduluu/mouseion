@@ -343,3 +343,36 @@ Object.assign(I18N.ru, {
   pdLiving: "Переводчик жив: защищено в течение жизни и {n} лет после.", afterDeath: "после смерти автора",
   ownNumbering: "Нумерация строк — по переводу.",
 });
+
+// Reader toolbar and panes.
+(() => {
+  const keys = ["layout", "layoutColumns", "layoutStacked", "textSize", "smallerText", "largerText", "lineNumbers",
+    "addText", "chooseText", "moveEarlier", "moveLater", "removeText", "compare", "originalGroup"];
+  const S = {
+    en: ["Layout", "Side by side", "One under another", "Text size", "Smaller text", "Larger text", "Line numbers",
+      "+ Add a text", "Choose a text", "Move earlier", "Move later", "Remove this text", "Compare", "Original ({language})"],
+    de: ["Anordnung", "Nebeneinander", "Untereinander", "Schriftgröße", "Kleinere Schrift", "Größere Schrift", "Zeilennummern",
+      "+ Text hinzufügen", "Text wählen", "Nach vorne", "Nach hinten", "Diesen Text entfernen", "Vergleichen", "Original ({language})"],
+    fr: ["Disposition", "Côte à côte", "L’un sous l’autre", "Taille du texte", "Texte plus petit", "Texte plus grand", "Numéros de vers",
+      "+ Ajouter un texte", "Choisir un texte", "Avancer", "Reculer", "Retirer ce texte", "Comparer", "Original ({language})"],
+    it: ["Disposizione", "Affiancati", "Uno sotto l’altro", "Dimensione del testo", "Testo più piccolo", "Testo più grande", "Numeri di verso",
+      "+ Aggiungi un testo", "Scegli un testo", "Sposta prima", "Sposta dopo", "Rimuovi questo testo", "Confronta", "Originale ({language})"],
+    es: ["Disposición", "Lado a lado", "Uno debajo de otro", "Tamaño del texto", "Texto más pequeño", "Texto más grande", "Números de verso",
+      "+ Añadir un texto", "Elegir un texto", "Mover antes", "Mover después", "Quitar este texto", "Comparar", "Original ({language})"],
+    ru: ["Расположение", "Рядом", "Друг под другом", "Размер текста", "Мельче", "Крупнее", "Номера строк",
+      "+ Добавить текст", "Выбрать текст", "Переместить раньше", "Переместить позже", "Убрать этот текст", "Сравнить", "Оригинал ({language})"],
+  };
+  for (const l in S) keys.forEach((k, i) => { I18N[l][k] = S[l][i]; });
+})();
+
+(() => {
+  const S = {
+    en: "In this book the translation has {a} lines and the original {b}, so the pairing may be off by a line.",
+    de: "In diesem Buch hat die Übersetzung {a} Verse und das Original {b}; die Zuordnung kann um einen Vers abweichen.",
+    fr: "Dans ce chant, la traduction compte {a} vers et l’original {b} : l’appariement peut être décalé d’un vers.",
+    it: "In questo libro la traduzione ha {a} versi e l’originale {b}, quindi l’abbinamento può essere sfasato di un verso.",
+    es: "En este canto la traducción tiene {a} versos y el original {b}, así que la correspondencia puede desfasarse un verso.",
+    ru: "В этой песни в переводе {a} строк, а в оригинале {b}, поэтому сопоставление может сдвигаться на строку.",
+  };
+  for (const l in S) I18N[l].lineDrift = S[l];
+})();

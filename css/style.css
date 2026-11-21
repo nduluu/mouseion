@@ -875,39 +875,102 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
   color: var(--muted);
 }
 
-/* Reader: original and translation side by side. */
+/* Reader: 1–4 texts, side by side or one under another. */
 .reader-panel { scroll-margin-top: 1rem; }
 
-.reader-bar {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: end;
-  gap: 1rem;
+.reader-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--line);
 }
 
-.reader-bar .ed-pick:last-child { text-align: end; align-items: flex-end; }
+.book-nav { display: flex; align-items: center; gap: 0.4rem; }
 
-.book-nav {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+.reader-tools { display: flex; align-items: center; flex-wrap: wrap; gap: 0.6rem 1rem; }
+
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+
+.seg button {
+  padding: 0.4rem 0.85rem;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: none;
+  cursor: pointer;
 }
 
-.reader { min-height: 10rem; }
+.seg button + button { border-inline-start: 1px solid var(--line); }
+.seg button:hover { background: var(--line); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+.check { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; color: var(--muted); }
+.reader-tools .btn:disabled { opacity: 0.4; cursor: default; }
+
+/* Pane headers: one per text, in the same columns as the text below. */
+.pane-bar {
+  display: grid;
+  gap: 1rem 2rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.pane-bar.columns { grid-template-columns: repeat(var(--panes, 2), minmax(14rem, 1fr)); }
+.pane-bar.stacked { grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+
+.pane-head { display: flex; align-items: center; gap: 0.3rem; min-width: 0; }
+.pane-head .pane-select { flex: 1; min-width: 0; }
+
+.pane-btn {
+  flex: none;
+  width: 1.9rem;
+  height: 1.9rem;
+  font: inherit;
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.pane-btn:hover:not(:disabled) { border-color: var(--ink); }
+.pane-btn:disabled { opacity: 0.3; cursor: default; }
+
+.reader {
+  min-height: 10rem;
+  font-size: calc(1rem * var(--reader-scale, 1));
+}
+
 .reader[aria-busy="true"] { opacity: 0.5; }
+
+.reader.columns { overflow-x: auto; }
 
 .reader-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
+  gap: 2rem;
   padding: 1.25rem 0;
 }
 
+.reader.columns .reader-row { grid-template-columns: repeat(var(--panes, 2), minmax(14rem, 1fr)); }
+.reader.stacked .reader-row { grid-template-columns: 1fr; gap: 0.9rem; }
 .reader-row + .reader-row { border-top: 1px solid var(--line); }
 
-.orig { font-size: 1.05rem; line-height: 1.6; }
+.reader.stacked .pane-cell:empty { display: none; }
+.reader.stacked .pane-cell + .pane-cell:not(:empty) { padding-top: 0.9rem; border-top: 1px dashed var(--line); }
+
+.pane-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.orig { font-size: 1.05em; line-height: 1.6; }
 
 .line {
   display: grid;
@@ -921,6 +984,9 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
   font-variant-numeric: tabular-nums;
 }
 
+.reader.no-numbers .line { grid-template-columns: 1fr; }
+.reader.no-numbers .ln { display: none; }
+
 .trans p {
   margin: 0 0 0.8rem;
   line-height: 1.65;
@@ -928,9 +994,10 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
 
 .trans p:last-child { margin-bottom: 0; }
 
+.detail-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
 /* Shown in place of a text the visitor can't read. */
-.reader-row.single > .reader-msg {
-  align-self: start;
+.pane-cell > .reader-msg {
   position: sticky;
   top: 1rem;
 }
@@ -1083,15 +1150,12 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
 
 @media (max-width: 56rem) {
   .stemma-wrap { grid-template-columns: 1fr; }
-  .reader-bar { grid-template-columns: 1fr; }
-  .reader-bar .ed-pick:last-child { text-align: start; align-items: stretch; }
-  .book-nav { justify-content: center; }
+  .reader-toolbar { justify-content: center; }
 }
 
 @media (max-width: 40rem) {
   #work, #search { padding: 1.25rem 1rem 2rem; }
-  .reader-row { grid-template-columns: 1fr; gap: 1rem; }
-  .orig { font-size: 0.95rem; }
+  .orig { font-size: 0.95em; }
   .line { grid-template-columns: 2rem 1fr; }
   /* A wrapped verse line continues indented, so it still reads as one line. */
   .lt { padding-inline-start: 1em; text-indent: -1em; }
@@ -1151,4 +1215,4 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
 .work-author:hover { color: var(--ink); }
 
 .reader-note { margin: 0 0 0.75rem; font-size: 0.75rem; color: var(--muted); }
-.trans.verse { font-size: 1rem; line-height: 1.6; }
+.trans.verse { line-height: 1.6; }

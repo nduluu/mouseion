@@ -463,7 +463,14 @@
           "name": "Николай Гнедич",
           "died": 1833
         }
-      ]
+      ],
+      "text": {
+        "path": "texts/rus-gnedich",
+        "format": "verse",
+        "align": "lines",
+        "source": "Wikisource, from the Moscow 1978 edition (Khudozhestvennaya literatura) (CC BY-SA 4.0)",
+        "sourceUrl": "https://ru.wikisource.org/wiki/%D0%98%D0%BB%D0%B8%D0%B0%D0%B4%D0%B0_%28%D0%93%D0%BE%D0%BC%D0%B5%D1%80%3B_%D0%93%D0%BD%D0%B5%D0%B4%D0%B8%D1%87%29"
+      }
     },
     {
       "id": "lecontedelisle",
