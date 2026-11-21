@@ -384,6 +384,7 @@ body.map-expanded .map-track { animation-play-state: paused; }
 
 .home-search {
   display: flex;
+  margin: 0;
   align-items: center;
   gap: 0.6rem;
   width: 100%;
@@ -777,3 +778,123 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
   bottom: 0.1em;
   border-inline-start: 1px solid var(--line);
 }
+
+/* ---------- Search results ---------- */
+
+#search {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem 2rem 3rem;
+}
+
+/* One column per collection; they wrap onto new rows when narrow. */
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.source {
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  padding: 1.25rem;
+  min-width: 0;
+}
+
+.source-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.source-name {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.source-count {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.source-status {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.source-status.error { color: var(--accent); }
+
+.results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.result + .result { border-block-start: 1px solid var(--line); }
+
+.result-link {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.7rem 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.result-link:hover .result-title { text-decoration: underline; }
+
+.result-thumb {
+  flex: none;
+  width: 2.6rem;
+  height: 3.6rem;
+  object-fit: cover;
+  border-radius: 0.2rem;
+  background: var(--line);
+}
+
+.result-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.result-title {
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.result-meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.result-free {
+  align-self: flex-start;
+  margin-top: 0.15rem;
+  padding: 0.05rem 0.5rem;
+  font-size: 0.7rem;
+  color: var(--accent);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+}
+
+.source-more {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.source-more:hover { color: var(--ink); }

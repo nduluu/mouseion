@@ -213,6 +213,7 @@
   // View name -> section element. "home" is the default landing view.
   const VIEWS = {
     home: home,
+    search: document.getElementById("search"),
     account: accountSection,
     about: document.getElementById("about"),
     privacy: document.getElementById("privacy"),
@@ -221,17 +222,19 @@
     legal: document.getElementById("legal"),
   };
 
-  function showView(name) {
+  function showView(name, params) {
     if (!VIEWS[name]) name = "home";
     for (const v in VIEWS) VIEWS[v].hidden = v !== name;
     if (name === "account") renderAccount();
     if (name === "home" && window.TimeCal) TimeCal.onShow();
+    if (name === "search" && window.Search) Search.run(params.get("q"));
     window.scrollTo(0, 0);
   }
 
+  // Hashes look like "#/view" or "#/view?key=value" (e.g. "#/search?q=homer").
   function routeFromHash() {
-    const name = location.hash.replace(/^#\/?/, "");
-    showView(VIEWS[name] ? name : "home");
+    const [name, query] = location.hash.replace(/^#\/?/, "").split("?");
+    showView(VIEWS[name] ? name : "home", new URLSearchParams(query || ""));
   }
 
   window.addEventListener("hashchange", routeFromHash);

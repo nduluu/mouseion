@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=18">
+  <link rel="stylesheet" href="css/style.css?v=19">
   <script>
     // Apply a signed-in user's saved theme before first paint (avoids a flash).
     // With no override, CSS follows the system's prefers-color-scheme.
@@ -104,10 +104,10 @@
           </div>
         </div>
 
-        <div class="home-search">
+        <form id="home-search-form" class="home-search" role="search">
           <svg class="icon search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.35-4.35"/></svg>
-          <input id="home-search" type="search" data-i18n-placeholder="search" placeholder="Search" aria-label="Search">
-        </div>
+          <input id="home-search" type="search" enterkeyhint="search" data-i18n-placeholder="search" placeholder="Search" data-i18n-aria="search" aria-label="Search">
+        </form>
 
         <div class="categories">
           <button type="button" class="category" data-i18n="catAuthors">Authors</button>
@@ -135,6 +135,15 @@
             <img id="map-full" class="map-full" src="assets/world-map.svg" alt="">
           </div>
         </div>
+      </section>
+
+      <!-- Search results: one column per open collection -->
+      <section id="search" hidden>
+        <form id="search-form" class="home-search" role="search">
+          <svg class="icon search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.35-4.35"/></svg>
+          <input id="search-input" type="search" enterkeyhint="search" data-i18n-placeholder="search" placeholder="Search" data-i18n-aria="search" aria-label="Search">
+        </form>
+        <div id="search-results" class="search-results" aria-live="polite"></div>
       </section>
 
       <!-- Account -->
@@ -201,10 +210,11 @@
     </footer>
   </div>
 
-  <script src="js/languages.js?v=18"></script>
-  <script src="js/i18n.js?v=18"></script>
-  <script src="js/timecal.js?v=18"></script>
-  <script src="js/mapviewer.js?v=18"></script>
-  <script src="js/app.js?v=18"></script>
+  <script src="js/languages.js?v=19"></script>
+  <script src="js/i18n.js?v=19"></script>
+  <script src="js/timecal.js?v=19"></script>
+  <script src="js/mapviewer.js?v=19"></script>
+  <script src="js/search.js?v=21"></script>
+  <script src="js/app.js?v=19"></script>
 </body>
 </html>
