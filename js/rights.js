@@ -128,6 +128,11 @@ const Rights = (() => {
     return d.getTime();
   }
 
-  return { pdYear, isPD, survey, country, setCountry, countryName, countriesByName, startOf, COUNTRIES };
+  // Years after death in `country` for a creator who is still alive.
+  function lifeTerm(country) {
+    return country === "US" ? 70 : LIFE_PLUS[country] || 50;
+  }
+
+  return { lifeTerm, pdYear, isPD, survey, country, setCountry, countryName, countriesByName, startOf, COUNTRIES };
 })();
 window.Rights = Rights;

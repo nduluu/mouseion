@@ -1,0 +1,31 @@
+{
+  "era": [
+    {
+      "id": "archaic-greece", "range": "c. 800–480 BCE",
+      "names": { "en": "Archaic Greece", "de": "Archaisches Griechenland", "fr": "Grèce archaïque", "it": "Grecia arcaica", "es": "Grecia arcaica", "pt": "Grécia Arcaica", "ru": "Архаическая Греция", "el": "Αρχαϊκή Ελλάδα", "nl": "Archaïsch Griekenland" }
+    }
+  ],
+  "genre": [
+    {
+      "id": "epic",
+      "names": { "en": "Epic poetry", "de": "Epos", "fr": "Poésie épique", "it": "Poesia epica", "es": "Poesía épica", "pt": "Poesia épica", "ru": "Эпическая поэзия", "el": "Επική ποίηση", "nl": "Epische poëzie" }
+    }
+  ],
+  "field": [
+    {
+      "id": "literature",
+      "names": { "en": "Literature", "de": "Literatur", "fr": "Littérature", "it": "Letteratura", "es": "Literatura", "pt": "Literatura", "ru": "Литература", "el": "Λογοτεχνία", "nl": "Literatuur" }
+    },
+    {
+      "id": "classics",
+      "names": { "en": "Classical studies", "de": "Altertumswissenschaft", "fr": "Études classiques", "it": "Studi classici", "es": "Estudios clásicos", "pt": "Estudos clássicos", "ru": "Классическая филология", "el": "Κλασικές σπουδές", "nl": "Klassieke oudheid" }
+    }
+  ],
+  "religion": [
+    {
+      "id": "greek-religion",
+      "names": { "en": "Ancient Greek religion and mythology", "de": "Antike griechische Religion und Mythologie", "fr": "Religion et mythologie grecques antiques", "it": "Religione e mitologia greca antica", "es": "Religión y mitología griegas antiguas", "pt": "Religião e mitologia gregas antigas", "ru": "Древнегреческая религия и мифология", "el": "Αρχαία ελληνική θρησκεία και μυθολογία", "nl": "Oud-Griekse religie en mythologie" },
+      "note": "Works that are a primary source for a tradition's gods, myths and practices."
+    }
+  ]
+}

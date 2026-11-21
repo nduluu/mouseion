@@ -437,6 +437,8 @@ body.map-expanded .map-track { animation-play-state: paused; }
 
 .category:hover { border-color: var(--ink); }
 
+a.category { display: block; text-decoration: none; }
+
 /* Track slides by exactly half its width (one map + one gap) → seamless loop.
    LTR: map drifts in the reading direction (to the right); RTL: reversed. */
 @keyframes drift {
@@ -1095,3 +1097,58 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
   .lt { padding-inline-start: 1em; text-indent: -1em; }
   .work-title { font-size: 1.6rem; }
 }
+
+/* ---------- Category and author pages ---------- */
+
+#browse {
+  width: 100%;
+  padding: 2rem 2rem 3rem;
+}
+
+.browse-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a:hover { color: var(--ink); }
+
+.browse-title { margin: 0.5rem 0 0; font-size: 2rem; font-weight: 500; }
+.browse-sub { margin: 0; color: var(--muted); }
+.browse-bio { margin: 0; line-height: 1.6; max-width: 40rem; }
+.browse-body .panel-title { margin: 1rem 0 0; }
+
+.card-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.work-result.static { border-style: dashed; }
+.work-result-note { font-size: 0.85rem; line-height: 1.5; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+
+.chip {
+  padding: 0.2rem 0.7rem;
+  font-size: 0.8rem;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.chip:hover { border-color: var(--ink); }
+
+.work-author { color: inherit; }
+.work-author:hover { color: var(--ink); }
+
+.reader-note { margin: 0 0 0.75rem; font-size: 0.75rem; color: var(--muted); }
+.trans.verse { font-size: 1rem; line-height: 1.6; }

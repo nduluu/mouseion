@@ -54,15 +54,12 @@ const Work = (() => {
   }
 
   const editions = () => work.nodes.filter((n) => n.kind === "edition");
-  const byId = (id) => work.nodes.find((n) => n.id === id) || work.translations.find((n) => n.id === id);
+  // Originals (stemma nodes) and translations are looked up separately: the
+  // same id can name both (e.g. Murray's Greek text and his translation).
+  const byId = (id) => work.nodes.find((n) => n.id === id);
+  const transById = (id) => work.translations.find((n) => n.id === id);
 
-  function langName(code) {
-    try {
-      return new Intl.DisplayNames([lang(), "en"], { type: "language" }).of(code) || code;
-    } catch (e) {
-      return code;
-    }
-  }
+  const langName = (code) => M.langName(code);
 
   function fmtDate(year) {
     return new Intl.DateTimeFormat(lang(), { dateStyle: "long", timeZone: "UTC" }).format(Rights.startOf(year));
@@ -165,6 +162,8 @@ const Work = (() => {
         const p = el("p", "rights-when", t("availableOn", { date: fmtDate(y) }) + " ");
         box.appendChild(p);
         box.appendChild(countdown(y));
+      } else {
+        box.appendChild(el("p", "rights-when", t("pdLiving", { n: Rights.lifeTerm(here) })));
       }
     }
 
@@ -186,7 +185,7 @@ const Work = (() => {
       }
       for (const [year, codes] of groups) {
         const li = el("li");
-        li.appendChild(el("strong", null, year == null ? "?" : fmtDate(year)));
+        li.appendChild(el("strong", null, year == null ? t("afterDeath") : fmtDate(year)));
         li.appendChild(document.createTextNode(" — " + countryList(codes)));
         ul.appendChild(li);
       }
@@ -203,10 +202,16 @@ const Work = (() => {
     $("work-title").lang = work.titles[lang()] ? lang() : "en";
     const sub = $("work-sub");
     sub.textContent = "";
-    sub.appendChild(document.createTextNode(pick(work.author) + " · "));
+    const authorId = ((work.classification || {}).authors || [])[0];
+    const who = el(authorId ? "a" : "span", "work-author", pick(work.author));
+    if (authorId) who.href = "#/author/" + authorId;
+    sub.appendChild(who);
+    sub.appendChild(document.createTextNode(" · "));
     const orig = el("span", null, work.titles[work.originalLanguage]);
     orig.lang = work.originalLanguage;
     sub.appendChild(orig);
+
+    renderChips();
 
     const sel = $("work-country");
     sel.textContent = "";
@@ -216,6 +221,27 @@ const Work = (() => {
       sel.appendChild(o);
     }
     sel.value = Rights.country();
+  }
+
+  // Era, genre, fields and tradition as links to their category pages.
+  async function renderChips() {
+    const box = $("work-chips");
+    box.textContent = "";
+    const c = work.classification || {};
+    let taxonomy = {};
+    try { taxonomy = (await M.catalog()).taxonomy; } catch (e) { /* names fall back to ids */ }
+    const add = (cat, id) => {
+      const a = el("a", "chip", M.termName(cat, id, taxonomy));
+      a.href = `#/browse/${cat}/${id}`;
+      box.appendChild(a);
+    };
+    if (c.era) add("era", c.era);
+    (c.genres || []).forEach((id) => add("genre", id));
+    (c.fields || []).forEach((id) => add("field", id));
+    (c.religions || []).forEach((id) => add("religion", id));
+    const l = el("a", "chip", langName(work.originalLanguage));
+    l.href = "#/browse/language/" + work.originalLanguage;
+    box.appendChild(l);
   }
 
   function fillOriginalSelect() {
@@ -260,7 +286,8 @@ const Work = (() => {
     const sel = $("ed-book");
     sel.textContent = "";
     for (let b = 1; b <= 24; b++) {
-      const o = el("option", null, t("book") + " " + b + " · " + BOOK_LETTERS[b - 1]);
+      const letters = work.bookLetters || BOOK_LETTERS;
+      const o = el("option", null, t("book") + " " + b + " · " + letters[b - 1]);
       o.value = b;
       sel.appendChild(o);
     }
@@ -316,6 +343,21 @@ const Work = (() => {
     return div;
   }
 
+  // Verse translation lines, numbered with the translation's own count.
+  function transLines(lines, l) {
+    const div = linesBlock(lines);
+    div.className = "trans verse";
+    div.lang = l;
+    return div;
+  }
+
+  // The whole book of a translation, whatever its format.
+  function wholeTranslation(tr, l) {
+    return tr.passages
+      ? passageBlock(tr.passages.map((p) => p.text).join("\n\n"), l)
+      : transLines(tr.lines, l);
+  }
+
   function passageBlock(text, l) {
     const div = el("div", "trans");
     div.lang = l;
@@ -328,7 +370,7 @@ const Work = (() => {
     const reader = $("reader");
     const credit = $("reader-credit");
     const orig = byId(state.orig);
-    const trans = state.trans ? byId(state.trans) : null;
+    const trans = state.trans ? transById(state.trans) : null;
     const origOK = orig && status(orig) === "read";
     const transOK = trans && status(trans) === "read";
 
@@ -343,23 +385,35 @@ const Work = (() => {
     reader.textContent = "";
     reader.removeAttribute("aria-busy");
 
-    if (g && tr) {
-      // One row per translation passage, beside the Greek lines it covers.
-      const ps = tr.passages;
-      ps.forEach((p, i) => {
-        const end = i + 1 < ps.length ? ps[i + 1].from : Infinity;
+    // How the translation lines up with the original:
+    //   passages: prose passages that start at a given original line
+    //   lines:    verse numbered like the original (stanza breaks start rows)
+    //   book:     only book by book (the translation has its own line count)
+    const align = trans && trans.text ? trans.text.align || "passages" : null;
+
+    if (g && tr && align !== "book") {
+      const starts = align === "lines" ? tr.breaks : tr.passages.map((p) => p.from);
+      starts.forEach((from, i) => {
+        const end = i + 1 < starts.length ? starts[i + 1] : Infinity;
+        const inRange = ([n]) => n >= from && n < end;
         const row = el("div", "reader-row");
-        row.appendChild(linesBlock(g.lines.filter(([n]) => n >= p.from && n < end)));
-        row.appendChild(passageBlock(p.text, trans.lang));
+        row.appendChild(linesBlock(g.lines.filter(inRange)));
+        row.appendChild(align === "lines"
+          ? transLines(tr.lines.filter(inRange), trans.lang)
+          : passageBlock(tr.passages[i].text, trans.lang));
         reader.appendChild(row);
       });
     } else {
-      const row = el("div", "reader-row single");
+      const row = el("div", "reader-row" + (g && tr ? "" : " single"));
       row.appendChild(g ? linesBlock(g.lines) : messageBox(orig, status(orig)));
-      const side = tr
-        ? passageBlock(tr.passages.map((p) => p.text).join("\n\n"), trans.lang)
-        : messageBox(trans, trans ? status(trans) : "none");
-      row.appendChild(side);
+      if (tr) {
+        const side = el("div");
+        if (align === "book") side.appendChild(el("p", "reader-note", t("ownNumbering")));
+        side.appendChild(wholeTranslation(tr, trans.lang));
+        row.appendChild(side);
+      } else {
+        row.appendChild(messageBox(trans, trans ? status(trans) : "none"));
+      }
       reader.appendChild(row);
     }
 

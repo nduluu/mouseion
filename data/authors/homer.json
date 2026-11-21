@@ -1,0 +1,32 @@
+{
+  "id": "homer",
+  "status": "Draft record: should be reviewed by a classicist.",
+  "names": {
+    "grc": "Ὅμηρος", "en": "Homer", "de": "Homer", "fr": "Homère", "it": "Omero", "es": "Homero",
+    "pt": "Homero", "ca": "Homer", "ro": "Homer", "pl": "Homer", "cs": "Homér", "ru": "Гомер",
+    "uk": "Гомер", "bg": "Омир", "sr": "Хомер", "hr": "Homer", "el": "Όμηρος", "la": "Homerus",
+    "nl": "Homerus", "sv": "Homeros", "da": "Homer", "no": "Homer", "fi": "Homeros", "hu": "Homérosz",
+    "tr": "Homeros", "ar": "هوميروس", "he": "הומרוס", "fa": "هومر", "hi": "होमर",
+    "zh-Hans": "荷马", "zh-Hant": "荷馬", "ja": "ホメーロス", "ko": "호메로스"
+  },
+  "originalName": "grc",
+  "dates": "c. 8th century BCE (traditional)",
+  "era": "archaic-greece",
+  "bio": "The ancient Greek poet to whom the Iliad and the Odyssey are attributed. Nothing certain is known about his life: ancient writers disagreed about when and where he lived, and modern scholars debate whether one poet composed both epics, or whether ‘Homer’ stands for a tradition of oral poets (the ‘Homeric Question’).",
+  "works": [
+    { "work": "iliad" },
+    { "work": "odyssey" },
+    {
+      "titles": { "en": "Homeric Hymns", "grc": "Ὁμηρικοὶ ὕμνοι", "de": "Homerische Hymnen", "fr": "Hymnes homériques", "it": "Inni omerici", "es": "Himnos homéricos", "ru": "Гомеровы гимны" },
+      "attribution": "Attributed to Homer in antiquity; now regarded as the work of later poets."
+    },
+    {
+      "titles": { "en": "Batrachomyomachia (The Battle of Frogs and Mice)", "grc": "Βατραχομυομαχία", "de": "Batrachomyomachia (Froschmäusekrieg)", "it": "Batracomiomachia", "es": "Batracomiomaquia" },
+      "attribution": "A mock epic attributed to Homer in antiquity; generally dated much later."
+    },
+    {
+      "titles": { "en": "Margites", "grc": "Μαργίτης" },
+      "attribution": "A comic poem attributed to Homer in antiquity; survives only in fragments."
+    }
+  ]
+}

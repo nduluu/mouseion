@@ -215,6 +215,7 @@
     home: home,
     search: document.getElementById("search"),
     work: document.getElementById("work"),
+    browse: document.getElementById("browse"),
     account: accountSection,
     about: document.getElementById("about"),
     privacy: document.getElementById("privacy"),
@@ -223,9 +224,14 @@
     legal: document.getElementById("legal"),
   };
 
-  function showView(name, params, args) {
-    if (!VIEWS[name]) name = "home";
+  // Routes that share a section: author and category pages use "browse".
+  const ALIASES = { authors: "browse", author: "browse" };
+
+  function showView(route, params, args) {
+    let name = ALIASES[route] || route;
+    if (!VIEWS[name]) name = route = "home";
     for (const v in VIEWS) VIEWS[v].hidden = v !== name;
+    if (name === "browse" && window.Browse) Browse.render(route, args);
     if (name === "account") renderAccount();
     if (name === "home" && window.TimeCal) TimeCal.onShow();
     if (name === "search" && window.Search) Search.run(params.get("q"));
@@ -239,7 +245,7 @@
     const [path, query] = location.hash.replace(/^#\/?/, "").split("?");
     const [name, ...args] = path.split("/");
     if (name === "work" && !args[0]) return showView("home");
-    showView(VIEWS[name] ? name : "home", new URLSearchParams(query || ""), args);
+    showView(VIEWS[name] || ALIASES[name] ? name : "home", new URLSearchParams(query || ""), args);
   }
 
   window.addEventListener("hashchange", routeFromHash);

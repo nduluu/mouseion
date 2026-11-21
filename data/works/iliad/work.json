@@ -2,6 +2,23 @@
   "id": "iliad",
   "status": "Draft catalog record: dates and descriptions should be reviewed by a classicist.",
   "originalLanguage": "grc",
+  "bookLetters": "ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ",
+  "classification": {
+    "authors": [
+      "homer"
+    ],
+    "era": "archaic-greece",
+    "genres": [
+      "epic"
+    ],
+    "fields": [
+      "literature",
+      "classics"
+    ],
+    "religions": [
+      "greek-religion"
+    ]
+  },
   "titles": {
     "grc": "Ἰλιάς",
     "en": "Iliad",
@@ -485,7 +502,14 @@
           "name": "Luis Segalá y Estalella",
           "died": 1938
         }
-      ]
+      ],
+      "text": {
+        "path": "texts/spa-segala",
+        "format": "prose",
+        "align": "passages",
+        "source": "Wikisource, transcription of the 1908 Barcelona edition (Montaner y Simón) (CC BY-SA 4.0)",
+        "sourceUrl": "https://es.wikisource.org/wiki/La_Il%C3%ADada_%28Luis_Segal%C3%A1_y_Estalella%29"
+      }
     },
     {
       "id": "murray",
@@ -542,6 +566,19 @@
         {
           "name": "Robert Fagles",
           "died": 2008
+        }
+      ]
+    },
+    {
+      "id": "wilson",
+      "lang": "en",
+      "title": "The Iliad",
+      "date": "2023",
+      "year": 2023,
+      "creators": [
+        {
+          "name": "Emily Wilson",
+          "died": null
         }
       ]
     }

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=21">
+  <link rel="stylesheet" href="css/style.css?v=22">
   <script>
     // Apply a signed-in user's saved theme before first paint (avoids a flash).
     // With no override, CSS follows the system's prefers-color-scheme.
@@ -109,14 +109,14 @@
           <input id="home-search" type="search" enterkeyhint="search" data-i18n-placeholder="search" placeholder="Search" data-i18n-aria="search" aria-label="Search">
         </form>
 
-        <div class="categories">
-          <button type="button" class="category" data-i18n="catAuthors">Authors</button>
-          <button type="button" class="category" data-i18n="catEra">Era / Epoch</button>
-          <button type="button" class="category" data-i18n="catAcademic">Academic Fields</button>
-          <button type="button" class="category" data-i18n="catGenre">Genre</button>
-          <button type="button" class="category" data-i18n="catReligion">Religious / Spiritual</button>
-          <button type="button" class="category" data-i18n="catLanguage">Language</button>
-        </div>
+        <nav class="categories">
+          <a class="category" href="#/authors" data-i18n="catAuthors">Authors</a>
+          <a class="category" href="#/browse/era" data-i18n="catEra">Era / Epoch</a>
+          <a class="category" href="#/browse/field" data-i18n="catAcademic">Academic Fields</a>
+          <a class="category" href="#/browse/genre" data-i18n="catGenre">Genre</a>
+          <a class="category" href="#/browse/religion" data-i18n="catReligion">Religious / Spiritual</a>
+          <a class="category" href="#/browse/language" data-i18n="catLanguage">Language</a>
+        </nav>
 
         <!-- Full-screen map viewer (zoom + pan; drift is paused while open) -->
         <div id="map-viewer" class="map-viewer" hidden>
@@ -146,12 +146,18 @@
         <div id="search-results" class="search-results" aria-live="polite"></div>
       </section>
 
+      <!-- Category and author pages (filled by js/browse.js) -->
+      <section id="browse" hidden>
+        <div id="browse-body" class="browse-body"></div>
+      </section>
+
       <!-- A work: reader (original | translation), editions, stemma, rights -->
       <section id="work" hidden>
         <header class="work-head">
           <div>
             <h1 id="work-title" class="work-title"></h1>
             <p id="work-sub" class="work-sub"></p>
+            <div id="work-chips" class="chips"></div>
           </div>
           <label class="work-country">
             <span data-i18n="rightsFor">Copyright rules for</span>
@@ -261,12 +267,14 @@
   </div>
 
   <script src="js/languages.js?v=20"></script>
-  <script src="js/i18n.js?v=20"></script>
+  <script src="js/i18n.js?v=22"></script>
   <script src="js/timecal.js?v=20"></script>
   <script src="js/mapviewer.js?v=20"></script>
-  <script src="js/rights.js?v=20"></script>
-  <script src="js/work.js?v=21"></script>
-  <script src="js/search.js?v=22"></script>
-  <script src="js/app.js?v=20"></script>
+  <script src="js/common.js?v=2"></script>
+  <script src="js/rights.js?v=21"></script>
+  <script src="js/work.js?v=23"></script>
+  <script src="js/search.js?v=23"></script>
+  <script src="js/browse.js?v=1"></script>
+  <script src="js/app.js?v=22"></script>
 </body>
 </html>
