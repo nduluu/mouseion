@@ -1,6 +1,6 @@
 // The six category pages behind the home buttons, plus author pages.
 //   #/authors                 all authors
-//   #/author/<id>             one author: names, dates, biography, works
+//   #/author/<id>             one author: names, dates, works
 //   #/browse/<cat>            terms of a category (era, genre, field, religion, language)
 //   #/browse/<cat>/<term>     the works filed under one term
 const Browse = (() => {
@@ -123,7 +123,6 @@ const Browse = (() => {
       chips.appendChild(c);
       box.appendChild(chips);
     }
-    if (a.bio) box.appendChild(el("p", "browse-bio", a.bio));
 
     box.appendChild(el("h2", "panel-title", t("works")));
     const cards = a.works.map((entry) => {
