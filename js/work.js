@@ -445,11 +445,13 @@ const Work = (() => {
     return getJSON(base() + ed.text.path + "/" + String(state.book).padStart(2, "0") + ".json");
   }
 
-  function linesBlock(lines, l, cls) {
+  function linesBlock(lines, l, cls, col) {
     const div = el("div", cls || "orig");
     div.lang = l;
     for (const [n, text] of lines) {
       const line = el("div", "line");
+      line.dataset.n = n;
+      line.dataset.col = col;
       line.appendChild(el("span", "ln", n % 5 === 0 ? String(n) : ""));
       line.appendChild(el("span", "lt", text));
       div.appendChild(line);
@@ -473,7 +475,7 @@ const Work = (() => {
     }
     const lines = data.lines.filter(inRange);
     if (!lines.length) return null;
-    return linesBlock(lines, p.lang, p.kind === "orig" ? "orig" : "trans verse");
+    return linesBlock(lines, p.lang, p.kind === "orig" ? "orig" : "trans verse", p.col);
   }
 
   // Where rows break: the first text with passages or stanza breaks sets the
@@ -489,6 +491,151 @@ const Work = (() => {
     const starts = [];
     for (let n = 1; n <= last; n += 20) starts.push(n);
     return starts;
+  }
+
+  // Side by side, one grid row per line number: line n of every text sits on
+  // the same row as line n of the original. A prose passage spans the rows of
+  // the lines it translates; prose without line references fills its column.
+  function alignedGrid(panes) {
+    const grid = el("div", "reader-grid");
+    let last = 0;
+    for (const p of panes) {
+      if (!p.data) continue;
+      if (p.data.lines && p.data.lines.length) last = Math.max(last, p.data.lines[p.data.lines.length - 1][0]);
+      if (p.data.passages) for (const x of p.data.passages) if (x.from != null) last = Math.max(last, x.from);
+    }
+    const place = (node, col, row, rowEnd) => {
+      node.style.gridColumn = String(col + 1);
+      node.style.gridRow = rowEnd ? `${row} / ${rowEnd}` : String(row);
+      grid.appendChild(node);
+      return node;
+    };
+    panes.forEach((p, col) => {
+      p.col = col;
+      // Row 1: notes and notices for each text.
+      const head = el("div", "grid-head");
+      if (!p.data) head.appendChild(messageBox(p));
+      else if (p.data.lineCounts) {
+        const c = p.data.lineCounts;
+        head.appendChild(el("p", "reader-note", t("lineDrift", { a: c.translation, b: c.original })));
+      } else if (p.align === "book" && p.data.lines) {
+        head.appendChild(el("p", "reader-note", t("numberPairing")));
+      } else if (p.data.passages && p.data.passages.every((x) => x.from == null)) {
+        head.appendChild(el("p", "reader-note", t("bookOnly")));
+      }
+      place(head, col, 1);
+      if (!p.data) return;
+
+      if (p.data.lines) {
+        const cls = p.kind === "orig" ? "line orig" : "line trans verse";
+        for (const [n, text] of p.data.lines) {
+          const line = el("div", cls);
+          line.lang = p.lang;
+          line.dataset.n = n;
+          line.dataset.col = col;
+          line.appendChild(el("span", "ln", n % 5 === 0 ? String(n) : ""));
+          line.appendChild(el("span", "lt", text));
+          place(line, col, n + 1);
+        }
+        return;
+      }
+      const ps = p.data.passages;
+      if (ps.every((x) => x.from == null)) {
+        const block = passageBlock(ps.map((x) => x.text), p.lang);
+        block.dataset.col = col;
+        place(block, col, 2, last + 2);
+        return;
+      }
+      ps.forEach((x, i) => {
+        const to = i + 1 < ps.length ? ps[i + 1].from - 1 : last;
+        const block = passageBlock([x.text], p.lang);
+        block.classList.add("passage");
+        block.dataset.col = col;
+        block.dataset.from = x.from;
+        block.dataset.to = to;
+        place(block, col, x.from + 1, to + 2);
+      });
+    });
+    return grid;
+  }
+
+  // ---------- linked selection ----------
+  // Selecting text in one version highlights the same lines in the others,
+  // and proper names in them that sound like the selected ones.
+
+  const GREEK = { α: "a", β: "b", γ: "g", δ: "d", ε: "e", ζ: "z", η: "e", θ: "t", ι: "i", κ: "k", λ: "l", μ: "m",
+    ν: "n", ξ: "x", ο: "o", π: "p", ρ: "r", σ: "s", ς: "s", τ: "t", υ: "i", φ: "f", χ: "k", ψ: "ps", ω: "o" };
+  const CYRILLIC = { а: "a", б: "b", в: "v", г: "g", д: "d", е: "e", ё: "e", ж: "z", з: "z", и: "i", й: "i", к: "k",
+    л: "l", м: "m", н: "n", о: "o", п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f", х: "k", ц: "c", ч: "c", ш: "s",
+    щ: "s", ъ: "", ы: "i", ь: "", э: "e", ю: "u", я: "a" };
+
+  // A rough sound key: Ἀχιλλεύς, Achille, Achilles, Ахиллес → "akil".
+  function soundKey(word) {
+    let s = word.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    s = [...s].map((c) => GREEK[c] ?? CYRILLIC[c] ?? c).join("");
+    s = s.replace(/qu|ch|kh|c|q/g, "k").replace(/ph/g, "f").replace(/th/g, "t").replace(/h/g, "").replace(/y/g, "i")
+      .replace(/[^a-z]/g, "").replace(/(.)\1+/g, "$1");
+    return s.length >= 4 ? s.slice(0, 4) : null;
+  }
+  const isName = (w) => w[0] !== w[0].toLowerCase();
+  const WORD = /[\p{L}\p{M}]+/gu;
+
+  let marked = [];
+  function clearLinks() {
+    for (const node of marked) {
+      if (node._raw != null) { node.textContent = node._raw; node._raw = null; }
+      node.classList.remove("linked");
+    }
+    marked = [];
+  }
+
+  function markNames(node, keys) {
+    const text = node._raw ?? node.textContent;
+    let hit = false;
+    const html = text.replace(WORD, (w) => {
+      const k = isName(w) && soundKey(w);
+      if (k && keys.has(k)) { hit = true; return "\u0000" + w + "\u0001"; }
+      return w;
+    });
+    if (!hit) return;
+    node._raw = text;
+    node.textContent = "";
+    for (const part of html.split(/(\u0000[^\u0001]*\u0001)/)) {
+      if (part.startsWith("\u0000")) node.appendChild(el("mark", "echo", part.slice(1, -1)));
+      else if (part) node.appendChild(document.createTextNode(part));
+    }
+    marked.push(node);
+  }
+
+  function syncSelection() {
+    const reader = $("reader");
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount || sel.isCollapsed) { clearLinks(); return; }
+    const r = sel.getRangeAt(0);
+    if (!reader.contains(r.commonAncestorContainer)) return;
+    const cellOf = (node) => (node.nodeType === 1 ? node : node.parentElement).closest("[data-n], [data-from]");
+    const a = cellOf(r.startContainer), b = cellOf(r.endContainer);
+    if (!a || !b) return;
+    const lo = Number(a.dataset.n ?? a.dataset.from);
+    const hi = Number(b.dataset.n ?? b.dataset.to);
+    const col = a.dataset.col;
+    const keys = new Set();
+    for (const w of sel.toString().match(WORD) || []) {
+      const k = isName(w) && soundKey(w);
+      if (k) keys.add(k);
+    }
+    clearLinks();
+    const NEAR = 3; // look for names a few lines around, as translations drift
+    for (const node of reader.querySelectorAll("[data-n], [data-from]")) {
+      if (node.dataset.col === col) continue;
+      const from = Number(node.dataset.n ?? node.dataset.from);
+      const to = Number(node.dataset.n ?? node.dataset.to);
+      const overlaps = from <= hi && to >= lo;
+      if (overlaps) { node.classList.add("linked"); marked.push(node); }
+      if (keys.size && from <= hi + NEAR && to >= lo - NEAR) {
+        for (const target of node.matches(".line") ? [node.querySelector(".lt")] : node.querySelectorAll("p")) markNames(target, keys);
+      }
+    }
   }
 
   function paneLabel(p) {
@@ -519,11 +666,15 @@ const Work = (() => {
 
     const readable = panes.filter((p) => p.data);
     const unreadable = panes.filter((p) => !p.data);
+    panes.forEach((p, i) => { p.col = i; });
+    marked = [];
     // A translation with its own line count can only be shown book by book.
     const free = panes.length > 1 && readable.some((p) => p.align === "book");
     const columns = prefs.layout === "columns" && panes.length > 1;
 
-    if (free || !readable.length) {
+    if (prefs.layout === "columns" && readable.length) {
+      reader.appendChild(alignedGrid(panes));
+    } else if (free || !readable.length) {
       // Each text whole, side by side or one after another.
       const row = el("div", "reader-row");
       for (const p of panes) {
@@ -803,6 +954,11 @@ const Work = (() => {
       $("reader").classList.toggle("no-numbers", !prefs.numbers);
     });
     $("add-pane").addEventListener("click", () => addPane());
+    let selTimer;
+    document.addEventListener("selectionchange", () => {
+      clearTimeout(selTimer);
+      selTimer = setTimeout(syncSelection, 120);
+    });
     $("ed-book").addEventListener("change", (e) => { state.book = Number(e.target.value); renderReader(); });
     const step = (d) => {
       state.book = Math.min(24, Math.max(1, state.book + d));

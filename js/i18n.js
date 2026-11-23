@@ -394,3 +394,15 @@ Object.assign(I18N.ru, {
     it: "da Wikidata, non ancora verificato", es: "de Wikidata, aún sin revisar", ru: "из Викиданных, ещё не проверено" };
   for (const l in S) I18N[l].unreviewed = S[l];
 })();
+
+(() => {
+  const S = {
+    en: "Lines are paired by number, as in the original. This translation numbers its own lines and is longer, so its content drifts away from the Greek line with the same number.",
+    de: "Die Verse sind nach Nummer gepaart wie im Original. Diese Übersetzung zählt ihre eigenen, zahlreicheren Verse, daher entfernt sich ihr Inhalt vom griechischen Vers gleicher Nummer.",
+    fr: "Les vers sont appariés par numéro, comme dans l’original. Cette traduction a sa propre numérotation et compte plus de vers : son contenu s’éloigne du vers grec de même numéro.",
+    it: "I versi sono abbinati per numero, come nell’originale. Questa traduzione ha una numerazione propria e più versi, quindi il contenuto si allontana dal verso greco con lo stesso numero.",
+    es: "Los versos se emparejan por número, como en el original. Esta traducción tiene numeración propia y más versos, así que su contenido se aleja del verso griego del mismo número.",
+    ru: "Строки сопоставлены по номеру, как в оригинале. У этого перевода своя нумерация и больше строк, поэтому его содержание расходится с греческой строкой того же номера.",
+  };
+  for (const l in S) I18N[l].numberPairing = S[l];
+})();
