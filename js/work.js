@@ -988,6 +988,16 @@ const Work = (() => {
   }
 
   init();
-  return { render };
+
+  // For the download dialog (js/download.js).
+  const api = {
+    work: () => work,
+    book: () => state.book,
+    panes: () => state.panes.slice(),
+    t, pick, lang, langName, status, resolvePane, shortName, optionLabel,
+    bookLabel: (n) => t("book") + " " + n + " · " + (work.bookLetters || BOOK_LETTERS)[n - 1],
+    bookData: (ed, n) => getJSON(base() + ed.text.path + "/" + String(n).padStart(2, "0") + ".json"),
+  };
+  return { render, api };
 })();
 window.Work = Work;

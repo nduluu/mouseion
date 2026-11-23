@@ -1274,3 +1274,50 @@ mark.echo { background: #ffe58a; color: #1a1a1a; border-radius: 3px; padding: 0 
 
 .reader-note { margin: 0 0 0.75rem; font-size: 0.75rem; color: var(--muted); }
 .trans.verse { line-height: 1.6; }
+
+/* ---------- download / print dialog ---------- */
+.dl-dialog {
+  max-width: 34rem;
+  width: calc(100% - 2rem);
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  padding: 1.5rem;
+  background: var(--paper);
+  color: var(--ink);
+}
+.dl-dialog::backdrop { background: rgba(0, 0, 0, 0.35); }
+.dl-title { margin: 0 0 1rem; font-size: 1.15rem; font-weight: 500; }
+.dl-field { border: 0; margin: 0 0 1rem; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+.dl-legend { font-size: 0.8rem; color: var(--muted); padding: 0; margin-bottom: 0.2rem; }
+.dl-field select { font: inherit; padding: 0.45rem 0.6rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--paper); color: var(--ink); }
+.dl-choice { display: flex; gap: 0.55rem; align-items: flex-start; line-height: 1.4; cursor: pointer; }
+.dl-choice input { margin-top: 0.25rem; }
+.dl-choice:has(input:disabled) { opacity: 0.45; cursor: default; }
+.dl-note { font-size: 0.75rem; color: var(--muted); margin: 0 0 0.5rem; }
+.dl-status { font-size: 0.8rem; min-height: 1.2em; margin: 0 0 0.5rem; }
+.dl-actions { display: flex; justify-content: flex-end; gap: 0.5rem; }
+
+/* ---------- printing ---------- */
+#print-area { display: none; }
+@media print {
+  @page { margin: 2cm 1.8cm; }
+  body.printing > *:not(#print-area) { display: none !important; }
+  body.printing #print-area { display: block; color: #000; background: #fff; font-size: 11pt; }
+  .print-doc h1 { font-size: 24pt; text-align: center; margin: 6cm 0 0.3cm; font-weight: 500; }
+  .print-doc .orig-title, .print-doc .ed, .print-doc .by { text-align: center; margin: 0.2cm 0; }
+  .print-doc .orig-title { font-size: 16pt; }
+  .print-doc .credits { margin-top: 5cm; font-size: 8.5pt; color: #333; }
+  .print-doc .credits p { margin: 0 0 0.25cm; }
+  .print-doc .book { break-before: page; }
+  .print-doc h2 { font-size: 14pt; font-weight: 500; text-align: center; margin: 0 0 0.6cm; }
+  .print-doc p { margin: 0 0 0.3cm; line-height: 1.45; orphans: 2; widows: 2; }
+  .print-doc p.l { margin: 0; display: grid; grid-template-columns: 2.6em 1fr; break-inside: avoid; }
+  .print-doc .n, .print-doc .ref { font-size: 7.5pt; color: #777; padding-top: 0.15em; }
+  .print-view h1 { font-size: 15pt; font-weight: 500; margin: 0 0 0.2cm; }
+  .print-view .print-panes { font-size: 8.5pt; color: #555; margin: 0 0 0.4cm; }
+  .print-view .reader { font-size: 9.5pt; }
+  .print-view .reader-grid { grid-template-columns: repeat(var(--panes, 2), minmax(0, 1fr)); column-gap: 0.8cm; }
+  .print-view .reader-grid > * { break-inside: avoid; }
+  .print-view .linked { background: none; }
+  .print-view .credit { font-size: 8pt; color: #333; margin-top: 0.5cm; }
+}
