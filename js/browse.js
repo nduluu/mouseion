@@ -67,16 +67,15 @@ const Browse = (() => {
     return Array.isArray(v) ? v.includes(id) : v === id;
   };
 
-  // Languages: originals and translations, visitor's language first.
+  // Languages: the visitor's own (as chosen in the language picker) first,
+  // then the languages the works were written in. Other translation
+  // languages are reached through the works themselves.
   function languages(works) {
-    const codes = new Set();
-    for (const w of works) {
-      codes.add(w.originalLanguage);
-      w.translationLanguages.forEach((l) => codes.add(l));
-    }
-    const mine = M.lang().split("-")[0];
-    const coll = new Intl.Collator(M.lang());
-    return [...codes].sort((a, b) => (b === mine) - (a === mine) || coll.compare(langName(a), langName(b)));
+    const mine = M.lang();
+    const originals = [...new Set(works.map((w) => w.originalLanguage))];
+    const coll = new Intl.Collator(mine);
+    originals.sort((a, b) => coll.compare(langName(a), langName(b)));
+    return [mine, ...originals.filter((c) => c !== mine && c !== mine.split("-")[0])];
   }
 
   // ---------- pages ----------
@@ -155,8 +154,9 @@ const Browse = (() => {
       list(box, languages(cat.works).map((code) => {
         const written = cat.works.filter((w) => w.originalLanguage === code).length;
         const readable = cat.works.filter((w) => w.readableLanguages.includes(code)).length;
+        const listed = cat.works.some((w) => w.translationLanguages.includes(code));
         const meta = [written && t("writtenInCount", { n: written }), readable && t("readableInCount", { n: readable })]
-          .filter(Boolean).join(" · ") || t("listedOnly");
+          .filter(Boolean).join(" · ") || (listed ? t("listedOnly") : t("nothingFound"));
         return termCard("#/browse/language/" + code, langName(code), meta);
       }));
       return;
