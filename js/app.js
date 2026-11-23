@@ -314,8 +314,38 @@
   accountBtn.addEventListener("click", () => { location.hash = "#/account"; });
   document.getElementById("back-btn").addEventListener("click", () => { location.hash = "#/home"; });
 
+  // Missing name or email: a message in the visitor's language under the
+  // box, and the box outlined in red, until it is filled in.
+  const accName = document.getElementById("acc-name");
+  const accEmail = document.getElementById("acc-email");
+  const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const fieldChecks = [
+    [accName, () => accName.value.trim() !== ""],
+    [accEmail, () => EMAIL.test(accEmail.value.trim())],
+  ];
+  function showFieldError(input, bad) {
+    input.classList.toggle("invalid", bad);
+    input.setAttribute("aria-invalid", bad ? "true" : "false");
+    document.getElementById(input.id + "-error").hidden = !bad;
+  }
+  for (const [input, ok] of fieldChecks) {
+    input.addEventListener("input", () => {
+      if (input.classList.contains("invalid") && ok()) showFieldError(input, false);
+    });
+  }
+  function clearFieldErrors() {
+    for (const [input] of fieldChecks) showFieldError(input, false);
+  }
+
   signinForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    let first = null;
+    for (const [input, ok] of fieldChecks) {
+      const bad = !ok();
+      showFieldError(input, bad);
+      if (bad && !first) first = input;
+    }
+    if (first) { first.focus(); return; }
     const existing = getUser();
     const user = {
       name: document.getElementById("acc-name").value.trim(),
@@ -330,6 +360,7 @@
   document.getElementById("signout-btn").addEventListener("click", () => {
     localStorage.removeItem(USER_KEY);
     signinForm.reset();
+    clearFieldErrors();
     applyTheme("system");
     renderAccount();
   });

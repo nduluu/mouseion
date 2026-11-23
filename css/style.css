@@ -5,6 +5,7 @@
   --line: #e4e4e4;
   --tick: #bbbbbb;
   --accent: #b3402e;
+  --error: #c62828;
   --map-filter: none;
   color-scheme: light;
 }
@@ -18,6 +19,7 @@
     --line: #303030;
     --tick: #565656;
     --accent: #e0664f;
+    --error: #ff6b6b;
     --map-filter: invert(1) hue-rotate(180deg);
     color-scheme: dark;
   }
@@ -30,6 +32,7 @@
   --line: #303030;
   --tick: #565656;
   --accent: #e0664f;
+  --error: #ff6b6b;
   --map-filter: invert(1) hue-rotate(180deg);
   color-scheme: dark;
 }
@@ -714,6 +717,10 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
 }
 
 #signin-form input:focus { border-color: var(--ink); }
+#signin-form input.invalid,
+#signin-form input.invalid:focus { border-color: var(--error); box-shadow: 0 0 0 1px var(--error); }
+.field-error { color: var(--error); font-size: 0.8rem; }
+.field-error[hidden] { display: none; }
 
 #signed-in {
   display: flex;
