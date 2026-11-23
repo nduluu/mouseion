@@ -1,0 +1,358 @@
+{
+ "_comment": "Translations of this record's descriptive text (stemma). English is in work.json; languages missing here fall back to it.",
+ "de": {
+  "stemmaNote": "Die homerische Überlieferung ist kein sauberer Stammbaum: Die Gedichte begannen als mündliche Dichtung, und Abschriften wurden ständig miteinander verglichen. Das Diagramm ist ein vereinfachter Überblick; gestrichelte Verbindungen sind überliefert oder umstritten.",
+  "nodes": {
+   "omega": {
+    "title": "Das verlorene Original",
+    "date": "ca. 8.–7. Jahrhundert v. Chr.",
+    "note": "Die Ilias wurde in griechischen Hexametern gedichtet, wahrscheinlich in Ionien, und schöpft aus einer langen Tradition mündlicher Dichtung. Kein Original ist erhalten, und ob es je ein einziges Original gab, ist selbst umstritten."
+   },
+   "alexandria": {
+    "label": "Alexandria",
+    "title": "Alexandrinische Philologie",
+    "date": "ca. 280–150 v. Chr.",
+    "note": "Gelehrte an der Bibliothek von Alexandria (Zenodot, Aristophanes von Byzanz und Aristarch) verglichen Abschriften, markierten Verse, die sie für unecht hielten, und gelten als diejenigen, die das Gedicht in 24 Bücher teilten."
+   },
+   "papyri": {
+    "label": "Papyri",
+    "title": "Papyrusfragmente",
+    "date": "3. Jh. v. Chr. – 7. Jh. n. Chr.",
+    "note": "Viele hundert Papyrusfragmente, meist aus Ägypten. Die frühesten enthalten zusätzliche Verse, die in späteren Abschriften fehlen."
+   },
+   "medieval": {
+    "label": "Byzantinische Abschriften",
+    "title": "Mittelalterliche Handschriften",
+    "date": "ab dem 9. Jahrhundert n. Chr.",
+    "note": "Der vollständige Text der Ilias ist durch Handschriften überliefert, die ab dem 9. Jahrhundert in der byzantinischen Welt kopiert wurden."
+   },
+   "princeps": {
+    "label": "Florenz 1488",
+    "note": "Die erste gedruckte Ausgabe Homers, herausgegeben von Demetrios Chalkokondyles in Florenz."
+   },
+   "peisistratus": {
+    "label": "Athen",
+    "title": "Peisistratidische Redaktion",
+    "date": "6. Jahrhundert v. Chr.",
+    "note": "Nach antiker Überlieferung wurden die Gedichte in Athen unter Peisistratos erstmals aufgeschrieben oder vereinheitlicht. Viele Forscher bezweifeln diesen Bericht, daher ist die Verbindung gestrichelt."
+   },
+   "venetusA": {
+    "date": "10. Jahrhundert",
+    "place": "Venedig, Biblioteca Nazionale Marciana",
+    "note": "Die älteste vollständige Handschrift der Ilias. Ihre Ränder bewahren Scholien (antike Kommentare), die die Lesarten der alexandrinischen Gelehrten überliefern."
+   },
+   "venetusB": {
+    "date": "11. Jahrhundert",
+    "place": "Venedig, Biblioteca Nazionale Marciana",
+    "note": "Eine Handschrift der Ilias mit eigenen Scholien."
+   },
+   "townley": {
+    "date": "11. Jahrhundert",
+    "place": "London, British Library",
+    "note": "Eine Handschrift der Ilias, bekannt für ihre umfangreichen Scholien."
+   },
+   "aldine": {
+    "label": "Venedig 1504",
+    "title": "Aldina",
+    "note": "Homer, gedruckt von Aldus Manutius in Venedig."
+   },
+   "wolf": {
+    "note": "Wolfs Prolegomena ad Homerum (1795) vertraten die These, die Gedichte seien mündlich entstanden und erst später aufgeschrieben worden, und eröffneten damit die moderne ‚Homerische Frage‘. Er nutzte die Scholien des Venetus A, die 1788 veröffentlicht worden waren."
+   },
+   "leaf": {
+    "note": "Griechischer Text mit englischem Kommentar."
+   },
+   "monroallen": {
+    "date": "1902; 3. Auflage 1920",
+    "note": "Allen kollationierte für diese Ausgabe eine große Zahl von Handschriften. Es ist der griechische Text, den Mouseion zeigt."
+   },
+   "west": {
+    "note": "Eine moderne kritische Ausgabe, die neben den mittelalterlichen Handschriften ausgiebig die Papyri heranzieht."
+   }
+  }
+ },
+ "fr": {
+  "stemmaNote": "La tradition homérique n’est pas un arbre généalogique net : les poèmes sont nés de la poésie orale et les copies ont sans cesse été comparées entre elles. Le schéma est une vue simplifiée ; les liens en pointillé sont traditionnels ou discutés.",
+  "nodes": {
+   "omega": {
+    "title": "L’original perdu",
+    "date": "v. VIIIe–VIIe siècle av. J.-C.",
+    "note": "L’Iliade a été composée en hexamètres grecs, probablement en Ionie, en puisant dans une longue tradition de poésie orale. Aucun exemplaire original n’a survécu, et l’existence même d’un original unique est débattue."
+   },
+   "alexandria": {
+    "label": "Alexandrie",
+    "title": "Philologie alexandrine",
+    "date": "v. 280–150 av. J.-C.",
+    "note": "Les savants de la Bibliothèque d’Alexandrie (Zénodote, Aristophane de Byzance et Aristarque) comparèrent les copies, marquèrent les vers qu’ils jugeaient inauthentiques et passent pour avoir divisé le poème en 24 chants."
+   },
+   "papyri": {
+    "label": "Papyrus",
+    "title": "Fragments de papyrus",
+    "date": "IIIe siècle av. J.-C. – VIIe siècle apr. J.-C.",
+    "note": "Plusieurs centaines de fragments de papyrus, surtout d’Égypte. Les plus anciens contiennent des vers supplémentaires absents des copies plus tardives."
+   },
+   "medieval": {
+    "label": "Copies byzantines",
+    "title": "Manuscrits médiévaux",
+    "date": "à partir du IXe siècle apr. J.-C.",
+    "note": "Le texte complet de l’Iliade nous est parvenu par des manuscrits copiés dans le monde byzantin à partir du IXe siècle."
+   },
+   "princeps": {
+    "label": "Florence 1488",
+    "note": "La première édition imprimée d’Homère, publiée par Démétrios Chalcondyle à Florence."
+   },
+   "peisistratus": {
+    "label": "Athènes",
+    "title": "Recension de Pisistrate",
+    "date": "VIe siècle av. J.-C.",
+    "note": "Selon la tradition antique, les poèmes furent mis par écrit ou fixés pour la première fois à Athènes sous Pisistrate. Beaucoup de chercheurs en doutent ; le lien est donc en pointillé."
+   },
+   "venetusA": {
+    "date": "Xe siècle",
+    "place": "Venise, Biblioteca Nazionale Marciana",
+    "note": "Le plus ancien manuscrit complet de l’Iliade. Ses marges conservent des scholies (commentaires antiques) qui rapportent les leçons des savants alexandrins."
+   },
+   "venetusB": {
+    "date": "XIe siècle",
+    "place": "Venise, Biblioteca Nazionale Marciana",
+    "note": "Un manuscrit de l’Iliade avec ses propres scholies."
+   },
+   "townley": {
+    "date": "XIe siècle",
+    "place": "Londres, British Library",
+    "note": "Un manuscrit de l’Iliade connu pour ses abondantes scholies."
+   },
+   "aldine": {
+    "label": "Venise 1504",
+    "title": "Édition aldine",
+    "note": "Homère imprimé par Alde Manuce à Venise."
+   },
+   "wolf": {
+    "note": "Les Prolegomena ad Homerum de Wolf (1795) soutenaient que les poèmes avaient été composés oralement puis mis par écrit plus tard, ouvrant la « question homérique » moderne. Il utilisa les scholies du Venetus A, publiées en 1788."
+   },
+   "leaf": {
+    "note": "Texte grec avec commentaire en anglais."
+   },
+   "monroallen": {
+    "date": "1902 ; 3e édition 1920",
+    "note": "Allen collationna un grand nombre de manuscrits pour cette édition. C’est le texte grec affiché dans Mouseion."
+   },
+   "west": {
+    "note": "Une édition critique moderne qui s’appuie largement sur les papyrus autant que sur les manuscrits médiévaux."
+   }
+  }
+ },
+ "it": {
+  "stemmaNote": "La tradizione omerica non è un albero genealogico netto: i poemi nacquero come poesia orale e le copie venivano continuamente confrontate tra loro. Lo schema è una panoramica semplificata; i collegamenti tratteggiati sono tradizionali o controversi.",
+  "nodes": {
+   "omega": {
+    "title": "L’originale perduto",
+    "date": "ca. VIII–VII secolo a.C.",
+    "note": "L’Iliade fu composta in esametri greci, probabilmente in Ionia, attingendo a una lunga tradizione di poesia orale. Non ne sopravvive alcuna copia originale, ed è dibattuto persino se sia mai esistito un unico originale."
+   },
+   "alexandria": {
+    "label": "Alessandria",
+    "title": "Filologia alessandrina",
+    "date": "ca. 280–150 a.C.",
+    "note": "Gli studiosi della Biblioteca di Alessandria (Zenodoto, Aristofane di Bisanzio e Aristarco) confrontarono le copie, segnarono i versi che ritenevano spuri e sono ritenuti autori della divisione del poema in 24 libri."
+   },
+   "papyri": {
+    "label": "Papiri",
+    "title": "Frammenti di papiro",
+    "date": "III secolo a.C. – VII secolo d.C.",
+    "note": "Molte centinaia di frammenti di papiro, per lo più dall’Egitto. I più antichi contengono versi in più che mancano nelle copie successive."
+   },
+   "medieval": {
+    "label": "Copie bizantine",
+    "title": "Manoscritti medievali",
+    "date": "dal IX secolo d.C.",
+    "note": "Il testo completo dell’Iliade ci è giunto attraverso manoscritti copiati nel mondo bizantino a partire dal IX secolo."
+   },
+   "princeps": {
+    "label": "Firenze 1488",
+    "note": "La prima edizione a stampa di Omero, curata da Demetrio Calcondila a Firenze."
+   },
+   "peisistratus": {
+    "label": "Atene",
+    "title": "Redazione pisistratea",
+    "date": "VI secolo a.C.",
+    "note": "Secondo la tradizione antica, i poemi furono messi per iscritto o fissati per la prima volta ad Atene sotto Pisistrato. Molti studiosi ne dubitano, perciò il collegamento è tratteggiato."
+   },
+   "venetusA": {
+    "date": "X secolo",
+    "place": "Venezia, Biblioteca Nazionale Marciana",
+    "note": "Il più antico manoscritto completo dell’Iliade. I suoi margini conservano scolî (commenti antichi) che riportano le lezioni degli studiosi alessandrini."
+   },
+   "venetusB": {
+    "date": "XI secolo",
+    "place": "Venezia, Biblioteca Nazionale Marciana",
+    "note": "Un manoscritto dell’Iliade con un proprio corpus di scolî."
+   },
+   "townley": {
+    "date": "XI secolo",
+    "place": "Londra, British Library",
+    "note": "Un manoscritto dell’Iliade noto per i suoi ampi scolî."
+   },
+   "aldine": {
+    "label": "Venezia 1504",
+    "title": "Edizione aldina",
+    "note": "Omero stampato da Aldo Manuzio a Venezia."
+   },
+   "wolf": {
+    "note": "I Prolegomena ad Homerum di Wolf (1795) sostennero che i poemi erano stati composti oralmente e messi per iscritto più tardi, aprendo la moderna «questione omerica». Wolf si servì degli scolî del Venetus A, pubblicati nel 1788."
+   },
+   "leaf": {
+    "note": "Testo greco con commento in inglese."
+   },
+   "monroallen": {
+    "date": "1902; 3ª edizione 1920",
+    "note": "Allen collazionò un gran numero di manoscritti per questa edizione. È il testo greco mostrato in Mouseion."
+   },
+   "west": {
+    "note": "Un’edizione critica moderna che attinge ampiamente ai papiri oltre che ai manoscritti medievali."
+   }
+  }
+ },
+ "es": {
+  "stemmaNote": "La tradición homérica no es un árbol genealógico limpio: los poemas nacieron como poesía oral y las copias se comparaban constantemente entre sí. El diagrama es una visión simplificada; los enlaces discontinuos son tradicionales o discutidos.",
+  "nodes": {
+   "omega": {
+    "title": "El original perdido",
+    "date": "h. siglos VIII–VII a. C.",
+    "note": "La Ilíada se compuso en hexámetros griegos, probablemente en Jonia, a partir de una larga tradición de poesía oral. No se conserva ninguna copia original, y se discute incluso si existió alguna vez un original único."
+   },
+   "alexandria": {
+    "label": "Alejandría",
+    "title": "Filología alejandrina",
+    "date": "h. 280–150 a. C.",
+    "note": "Los eruditos de la Biblioteca de Alejandría (Zenódoto, Aristófanes de Bizancio y Aristarco) compararon copias, marcaron los versos que juzgaban espurios y se les atribuye la división del poema en 24 cantos."
+   },
+   "papyri": {
+    "label": "Papiros",
+    "title": "Fragmentos de papiro",
+    "date": "siglo III a. C. – siglo VII d. C.",
+    "note": "Muchos cientos de fragmentos de papiro, sobre todo de Egipto. Los más antiguos contienen versos adicionales que no aparecen en copias posteriores."
+   },
+   "medieval": {
+    "label": "Copias bizantinas",
+    "title": "Manuscritos medievales",
+    "date": "desde el siglo IX d. C.",
+    "note": "El texto completo de la Ilíada se conserva gracias a manuscritos copiados en el mundo bizantino a partir del siglo IX."
+   },
+   "princeps": {
+    "label": "Florencia 1488",
+    "note": "La primera edición impresa de Homero, a cargo de Demetrio Calcondilas en Florencia."
+   },
+   "peisistratus": {
+    "label": "Atenas",
+    "title": "Recensión pisistrátida",
+    "date": "siglo VI a. C.",
+    "note": "Según la tradición antigua, los poemas se pusieron por escrito o se fijaron por primera vez en Atenas bajo Pisístrato. Muchos estudiosos lo dudan, por eso el enlace es discontinuo."
+   },
+   "venetusA": {
+    "date": "siglo X",
+    "place": "Venecia, Biblioteca Nazionale Marciana",
+    "note": "El manuscrito completo más antiguo de la Ilíada. Sus márgenes conservan escolios (comentarios antiguos) que recogen las lecturas de los eruditos alejandrinos."
+   },
+   "venetusB": {
+    "date": "siglo XI",
+    "place": "Venecia, Biblioteca Nazionale Marciana",
+    "note": "Un manuscrito de la Ilíada con sus propios escolios."
+   },
+   "townley": {
+    "date": "siglo XI",
+    "place": "Londres, British Library",
+    "note": "Un manuscrito de la Ilíada conocido por sus abundantes escolios."
+   },
+   "aldine": {
+    "label": "Venecia 1504",
+    "title": "Edición aldina",
+    "note": "Homero impreso por Aldo Manucio en Venecia."
+   },
+   "wolf": {
+    "note": "Los Prolegomena ad Homerum de Wolf (1795) sostuvieron que los poemas se compusieron oralmente y se pusieron por escrito más tarde, abriendo la moderna «cuestión homérica». Wolf utilizó los escolios del Venetus A, publicados en 1788."
+   },
+   "leaf": {
+    "note": "Texto griego con comentario en inglés."
+   },
+   "monroallen": {
+    "date": "1902; 3.ª edición 1920",
+    "note": "Allen cotejó un gran número de manuscritos para esta edición. Es el texto griego que muestra Mouseion."
+   },
+   "west": {
+    "note": "Una edición crítica moderna que se apoya ampliamente en los papiros además de en los manuscritos medievales."
+   }
+  }
+ },
+ "ru": {
+  "stemmaNote": "Гомеровская традиция — не стройное родословное древо: поэмы возникли как устная поэзия, а списки постоянно сверяли друг с другом. Схема даёт упрощённый обзор; пунктирные связи традиционны или спорны.",
+  "nodes": {
+   "omega": {
+    "title": "Утраченный оригинал",
+    "date": "ок. VIII–VII вв. до н. э.",
+    "note": "«Илиада» сложена греческим гекзаметром, вероятно, в Ионии, на основе долгой традиции устной поэзии. Оригинал не сохранился, и спорно даже, существовал ли когда-либо единый оригинал."
+   },
+   "alexandria": {
+    "label": "Александрия",
+    "title": "Александрийская филология",
+    "date": "ок. 280–150 гг. до н. э.",
+    "note": "Учёные Александрийской библиотеки (Зенодот, Аристофан Византийский и Аристарх) сличали списки, отмечали стихи, которые считали подложными, и, по преданию, разделили поэму на 24 песни."
+   },
+   "papyri": {
+    "label": "Папирусы",
+    "title": "Папирусные фрагменты",
+    "date": "III в. до н. э. – VII в. н. э.",
+    "note": "Многие сотни папирусных фрагментов, в основном из Египта. Самые ранние содержат лишние стихи, которых нет в поздних списках."
+   },
+   "medieval": {
+    "label": "Византийские списки",
+    "title": "Средневековые рукописи",
+    "date": "с IX в. н. э.",
+    "note": "Полный текст «Илиады» дошёл до нас в рукописях, переписанных в византийском мире начиная с IX века."
+   },
+   "princeps": {
+    "label": "Флоренция 1488",
+    "note": "Первое печатное издание Гомера, подготовленное Димитрием Халкокондилом во Флоренции."
+   },
+   "peisistratus": {
+    "label": "Афины",
+    "title": "Писистратова редакция",
+    "date": "VI в. до н. э.",
+    "note": "По античному преданию, поэмы были впервые записаны или упорядочены в Афинах при Писистрате. Многие учёные сомневаются в этом, поэтому связь показана пунктиром."
+   },
+   "venetusA": {
+    "date": "X в.",
+    "place": "Венеция, Библиотека Марчиана",
+    "note": "Древнейшая полная рукопись «Илиады». На её полях сохранились схолии (античные комментарии), сообщающие чтения александрийских учёных."
+   },
+   "venetusB": {
+    "date": "XI в.",
+    "place": "Венеция, Библиотека Марчиана",
+    "note": "Рукопись «Илиады» с собственным собранием схолиев."
+   },
+   "townley": {
+    "date": "XI в.",
+    "place": "Лондон, Британская библиотека",
+    "note": "Рукопись «Илиады», известная обширными схолиями."
+   },
+   "aldine": {
+    "label": "Венеция 1504",
+    "title": "Альдинское издание",
+    "note": "Гомер, напечатанный Альдом Мануцием в Венеции."
+   },
+   "wolf": {
+    "note": "«Пролегомены к Гомеру» Вольфа (1795) доказывали, что поэмы были сложены устно и записаны позднее, — так начался современный «гомеровский вопрос». Вольф использовал схолии Venetus A, опубликованные в 1788 году."
+   },
+   "leaf": {
+    "note": "Греческий текст с английским комментарием."
+   },
+   "monroallen": {
+    "date": "1902; 3-е издание 1920",
+    "note": "Аллен сличил для этого издания большое число рукописей. Это греческий текст, который показывает Mouseion."
+   },
+   "west": {
+    "note": "Современное критическое издание, широко опирающееся на папирусы наряду со средневековыми рукописями."
+   }
+  }
+ }
+}

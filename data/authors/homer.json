@@ -2,30 +2,113 @@
   "id": "homer",
   "status": "Draft record: should be reviewed by a classicist.",
   "names": {
-    "grc": "Ὅμηρος", "en": "Homer", "de": "Homer", "fr": "Homère", "it": "Omero", "es": "Homero",
-    "pt": "Homero", "ca": "Homer", "ro": "Homer", "pl": "Homer", "cs": "Homér", "ru": "Гомер",
-    "uk": "Гомер", "bg": "Омир", "sr": "Хомер", "hr": "Homer", "el": "Όμηρος", "la": "Homerus",
-    "nl": "Homerus", "sv": "Homeros", "da": "Homer", "no": "Homer", "fi": "Homeros", "hu": "Homérosz",
-    "tr": "Homeros", "ar": "هوميروس", "he": "הומרוס", "fa": "هومر", "hi": "होमर",
-    "zh-Hans": "荷马", "zh-Hant": "荷馬", "ja": "ホメーロス", "ko": "호메로스"
+    "grc": "Ὅμηρος",
+    "en": "Homer",
+    "de": "Homer",
+    "fr": "Homère",
+    "it": "Omero",
+    "es": "Homero",
+    "pt": "Homero",
+    "ca": "Homer",
+    "ro": "Homer",
+    "pl": "Homer",
+    "cs": "Homér",
+    "ru": "Гомер",
+    "uk": "Гомер",
+    "bg": "Омир",
+    "sr": "Хомер",
+    "hr": "Homer",
+    "el": "Όμηρος",
+    "la": "Homerus",
+    "nl": "Homerus",
+    "sv": "Homeros",
+    "da": "Homer",
+    "no": "Homer",
+    "fi": "Homeros",
+    "hu": "Homérosz",
+    "tr": "Homeros",
+    "ar": "هوميروس",
+    "he": "הומרוס",
+    "fa": "هومر",
+    "hi": "होमर",
+    "zh-Hans": "荷马",
+    "zh-Hant": "荷馬",
+    "ja": "ホメーロス",
+    "ko": "호메로스"
   },
   "originalName": "grc",
-  "dates": "c. 8th century BCE (traditional)",
+  "dates": {
+    "en": "c. 8th century BCE (traditional)",
+    "de": "ca. 8. Jahrhundert v. Chr. (überliefert)",
+    "fr": "v. VIIIe siècle av. J.-C. (selon la tradition)",
+    "it": "ca. VIII secolo a.C. (secondo la tradizione)",
+    "es": "h. siglo VIII a. C. (según la tradición)",
+    "ru": "ок. VIII в. до н. э. (по преданию)"
+  },
   "era": "archaic-greece",
   "works": [
-    { "work": "iliad" },
-    { "work": "odyssey" },
     {
-      "titles": { "en": "Homeric Hymns", "grc": "Ὁμηρικοὶ ὕμνοι", "de": "Homerische Hymnen", "fr": "Hymnes homériques", "it": "Inni omerici", "es": "Himnos homéricos", "ru": "Гомеровы гимны" },
-      "attribution": "Attributed to Homer in antiquity; now regarded as the work of later poets."
+      "work": "iliad"
     },
     {
-      "titles": { "en": "Batrachomyomachia (The Battle of Frogs and Mice)", "grc": "Βατραχομυομαχία", "de": "Batrachomyomachia (Froschmäusekrieg)", "it": "Batracomiomachia", "es": "Batracomiomaquia" },
-      "attribution": "A mock epic attributed to Homer in antiquity; generally dated much later."
+      "work": "odyssey"
     },
     {
-      "titles": { "en": "Margites", "grc": "Μαργίτης" },
-      "attribution": "A comic poem attributed to Homer in antiquity; survives only in fragments."
+      "titles": {
+        "en": "Homeric Hymns",
+        "grc": "Ὁμηρικοὶ ὕμνοι",
+        "de": "Homerische Hymnen",
+        "fr": "Hymnes homériques",
+        "it": "Inni omerici",
+        "es": "Himnos homéricos",
+        "ru": "Гомеровы гимны"
+      },
+      "attribution": {
+        "en": "Attributed to Homer in antiquity; now regarded as the work of later poets.",
+        "de": "In der Antike Homer zugeschrieben; heute als Werk späterer Dichter angesehen.",
+        "fr": "Attribués à Homère dans l’Antiquité ; aujourd’hui considérés comme l’œuvre de poètes plus tardifs.",
+        "it": "Attribuiti a Omero nell’antichità; oggi considerati opera di poeti posteriori.",
+        "es": "Atribuidos a Homero en la Antigüedad; hoy se consideran obra de poetas posteriores.",
+        "ru": "В древности приписывались Гомеру; ныне считаются произведениями более поздних поэтов."
+      }
+    },
+    {
+      "titles": {
+        "en": "Batrachomyomachia (The Battle of Frogs and Mice)",
+        "grc": "Βατραχομυομαχία",
+        "de": "Batrachomyomachia (Froschmäusekrieg)",
+        "it": "Batracomiomachia",
+        "es": "Batracomiomaquia",
+        "fr": "Batrachomyomachie (La Guerre des grenouilles et des rats)",
+        "ru": "Батрахомиомахия (Война мышей и лягушек)"
+      },
+      "attribution": {
+        "en": "A mock epic attributed to Homer in antiquity; generally dated much later.",
+        "de": "Ein in der Antike Homer zugeschriebenes Scherzepos; meist deutlich später datiert.",
+        "fr": "Une épopée parodique attribuée à Homère dans l’Antiquité ; généralement datée bien plus tard.",
+        "it": "Un poema parodico attribuito a Omero nell’antichità; in genere datato molto più tardi.",
+        "es": "Una épica burlesca atribuida a Homero en la Antigüedad; por lo general se fecha mucho más tarde.",
+        "ru": "Шуточная поэма, в древности приписывавшаяся Гомеру; обычно датируется значительно позднее."
+      }
+    },
+    {
+      "titles": {
+        "en": "Margites",
+        "grc": "Μαργίτης",
+        "de": "Margites",
+        "fr": "Margitès",
+        "it": "Margite",
+        "es": "Margites",
+        "ru": "Маргит"
+      },
+      "attribution": {
+        "en": "A comic poem attributed to Homer in antiquity; survives only in fragments.",
+        "de": "Ein in der Antike Homer zugeschriebenes komisches Gedicht; nur in Fragmenten erhalten.",
+        "fr": "Un poème comique attribué à Homère dans l’Antiquité ; conservé seulement à l’état de fragments.",
+        "it": "Un poema comico attribuito a Omero nell’antichità; sopravvive solo in frammenti.",
+        "es": "Un poema cómico atribuido a Homero en la Antigüedad; solo se conservan fragmentos.",
+        "ru": "Комическая поэма, в древности приписывавшаяся Гомеру; сохранилась лишь во фрагментах."
+      }
     }
   ]
 }

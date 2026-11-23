@@ -1,0 +1,193 @@
+{
+ "_comment": "Translations of this record's descriptive text (stemma). English is in work.json; languages missing here fall back to it.",
+ "de": {
+  "stemmaNote": "Ein vereinfachter Überblick: Die Odyssee teilt mit der Ilias die frühe Geschichte mündlicher Dichtung und alexandrinischer Philologie. Gestrichelte Verbindungen sind überliefert oder umstritten.",
+  "nodes": {
+   "omega": {
+    "title": "Das verlorene Original",
+    "date": "ca. 8.–7. Jahrhundert v. Chr.",
+    "note": "Wie die Ilias wurde die Odyssee in griechischen Hexametern innerhalb einer Tradition mündlicher Dichtung gedichtet. Kein Original ist erhalten."
+   },
+   "alexandria": {
+    "label": "Alexandria",
+    "title": "Alexandrinische Philologie",
+    "date": "ca. 280–150 v. Chr.",
+    "note": "Die Gelehrten der Bibliothek von Alexandria arbeiteten an der Odyssee ebenso wie an der Ilias und gelten als diejenigen, die sie in 24 Bücher teilten."
+   },
+   "papyri": {
+    "label": "Papyri",
+    "title": "Papyrusfragmente",
+    "date": "3. Jh. v. Chr. – 7. Jh. n. Chr.",
+    "note": "Papyrusfragmente der Odyssee, meist aus Ägypten."
+   },
+   "medieval": {
+    "label": "Byzantinische Abschriften",
+    "title": "Mittelalterliche Handschriften",
+    "date": "ab dem 10. Jahrhundert n. Chr.",
+    "note": "Der vollständige Text der Odyssee ist durch Handschriften überliefert, die in der byzantinischen Welt kopiert wurden."
+   },
+   "princeps": {
+    "label": "Florenz 1488",
+    "note": "Die erste gedruckte Ausgabe Homers, mit Ilias und Odyssee."
+   },
+   "wolf": {
+    "note": "Wolfs Ausgabe der homerischen Gedichte, im Anschluss an seine Prolegomena ad Homerum (1795)."
+   },
+   "murray": {
+    "note": "Griechischer Text mit gegenüberstehender englischer Übersetzung. Es ist der griechische Text, den Mouseion zeigt."
+   }
+  }
+ },
+ "fr": {
+  "stemmaNote": "Une vue simplifiée : l’Odyssée partage avec l’Iliade les débuts de la composition orale et de la philologie alexandrine. Les liens en pointillé sont traditionnels ou discutés.",
+  "nodes": {
+   "omega": {
+    "title": "L’original perdu",
+    "date": "v. VIIIe–VIIe siècle av. J.-C.",
+    "note": "Comme l’Iliade, l’Odyssée a été composée en hexamètres grecs au sein d’une tradition de poésie orale. Aucun exemplaire original n’a survécu."
+   },
+   "alexandria": {
+    "label": "Alexandrie",
+    "title": "Philologie alexandrine",
+    "date": "v. 280–150 av. J.-C.",
+    "note": "Les savants de la Bibliothèque d’Alexandrie travaillèrent sur l’Odyssée comme sur l’Iliade et passent pour l’avoir divisée en 24 chants."
+   },
+   "papyri": {
+    "label": "Papyrus",
+    "title": "Fragments de papyrus",
+    "date": "IIIe siècle av. J.-C. – VIIe siècle apr. J.-C.",
+    "note": "Fragments de papyrus de l’Odyssée, surtout d’Égypte."
+   },
+   "medieval": {
+    "label": "Copies byzantines",
+    "title": "Manuscrits médiévaux",
+    "date": "à partir du Xe siècle apr. J.-C.",
+    "note": "Le texte complet de l’Odyssée nous est parvenu par des manuscrits copiés dans le monde byzantin."
+   },
+   "princeps": {
+    "label": "Florence 1488",
+    "note": "La première édition imprimée d’Homère, contenant l’Iliade et l’Odyssée."
+   },
+   "wolf": {
+    "note": "L’édition des poèmes homériques par Wolf, à la suite de ses Prolegomena ad Homerum (1795)."
+   },
+   "murray": {
+    "note": "Texte grec avec traduction anglaise en regard. C’est le texte grec affiché dans Mouseion."
+   }
+  }
+ },
+ "it": {
+  "stemmaNote": "Una panoramica semplificata: l’Odissea condivide con l’Iliade la storia antica della composizione orale e della filologia alessandrina. I collegamenti tratteggiati sono tradizionali o controversi.",
+  "nodes": {
+   "omega": {
+    "title": "L’originale perduto",
+    "date": "ca. VIII–VII secolo a.C.",
+    "note": "Come l’Iliade, l’Odissea fu composta in esametri greci all’interno di una tradizione di poesia orale. Non ne sopravvive alcuna copia originale."
+   },
+   "alexandria": {
+    "label": "Alessandria",
+    "title": "Filologia alessandrina",
+    "date": "ca. 280–150 a.C.",
+    "note": "Gli studiosi della Biblioteca di Alessandria lavorarono sull’Odissea come sull’Iliade e sono ritenuti autori della sua divisione in 24 libri."
+   },
+   "papyri": {
+    "label": "Papiri",
+    "title": "Frammenti di papiro",
+    "date": "III secolo a.C. – VII secolo d.C.",
+    "note": "Frammenti di papiro dell’Odissea, per lo più dall’Egitto."
+   },
+   "medieval": {
+    "label": "Copie bizantine",
+    "title": "Manoscritti medievali",
+    "date": "dal X secolo d.C.",
+    "note": "Il testo completo dell’Odissea ci è giunto attraverso manoscritti copiati nel mondo bizantino."
+   },
+   "princeps": {
+    "label": "Firenze 1488",
+    "note": "La prima edizione a stampa di Omero, con l’Iliade e l’Odissea."
+   },
+   "wolf": {
+    "note": "L’edizione dei poemi omerici di Wolf, successiva ai suoi Prolegomena ad Homerum (1795)."
+   },
+   "murray": {
+    "note": "Testo greco con traduzione inglese a fronte. È il testo greco mostrato in Mouseion."
+   }
+  }
+ },
+ "es": {
+  "stemmaNote": "Una visión simplificada: la Odisea comparte con la Ilíada la historia temprana de la composición oral y la filología alejandrina. Los enlaces discontinuos son tradicionales o discutidos.",
+  "nodes": {
+   "omega": {
+    "title": "El original perdido",
+    "date": "h. siglos VIII–VII a. C.",
+    "note": "Como la Ilíada, la Odisea se compuso en hexámetros griegos dentro de una tradición de poesía oral. No se conserva ninguna copia original."
+   },
+   "alexandria": {
+    "label": "Alejandría",
+    "title": "Filología alejandrina",
+    "date": "h. 280–150 a. C.",
+    "note": "Los eruditos de la Biblioteca de Alejandría trabajaron en la Odisea igual que en la Ilíada, y se les atribuye su división en 24 cantos."
+   },
+   "papyri": {
+    "label": "Papiros",
+    "title": "Fragmentos de papiro",
+    "date": "siglo III a. C. – siglo VII d. C.",
+    "note": "Fragmentos de papiro de la Odisea, sobre todo de Egipto."
+   },
+   "medieval": {
+    "label": "Copias bizantinas",
+    "title": "Manuscritos medievales",
+    "date": "desde el siglo X d. C.",
+    "note": "El texto completo de la Odisea se conserva gracias a manuscritos copiados en el mundo bizantino."
+   },
+   "princeps": {
+    "label": "Florencia 1488",
+    "note": "La primera edición impresa de Homero, con la Ilíada y la Odisea."
+   },
+   "wolf": {
+    "note": "La edición de los poemas homéricos de Wolf, tras sus Prolegomena ad Homerum (1795)."
+   },
+   "murray": {
+    "note": "Texto griego con traducción inglesa enfrentada. Es el texto griego que muestra Mouseion."
+   }
+  }
+ },
+ "ru": {
+  "stemmaNote": "Упрощённый обзор: «Одиссея» разделяет с «Илиадой» раннюю историю устного сложения и александрийской филологии. Пунктирные связи традиционны или спорны.",
+  "nodes": {
+   "omega": {
+    "title": "Утраченный оригинал",
+    "date": "ок. VIII–VII вв. до н. э.",
+    "note": "Как и «Илиада», «Одиссея» сложена греческим гекзаметром в традиции устной поэзии. Оригинал не сохранился."
+   },
+   "alexandria": {
+    "label": "Александрия",
+    "title": "Александрийская филология",
+    "date": "ок. 280–150 гг. до н. э.",
+    "note": "Учёные Александрийской библиотеки работали над «Одиссеей», как и над «Илиадой», и, по преданию, разделили её на 24 песни."
+   },
+   "papyri": {
+    "label": "Папирусы",
+    "title": "Папирусные фрагменты",
+    "date": "III в. до н. э. – VII в. н. э.",
+    "note": "Папирусные фрагменты «Одиссеи», в основном из Египта."
+   },
+   "medieval": {
+    "label": "Византийские списки",
+    "title": "Средневековые рукописи",
+    "date": "с X в. н. э.",
+    "note": "Полный текст «Одиссеи» дошёл до нас в рукописях, переписанных в византийском мире."
+   },
+   "princeps": {
+    "label": "Флоренция 1488",
+    "note": "Первое печатное издание Гомера, включающее «Илиаду» и «Одиссею»."
+   },
+   "wolf": {
+    "note": "Издание гомеровских поэм Вольфа, вышедшее после его «Пролегомен к Гомеру» (1795)."
+   },
+   "murray": {
+    "note": "Греческий текст с параллельным английским переводом. Это греческий текст, который показывает Mouseion."
+   }
+  }
+ }
+}

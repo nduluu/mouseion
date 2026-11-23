@@ -112,7 +112,7 @@ const Browse = (() => {
       sub.appendChild(o);
       sub.appendChild(document.createTextNode(" · "));
     }
-    sub.appendChild(document.createTextNode(a.dates || ""));
+    sub.appendChild(document.createTextNode(pick(a.dates)));
     box.appendChild(sub);
 
     if (a.era) {
@@ -135,7 +135,7 @@ const Browse = (() => {
         g.lang = "grc";
         d.appendChild(g);
       }
-      if (entry.attribution) d.appendChild(el("span", "work-result-note", entry.attribution));
+      if (entry.attribution) d.appendChild(el("span", "work-result-note", pick(entry.attribution)));
       d.appendChild(el("span", "work-result-meta", t("notInMouseion")));
       return d;
     });
@@ -164,7 +164,7 @@ const Browse = (() => {
     const terms = cat.taxonomy[catKey] || [];
     list(box, terms.map((term) => {
       const n = cat.works.filter((w) => hasTerm(w, catKey, term.id)).length;
-      return termCard(`#/browse/${catKey}/${term.id}`, pick(term.names), t("worksCount", { n }), term.range);
+      return termCard(`#/browse/${catKey}/${term.id}`, pick(term.names), t("worksCount", { n }), pick(term.range));
     }));
   }
 
@@ -194,8 +194,8 @@ const Browse = (() => {
     const termRec = (cat.taxonomy[catKey] || []).find((x) => x.id === id);
     const name = termRec ? pick(termRec.names) : id;
     box.appendChild(crumbs([[t("home"), "#/home"], [t(CATS[catKey]), "#/browse/" + catKey], [name]]));
-    heading(box, name, termRec && termRec.range);
-    if (termRec && termRec.note) box.appendChild(el("p", "browse-bio", termRec.note));
+    heading(box, name, termRec && pick(termRec.range));
+    if (termRec && termRec.note) box.appendChild(el("p", "browse-bio", pick(termRec.note)));
 
     const works = cat.works.filter((w) => hasTerm(w, catKey, id));
     const authorIds = [...new Set(works.flatMap((w) => w.authors))];

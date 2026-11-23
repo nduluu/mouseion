@@ -393,7 +393,14 @@
     "ko": "호메로스"
    },
    "originalName": "grc",
-   "dates": "c. 8th century BCE (traditional)",
+   "dates": {
+    "en": "c. 8th century BCE (traditional)",
+    "de": "ca. 8. Jahrhundert v. Chr. (überliefert)",
+    "fr": "v. VIIIe siècle av. J.-C. (selon la tradition)",
+    "it": "ca. VIII secolo a.C. (secondo la tradizione)",
+    "es": "h. siglo VIII a. C. (según la tradición)",
+    "ru": "ок. VIII в. до н. э. (по преданию)"
+   },
    "era": "archaic-greece",
    "works": [
     "iliad",
@@ -406,7 +413,14 @@
   "era": [
    {
     "id": "archaic-greece",
-    "range": "c. 800–480 BCE",
+    "range": {
+     "en": "c. 800–480 BCE",
+     "de": "ca. 800–480 v. Chr.",
+     "fr": "v. 800–480 av. J.-C.",
+     "it": "ca. 800–480 a.C.",
+     "es": "h. 800–480 a. C.",
+     "ru": "ок. 800–480 гг. до н. э."
+    },
     "names": {
      "en": "Archaic Greece",
      "de": "Archaisches Griechenland",
@@ -480,7 +494,14 @@
      "el": "Αρχαία ελληνική θρησκεία και μυθολογία",
      "nl": "Oud-Griekse religie en mythologie"
     },
-    "note": "Works that are a primary source for a tradition's gods, myths and practices."
+    "note": {
+     "en": "Works that are a primary source for a tradition's gods, myths and practices.",
+     "de": "Werke, die eine Primärquelle für die Götter, Mythen und Bräuche einer Tradition sind.",
+     "fr": "Œuvres qui sont une source première sur les dieux, les mythes et les pratiques d’une tradition.",
+     "it": "Opere che sono una fonte primaria per gli dèi, i miti e le pratiche di una tradizione.",
+     "es": "Obras que son fuente primaria sobre los dioses, mitos y prácticas de una tradición.",
+     "ru": "Произведения, служащие первоисточником о богах, мифах и обрядах традиции."
+    }
    }
   ]
  }

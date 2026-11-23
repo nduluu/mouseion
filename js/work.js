@@ -28,6 +28,7 @@ const Work = (() => {
   // Pick the value for the UI language from a {lang: value} map.
   function pick(map) {
     if (!map) return "";
+    if (typeof map === "string") return map;
     const l = lang();
     return map[l] || map[l.split("-")[0]] || map.en || Object.values(map)[0];
   }
@@ -899,10 +900,26 @@ const Work = (() => {
 
   // ---------- page ----------
 
+  // The record's descriptive text (stemma names, dates, notes) is written in
+  // English in work.json; i18n.json holds its translations by language.
+  function localize(raw, tr) {
+    const w = JSON.parse(JSON.stringify(raw));
+    const l = lang();
+    const o = tr[l] || tr[l.split("-")[0]];
+    if (!o) return w;
+    if (o.stemmaNote) w.stemmaNote = o.stemmaNote;
+    for (const n of w.nodes) Object.assign(n, (o.nodes || {})[n.id] || {});
+    return w;
+  }
+
   async function render(id) {
     const page = $("work");
     try {
-      work = await getJSON("data/works/" + id + "/work.json");
+      const [raw, tr] = await Promise.all([
+        getJSON("data/works/" + id + "/work.json"),
+        getJSON("data/works/" + id + "/i18n.json").catch(() => ({})),
+      ]);
+      work = localize(raw, tr);
     } catch (e) {
       page.querySelector(".work-head h1").textContent = t("nothingFound");
       return;

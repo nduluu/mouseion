@@ -17,6 +17,7 @@ const M = (() => {
   // The value for the UI language from a {lang: value} map.
   function pick(map) {
     if (!map) return "";
+    if (typeof map === "string") return map;
     const l = lang();
     return map[l] || map[l.split("-")[0]] || map.en || Object.values(map)[0];
   }
@@ -79,7 +80,7 @@ const M = (() => {
     const card = el("a", "work-result");
     card.href = "#/author/" + a.id;
     card.appendChild(el("span", "work-result-title", pick(a.names)));
-    const sub = el("span", "work-result-sub", [a.originalName && a.names[a.originalName], a.dates].filter(Boolean).join(" · "));
+    const sub = el("span", "work-result-sub", [a.originalName && a.names[a.originalName], pick(a.dates)].filter(Boolean).join(" · "));
     if (a.originalName) sub.lang = a.originalName;
     card.appendChild(sub);
     card.appendChild(el("span", "work-result-meta", t("worksCount", { n: a.works.length + (a.otherWorks || 0) })));
