@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=27">
+  <link rel="stylesheet" href="css/style.css?v=28">
   <script>
     // Some browsers (private windows, embedded previews) refuse localStorage.
     // Fall back to an in-memory store so the site still works, just without
@@ -42,9 +42,12 @@
     <div class="gate-inner">
       <svg class="logo gate-logo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="currentColor"/></svg>
       <p class="gate-title" id="gate-title" data-i18n="chooseLanguage">Choose your language</p>
-      <input id="lang-search" class="lang-search" type="search" autocomplete="off"
-             data-i18n-placeholder="searchLanguages" placeholder="Search languages"
-             aria-labelledby="gate-title">
+      <div class="lang-search-wrap">
+        <input id="lang-search" class="lang-search" type="search" autocomplete="off"
+               data-i18n-placeholder="searchLanguages" placeholder="Search languages"
+               aria-labelledby="gate-title">
+        <div id="lang-search-ph" class="lang-search-ph" aria-hidden="true"></div>
+      </div>
       <div id="lang-list" class="lang-list" role="listbox" aria-labelledby="gate-title"></div>
       <p id="no-results" class="no-results" data-i18n="noResults" hidden>No languages found</p>
     </div>
@@ -329,6 +332,6 @@
   <script src="js/work.js?v=28"></script>
   <script src="js/search.js?v=23"></script>
   <script src="js/browse.js?v=2"></script>
-  <script src="js/app.js?v=23"></script>
+  <script src="js/app.js?v=24"></script>
 </body>
 </html>

@@ -147,48 +147,64 @@
     noResults.hidden = count > 0;
   }
 
-  // While the picker is open, its title and search placeholder fade from one
-  // language into another, chosen at random.
+  // While the picker is open, its title and search hint cross-fade from one
+  // language into another, chosen at random. Both texts are layered, so the
+  // new language appears while the old one fades away.
   const gateTitle = document.getElementById("gate-title");
-  const CYCLE_MS = 3000, FADE_MS = 500;
+  const searchHint = document.getElementById("lang-search-ph");
+  const CYCLE_MS = 3000, FADE_MS = 900;
   let cycleTimer = null, cycleCode = null;
   const cycleCodes = Object.keys(I18N).filter((c) => I18N[c].chooseLanguage && I18N[c].searchLanguages);
 
-  function showGateIn(code) {
-    cycleCode = code;
+  function crossfade(box, text, code, instant) {
     const lang = byCode[code];
-    gateTitle.textContent = I18N[code].chooseLanguage;
-    gateTitle.lang = code;
-    gateTitle.dir = lang && lang.rtl ? "rtl" : "ltr";
-    langSearch.placeholder = I18N[code].searchLanguages;
+    const span = document.createElement("span");
+    span.className = "xf";
+    span.textContent = text;
+    span.lang = code;
+    span.dir = lang && lang.rtl ? "rtl" : "ltr";
+    const old = [...box.children];
+    if (instant) {
+      box.textContent = "";
+      box.appendChild(span);
+      return;
+    }
+    span.style.opacity = "0";
+    box.appendChild(span);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      span.style.opacity = "1";
+      for (const o of old) o.style.opacity = "0";
+    }));
+    setTimeout(() => old.forEach((o) => o.remove()), FADE_MS + 100);
+  }
+
+  function showGateIn(code, instant) {
+    cycleCode = code;
+    crossfade(gateTitle, I18N[code].chooseLanguage, code, instant);
+    crossfade(searchHint, I18N[code].searchLanguages, code, instant);
+    langSearch.placeholder = I18N[code].searchLanguages; // for screen readers
   }
 
   function cycleStep() {
+    if (gate.hidden) return stopCycle();
     let next;
     do next = cycleCodes[Math.floor(Math.random() * cycleCodes.length)];
     while (cycleCodes.length > 1 && next === cycleCode);
-    const instant = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (instant) { showGateIn(next); return; }
-    gateTitle.classList.add("fading");
-    langSearch.classList.add("fading");
-    setTimeout(() => {
-      if (gate.hidden) return;
-      showGateIn(next);
-      gateTitle.classList.remove("fading");
-      langSearch.classList.remove("fading");
-    }, FADE_MS);
+    showGateIn(next, window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }
 
   function startCycle() {
     stopCycle();
+    // Start from the language the picker is shown in now.
+    const code = document.documentElement.lang || "en";
+    const current = I18N[code] && I18N[code].chooseLanguage ? code : "en";
+    showGateIn(current, true);
     if (cycleCodes.length) cycleTimer = setInterval(cycleStep, CYCLE_MS);
   }
 
   function stopCycle() {
     clearInterval(cycleTimer);
     cycleTimer = null;
-    gateTitle.classList.remove("fading");
-    langSearch.classList.remove("fading");
   }
 
   function selectLanguage(code) {

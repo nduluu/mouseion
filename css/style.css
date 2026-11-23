@@ -102,11 +102,28 @@ body {
 
 .lang-search:focus { border-color: var(--ink); }
 
-/* The picker's title and placeholder fade between languages. */
-.gate-title { transition: opacity 0.5s ease; }
-.gate-title.fading { opacity: 0; }
-.lang-search::placeholder { transition: color 0.5s ease, opacity 0.5s ease; }
-.lang-search.fading::placeholder { color: transparent; opacity: 0; }
+/* The picker's title and search hint cross-fade between languages: the
+   texts are stacked in one grid cell while one fades in and the other out. */
+.gate-title { display: grid; justify-items: center; }
+.gate-title > .xf, .lang-search-ph > .xf { grid-area: 1 / 1; transition: opacity 0.9s ease; }
+.lang-search-wrap { position: relative; max-width: 26rem; margin: 0 auto 2rem; }
+.lang-search-wrap .lang-search { display: block; margin-bottom: 0; }
+.lang-search-wrap .lang-search::placeholder { color: transparent; }
+.lang-search-ph {
+  position: absolute;
+  inset: 1px 1px;
+  padding: 0.65rem 1rem;
+  display: grid;
+  align-items: center;
+  text-align: start;
+  font-size: 1rem;
+  color: var(--muted);
+  pointer-events: none;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.lang-search:not(:placeholder-shown) + .lang-search-ph { visibility: hidden; }
+@media (prefers-reduced-motion: reduce) { .gate-title > .xf, .lang-search-ph > .xf { transition: none; } }
 
 /* A row of equal-width columns (JS fills them shortest-first for a masonry).
    Forced LTR so the RTL column is always the rightmost, whatever the UI
