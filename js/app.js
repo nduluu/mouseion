@@ -147,7 +147,52 @@
     noResults.hidden = count > 0;
   }
 
+  // While the picker is open, its title and search placeholder fade from one
+  // language into another, chosen at random.
+  const gateTitle = document.getElementById("gate-title");
+  const CYCLE_MS = 3000, FADE_MS = 500;
+  let cycleTimer = null, cycleCode = null;
+  const cycleCodes = Object.keys(I18N).filter((c) => I18N[c].chooseLanguage && I18N[c].searchLanguages);
+
+  function showGateIn(code) {
+    cycleCode = code;
+    const lang = byCode[code];
+    gateTitle.textContent = I18N[code].chooseLanguage;
+    gateTitle.lang = code;
+    gateTitle.dir = lang && lang.rtl ? "rtl" : "ltr";
+    langSearch.placeholder = I18N[code].searchLanguages;
+  }
+
+  function cycleStep() {
+    let next;
+    do next = cycleCodes[Math.floor(Math.random() * cycleCodes.length)];
+    while (cycleCodes.length > 1 && next === cycleCode);
+    const instant = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (instant) { showGateIn(next); return; }
+    gateTitle.classList.add("fading");
+    langSearch.classList.add("fading");
+    setTimeout(() => {
+      if (gate.hidden) return;
+      showGateIn(next);
+      gateTitle.classList.remove("fading");
+      langSearch.classList.remove("fading");
+    }, FADE_MS);
+  }
+
+  function startCycle() {
+    stopCycle();
+    if (cycleCodes.length) cycleTimer = setInterval(cycleStep, CYCLE_MS);
+  }
+
+  function stopCycle() {
+    clearInterval(cycleTimer);
+    cycleTimer = null;
+    gateTitle.classList.remove("fading");
+    langSearch.classList.remove("fading");
+  }
+
   function selectLanguage(code) {
+    stopCycle();
     localStorage.setItem(LANG_KEY, code);
     applyLanguage(code);
     gate.hidden = true;
@@ -160,6 +205,7 @@
     gate.hidden = false; // show first so the container width is measurable
     renderLangList("");
     langSearch.focus();
+    startCycle();
   }
 
   langSearch.addEventListener("input", () => renderLangList(langSearch.value));

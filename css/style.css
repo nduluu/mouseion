@@ -102,6 +102,12 @@ body {
 
 .lang-search:focus { border-color: var(--ink); }
 
+/* The picker's title and placeholder fade between languages. */
+.gate-title { transition: opacity 0.5s ease; }
+.gate-title.fading { opacity: 0; }
+.lang-search::placeholder { transition: color 0.5s ease, opacity 0.5s ease; }
+.lang-search.fading::placeholder { color: transparent; opacity: 0; }
+
 /* A row of equal-width columns (JS fills them shortest-first for a masonry).
    Forced LTR so the RTL column is always the rightmost, whatever the UI
    language. The last column (.rtl-col) holds the primarily-RTL families. */
