@@ -51,13 +51,14 @@
 
   // ---------- Language gate ----------
 
+  // Lower case, without accents or apostrophe-like marks, so that a Latin
+  // keyboard finds "Español" with "espanol" and "ʻŌlelo" with "olelo".
+  const fold = (x) => x.normalize("NFD").replace(/[\u0300-\u036f'ʻʼ’`]/g, "").toLowerCase();
+
   function matchesQuery(lang, q) {
-    return (
-      !q ||
-      lang.n.toLowerCase().includes(q) ||
-      lang.e.toLowerCase().includes(q) ||
-      lang.c.toLowerCase().includes(q)
-    );
+    if (!q) return true;
+    const f = fold(q);
+    return [lang.n, lang.e, lang.c, ...(lang.a || [])].some((x) => fold(x).includes(f));
   }
 
   function langCard(lang) {

@@ -223,3 +223,34 @@ const LANGUAGE_GROUPS = [
   { name: "Semitic", rtl: true, speakers: 420, codes: ["ar", "he", "mt"] },
   { name: "Iranian", rtl: true, speakers: 240, codes: ["fa", "ps", "ckb", "bal", "ku", "tg"] },
 ];
+
+// Other ways to type a language's name with a Latin keyboard: how its own
+// name is pronounced (Farsi, Nihongo, Zhongwen…) and common other names.
+// Searches also ignore accents, so "espanol" finds Español.
+const LANGUAGE_ALIASES = {
+  am: ["amarigna", "amarinya"], ar: ["arabiya", "al-arabiya", "arabi"], hy: ["hayeren"],
+  as: ["asamiya", "axomiya"], az: ["azerbaycan", "azeri"], bal: ["balochi", "baluchi"],
+  ba: ["bashqortsa", "bashkort"], be: ["belaruskaya", "bielaruskaja"], bn: ["bangla"],
+  bho: ["bhojpuri"], bg: ["balgarski", "bulgarski"], my: ["myanma", "myanmar", "bama"],
+  yue: ["gwongdungwa", "guangdonghua", "yuetyu", "jyutyu"], ceb: ["bisaya", "cebuano"],
+  ce: ["nokhchiin", "nokhchi"], chr: ["tsalagi"],
+  "zh-Hans": ["zhongwen", "putonghua", "hanyu", "mandarin", "jiantizi", "jianti"],
+  "zh-Hant": ["zhongwen", "guoyu", "hanyu", "mandarin", "fantizi", "fanti"],
+  cv: ["chavashla"], dv: ["divehi", "dhivehi"], dz: ["dzongkha"], ka: ["kartuli"],
+  el: ["ellinika", "elliniki"], gu: ["gujarati"], he: ["ivrit"], hi: ["hindi"], hmn: ["hmoob"],
+  iu: ["inuktitut"], ja: ["nihongo", "nippongo"], kn: ["kannada"], ks: ["koshur", "kashur"],
+  kk: ["qazaqsha", "kazakhsha"], km: ["khmer", "phiesa khmae"], kok: ["konkani"],
+  ko: ["hangugeo", "hangukeo", "hangungmal", "joseonmal"], ckb: ["sorani", "kurdi"],
+  ku: ["kurmanji", "kurdi"], ky: ["kyrgyzcha"], lo: ["phasa lao"], mk: ["makedonski"],
+  mai: ["maithili"], ml: ["malayalam"], mr: ["marathi"], mni: ["meiteilon", "manipuri"],
+  mn: ["mongol khel"], ne: ["nepali"], nqo: ["nko"], or: ["odia", "oriya"],
+  ps: ["pashto", "pakhto", "pukhto"], fa: ["farsi", "parsi"], pa: ["panjabi", "punjabi"],
+  ru: ["russkiy", "russkij", "russki"], sa: ["samskrtam", "sanskritam"], sat: ["santali"],
+  sr: ["srpski"], sd: ["sindhi"], si: ["sinhala", "singhala"], tg: ["tojiki"],
+  tzm: ["tamazight", "tamazirt", "amazigh", "berber"], ta: ["tamil"], tt: ["tatarcha"],
+  te: ["telugu"], th: ["phasa thai", "thai"], bo: ["bod skad", "bopa"], ti: ["tigrinya", "tigrigna"],
+  uk: ["ukrainska", "ukrayinska"], ur: ["urdu"], ug: ["uyghurche", "uighur"], yi: ["yidish"],
+  fil: ["tagalog"], nl: ["vlaams", "flemish"], no: ["bokmal", "nynorsk"], ht: ["kreyol"],
+  nv: ["dine bizaad"], nah: ["mexicano"], gn: ["avanee"], fy: ["frysk"],
+};
+for (const l of LANGUAGES) l.a = LANGUAGE_ALIASES[l.c] || [];
