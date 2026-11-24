@@ -1,0 +1,41 @@
+# One card per work (copy to $DRIVE/cards/<work-id>.yaml). Fill it in as you go.
+id: mendes-iliad                 # short, lowercase, no spaces; becomes the folder name
+work: iliad                      # Mouseion work id (data/works/<id>)
+kind: translation                # original | translation | commentary
+language: pt                     # ISO 639 code of the text
+script: Latn                     # Latn, Grek, Arab, Cyrl, Hebr, Deva, Hans, Hant, Jpan, …
+title: "Iliada de Homero: em verso portuguez"
+translator: Manuel Odorico Mendes
+translator_died: 1864            # public domain is counted from this year
+published: 1874
+place_publisher: ""             # copy it from the title page, not from the catalogue
+
+rights:
+  pd_reason: "translator died 1864 (life + 70 everywhere)"
+  edition_notes: ""              # modern editor? critical apparatus? (Italy: 20 years, art. 85-quater)
+  checked_by: ""
+  checked_on: ""
+
+sources:
+  digital_text: none             # Wikisource/Gutenberg/… URL if a transcription exists (then no OCR!)
+  scans: https://archive.org/details/iliadadehomeroe00mendgoog
+  scan_quality: ""               # e.g. "Google scan, 357 pp, some curved pages, no missing pages"
+  scan_terms: "Google Books scan: non-commercial use requested by Google"
+
+layout:
+  columns: 1
+  verse: true
+  line_numbers_printed: false
+  notes: "footnotes at the bottom of some pages"
+  running_headers: true
+
+ocr:
+  engine: ""                     # tesseract por psm4 | vision pt-BR | kraken <model>
+  sample_pages: "20-24"
+  cer_tesseract: ""
+  cer_vision: ""
+  chosen: ""
+
+status: queued                   # queued | fetched | pages | ocr | proofing | structured | imported
+log:
+  - "2026-11-25 card created"
