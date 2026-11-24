@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=32">
+  <link rel="stylesheet" href="css/style.css?v=33">
   <script>
     // Some browsers (private windows, embedded previews) refuse localStorage.
     // Fall back to an in-memory store so the site still works, just without
@@ -199,18 +199,27 @@
                 <button type="button" data-layout="columns" data-i18n="layoutColumns">Side by side</button>
                 <button type="button" data-layout="stacked" data-i18n="layoutStacked">One under another</button>
               </div>
+              <div class="seg" role="group" data-i18n-aria="viewMode" aria-label="Reading view">
+                <button type="button" data-view="scroll" data-i18n="viewScroll">Scrolling</button>
+                <button type="button" data-view="pages" data-i18n="viewPages">Page by page</button>
+              </div>
               <div class="seg" role="group" data-i18n-aria="textSize" aria-label="Text size">
                 <button type="button" id="text-smaller" data-i18n-title="smallerText" data-i18n-aria="smallerText" title="Smaller text" aria-label="Smaller text">A−</button>
                 <button type="button" id="text-larger" data-i18n-title="largerText" data-i18n-aria="largerText" title="Larger text" aria-label="Larger text">A+</button>
               </div>
               <label class="check"><input type="checkbox" id="toggle-numbers" checked> <span data-i18n="lineNumbers">Line numbers</span></label>
-              <label class="check" id="toggle-pages-wrap" hidden><input type="checkbox" id="toggle-pages" checked> <span data-i18n="pageNumbers">Page numbers</span></label>
+              <label class="check" id="toggle-pages-wrap"><input type="checkbox" id="toggle-pages" checked> <span data-i18n="pageNumbers">Page numbers</span></label>
               <button type="button" id="add-pane" class="btn" data-i18n="addText">+ Add a text</button>
               <button type="button" id="download-btn" class="btn" data-i18n="download">Download / print</button>
             </div>
           </div>
           <div id="pane-bar" class="pane-bar"></div>
           <div id="reader" class="reader"></div>
+          <div id="pager" class="pager" hidden>
+            <button type="button" id="page-prev" class="btn"><span aria-hidden="true">‹</span> <span id="page-prev-label" data-i18n="prevPage">Previous page</span></button>
+            <span id="page-count" class="page-count" aria-live="polite"></span>
+            <button type="button" id="page-next" class="btn"><span id="page-next-label" data-i18n="nextPage">Next page</span> <span aria-hidden="true">›</span></button>
+          </div>
           <p id="reader-credit" class="credit"></p>
         </div>
 
@@ -328,12 +337,12 @@
   </div>
 
   <script src="js/languages.js?v=21"></script>
-  <script src="js/i18n.js?v=33"></script>
+  <script src="js/i18n.js?v=34"></script>
   <script src="js/timecal.js?v=20"></script>
   <script src="js/mapviewer.js?v=20"></script>
   <script src="js/common.js?v=3"></script>
   <script src="js/rights.js?v=21"></script>
-  <script src="js/work.js?v=32"></script>
+  <script src="js/work.js?v=33"></script>
   <script src="js/download.js?v=3"></script>
   <script src="js/search.js?v=23"></script>
   <script src="js/browse.js?v=4"></script>

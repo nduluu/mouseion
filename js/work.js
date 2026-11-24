@@ -259,9 +259,9 @@ const Work = (() => {
 
   function loadPrefs() {
     try {
-      return { layout: "columns", size: 0, numbers: true, pages: true, ...JSON.parse(localStorage.getItem(PREFS_KEY) || "{}") };
+      return { layout: "columns", size: 0, numbers: true, pages: true, view: "scroll", ...JSON.parse(localStorage.getItem(PREFS_KEY) || "{}") };
     } catch (e) {
-      return { layout: "columns", size: 0, numbers: true, pages: true };
+      return { layout: "columns", size: 0, numbers: true, pages: true, view: "scroll" };
     }
   }
 
@@ -400,8 +400,14 @@ const Work = (() => {
     });
     $("toggle-numbers").checked = prefs.numbers;
     $("toggle-pages").checked = prefs.pages;
-    // The page switch only matters when a text on screen records printed pages.
-    $("toggle-pages-wrap").hidden = !state.panes.map(resolvePane).some((p) => p && p.ed && p.ed.text && p.ed.text.pages);
+    // Always shown; greyed out while no text on screen records printed pages.
+    const hasPages = state.panes.map(resolvePane).some((p) => p && p.ed && p.ed.text && p.ed.text.pages);
+    $("toggle-pages").disabled = !hasPages;
+    $("toggle-pages-wrap").classList.toggle("disabled", !hasPages);
+    $("toggle-pages-wrap").title = hasPages ? "" : t("noPageNumbers");
+    document.querySelectorAll("#reader-panel [data-view]").forEach((b) => {
+      b.setAttribute("aria-pressed", String(b.dataset.view === prefs.view));
+    });
   }
 
   // Add a pane: the next text not yet shown (readable first).
@@ -766,6 +772,143 @@ const Work = (() => {
       credit.appendChild(line);
     }
     startTicker();
+    setupPages();
+  }
+
+  // ---------- Page by page ----------
+  // The reader becomes a window one screen high. Pages break between lines
+  // (or paragraphs), never through one: each break is the top of the last
+  // line that still fits. The part of a line below the break is hidden.
+  const pager = { breaks: [0], i: 0, book: null, toEnd: false };
+
+  function paged() {
+    return prefs.view === "pages";
+  }
+
+  function pageWindow() {
+    // Screen height less room for the page controls and a little margin.
+    return Math.max(260, Math.floor(window.innerHeight - 120));
+  }
+
+  function computeBreaks() {
+    const reader = $("reader");
+    const H = reader.clientHeight;
+    const origin = reader.getBoundingClientRect().top - reader.scrollTop;
+    const tops = new Set();
+    reader.querySelectorAll(".line, .grid-head, .reader-row, .pane-label, .reader-note, .trans p, .reader-msg").forEach((n) => {
+      tops.add(Math.floor(n.getBoundingClientRect().top - origin));
+    });
+    const cand = [...tops].filter((x) => x > 0).sort((a, b) => a - b);
+    const total = reader.scrollHeight - pageWindow();   // less the room left after the text
+    const breaks = [0];
+    let start = 0;
+    while (start + H < total) {
+      let next = 0;
+      for (const x of cand) {
+        if (x > start + H) break;
+        if (x > start) next = x;
+      }
+      // Nothing to break at in the lower part (a very long paragraph): cut by height.
+      if (next < start + H * 0.35) next = start + H - 32;
+      breaks.push(next);
+      start = next;
+    }
+    return breaks;
+  }
+
+  function showPage(i) {
+    const reader = $("reader");
+    const b = pager.breaks;
+    pager.i = Math.max(0, Math.min(b.length - 1, i));
+    const top = b[pager.i];
+    const bottom = pager.i + 1 < b.length ? b[pager.i + 1] : top + reader.clientHeight;
+    reader.scrollTop = top;
+    reader.style.clipPath = "inset(0 0 " + Math.max(0, reader.clientHeight - (bottom - top)) + "px 0)";
+    const last = pager.i === b.length - 1;
+    const first = pager.i === 0;
+    $("page-count").textContent = t("pageOf", { n: pager.i + 1, total: b.length });
+    $("page-prev-label").textContent = first && state.book > 1 ? t("previousBook") : t("prevPage");
+    $("page-next-label").textContent = last && state.book < 24 ? t("nextBook") : t("nextPage");
+    $("page-prev").disabled = first && state.book <= 1;
+    $("page-next").disabled = last && state.book >= 24;
+    pager.anchor = pageAnchor();   // remembered while the layout is still the one measured
+  }
+
+  // The first line (or paragraph) on the current page, so the same text can
+  // stay in view when the pages are laid out again.
+  function pageAnchor() {
+    const reader = $("reader");
+    const origin = reader.getBoundingClientRect().top - reader.scrollTop;
+    const top = pager.breaks[pager.i] || 0;
+    for (const n of reader.querySelectorAll(".line, .trans p")) {
+      if (n.getBoundingClientRect().top - origin >= top - 1) return { n: n.dataset.n, col: n.dataset.col, node: n };
+    }
+    return null;
+  }
+
+  function pageOf(anchor) {
+    if (!anchor) return 0;
+    const reader = $("reader");
+    let node = anchor.node.isConnected ? anchor.node
+      : reader.querySelector('.line[data-n="' + anchor.n + '"][data-col="' + anchor.col + '"]');
+    if (!node) return 0;
+    const y = node.getBoundingClientRect().top - reader.getBoundingClientRect().top + reader.scrollTop;
+    let i = 0;
+    pager.breaks.forEach((x, j) => { if (x <= y + 2) i = j; });
+    return i;
+  }
+
+  // Lay the pages out again (after a resize, a font change…), keeping the
+  // same text at the top of the page.
+  function relayoutPages() {
+    if (!paged()) return;
+    const reader = $("reader");
+    const anchor = pager.anchor;
+    reader.style.clipPath = "";
+    reader.style.height = pageWindow() + "px";
+    reader.style.setProperty("--page-h", pageWindow() + "px");
+    pager.breaks = computeBreaks();
+    showPage(pageOf(anchor));
+  }
+
+  function setupPages() {
+    const reader = $("reader");
+    const on = paged();
+    reader.classList.toggle("paged", on);
+    $("pager").hidden = !on;
+    if (!on) {
+      reader.style.height = "";
+      reader.style.clipPath = "";
+      reader.scrollTop = 0;
+      return;
+    }
+    const newBook = pager.book !== state.book;
+    const anchor = newBook ? null : pager.anchor;
+    reader.style.clipPath = "";
+    reader.style.height = pageWindow() + "px";
+    reader.style.setProperty("--page-h", pageWindow() + "px");
+    pager.breaks = computeBreaks();
+    const i = pager.toEnd ? pager.breaks.length - 1 : pageOf(anchor);
+    pager.book = state.book;
+    pager.toEnd = false;
+    showPage(i);
+  }
+
+  function turnPage(d) {
+    if (!paged()) return;
+    const i = pager.i + d;
+    if (i < 0 || i >= pager.breaks.length) {
+      const b = state.book + d;
+      if (b < 1 || b > 24) return;
+      pager.toEnd = d < 0;
+      state.book = b;
+      $("ed-book").value = b;
+      renderReader();
+    } else {
+      showPage(i);
+    }
+    const top = $("reader").getBoundingClientRect().top;
+    if (top < 0 || top > window.innerHeight * 0.3) $("reader").scrollIntoView({ block: "start" });
   }
 
   // ---------- stemma ----------
@@ -997,6 +1140,7 @@ const Work = (() => {
       prefs.size = Math.max(-2, Math.min(4, prefs.size + d));
       savePrefs();
       $("reader").style.setProperty("--reader-scale", String(1 + prefs.size * 0.12));
+      relayoutPages();
     };
     $("text-smaller").addEventListener("click", () => resize(-1));
     $("text-larger").addEventListener("click", () => resize(1));
@@ -1004,12 +1148,58 @@ const Work = (() => {
       prefs.numbers = e.target.checked;
       savePrefs();
       $("reader").classList.toggle("no-numbers", !prefs.numbers);
+      relayoutPages();
     });
     $("toggle-pages").addEventListener("change", (e) => {
       prefs.pages = e.target.checked;
       savePrefs();
       $("reader").classList.toggle("no-pages", !prefs.pages);
     });
+    document.querySelectorAll("#reader-panel [data-view]").forEach((b) => {
+      b.addEventListener("click", () => {
+        if (prefs.view === b.dataset.view) return;
+        prefs.view = b.dataset.view;
+        savePrefs();
+        renderPaneBar();
+        setupPages();
+        if (paged()) $("reader").scrollIntoView({ block: "start" });
+      });
+    });
+    $("page-prev").addEventListener("click", () => turnPage(-1));
+    $("page-next").addEventListener("click", () => turnPage(1));
+    // Arrow keys and Page Up/Down turn pages (not while typing or in a menu).
+    document.addEventListener("keydown", (e) => {
+      if (!paged() || $("work").hidden || e.altKey || e.ctrlKey || e.metaKey) return;
+      if (e.target.closest && e.target.closest("input, select, textarea, [contenteditable], dialog, #stemma")) return;
+      if (document.querySelector("dialog[open]")) return;
+      const d = { ArrowRight: 1, PageDown: 1, ArrowLeft: -1, PageUp: -1 }[e.key];
+      if (!d) return;
+      e.preventDefault();
+      turnPage(document.documentElement.dir === "rtl" && e.key.startsWith("Arrow") ? -d : d);
+    });
+    // Swipe left or right on a phone or tablet.
+    let touch = null;
+    $("reader").addEventListener("touchstart", (e) => {
+      // Only when the text fits the width: otherwise a sideways swipe scrolls to the other columns.
+      const r = $("reader");
+      if (paged() && e.touches.length === 1 && r.scrollWidth <= r.clientWidth + 1) touch = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }, { passive: true });
+    $("reader").addEventListener("touchend", (e) => {
+      if (!touch || !paged()) return;
+      const dx = e.changedTouches[0].clientX - touch.x;
+      const dy = e.changedTouches[0].clientY - touch.y;
+      touch = null;
+      if (Math.abs(dx) > 50 && Math.abs(dy) < 40 && !String(window.getSelection())) {
+        const rtl = document.documentElement.dir === "rtl";
+        turnPage((dx < 0) !== rtl ? 1 : -1);
+      }
+    }, { passive: true });
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(relayoutPages, 150);
+    });
+    if (document.fonts) document.fonts.ready.then(relayoutPages);
     $("add-pane").addEventListener("click", () => addPane());
     let selTimer;
     document.addEventListener("selectionchange", () => {

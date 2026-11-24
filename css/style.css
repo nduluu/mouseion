@@ -1369,3 +1369,22 @@ select::-ms-expand { display: none; }
 a.pb:hover, a.pb:focus-visible { color: var(--ink); border-color: var(--ink); }
 .reader.no-pages .pb { display: none; }
 .reader.no-pages .line.page-start { box-shadow: none; }
+
+/* ---------- Page by page ---------- */
+.reader.paged { overflow-y: hidden; overscroll-behavior: contain; }
+/* Room after the text, so the last page can start exactly at its break. */
+.reader.paged::after { content: ""; display: block; height: var(--page-h, 100vh); }
+/* Inside a page window the "p. 12" mark sits within its line, so it is never cut off at the top. */
+.reader.paged .pb { transform: none; top: 0.2em; }
+.check.disabled { opacity: 0.45; cursor: default; }
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0 0.25rem;
+  border-top: 1px solid var(--line);
+}
+.pager[hidden] { display: none; }
+.pager .btn:disabled { opacity: 0.35; cursor: default; }
+.page-count { font-size: 0.85rem; color: var(--muted); font-variant-numeric: tabular-nums; }

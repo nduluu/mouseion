@@ -760,3 +760,22 @@ Object.assign(I18N.ru, {
   };
   for (const l in S) Object.assign(I18N[l], S[l]);
 })();
+
+// Reading view: continuous scrolling or page by page.
+(() => {
+  const S = {
+    en: { viewMode: "Reading view", viewScroll: "Scrolling", viewPages: "Page by page", prevPage: "Previous page",
+      nextPage: "Next page", pageOf: "Page {n} of {total}", noPageNumbers: "None of the texts shown records printed page numbers yet" },
+    de: { viewMode: "Leseansicht", viewScroll: "Fortlaufend", viewPages: "Seitenweise", prevPage: "Vorherige Seite",
+      nextPage: "Nächste Seite", pageOf: "Seite {n} von {total}", noPageNumbers: "Keiner der angezeigten Texte verzeichnet bisher gedruckte Seitenzahlen" },
+    fr: { viewMode: "Mode de lecture", viewScroll: "Défilement", viewPages: "Page par page", prevPage: "Page précédente",
+      nextPage: "Page suivante", pageOf: "Page {n} sur {total}", noPageNumbers: "Aucun des textes affichés n’indique encore les numéros de page imprimés" },
+    it: { viewMode: "Modalità di lettura", viewScroll: "Scorrimento", viewPages: "Pagina per pagina", prevPage: "Pagina precedente",
+      nextPage: "Pagina successiva", pageOf: "Pagina {n} di {total}", noPageNumbers: "Nessuno dei testi mostrati riporta ancora i numeri di pagina a stampa" },
+    es: { viewMode: "Modo de lectura", viewScroll: "Desplazamiento", viewPages: "Página a página", prevPage: "Página anterior",
+      nextPage: "Página siguiente", pageOf: "Página {n} de {total}", noPageNumbers: "Ninguno de los textos mostrados registra aún los números de página impresos" },
+    ru: { viewMode: "Режим чтения", viewScroll: "Прокрутка", viewPages: "По страницам", prevPage: "Предыдущая страница",
+      nextPage: "Следующая страница", pageOf: "Страница {n} из {total}", noPageNumbers: "Ни в одном из показанных текстов пока нет номеров печатных страниц" },
+  };
+  for (const l in S) Object.assign(I18N[l], S[l]);
+})();
