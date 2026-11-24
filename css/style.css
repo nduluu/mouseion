@@ -778,6 +778,39 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
   font-size: 0.9rem;
 }
 
+/* ---------- Roadmap ---------- */
+
+.page.page-wide { max-width: 68rem; }
+.roadmap {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+.rm-col h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+.rm-dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; background: var(--muted); }
+.rm-done .rm-dot { background: #3d8b5a; }
+.rm-now .rm-dot { background: #c98a1b; }
+.rm-next .rm-dot { background: #5b7fb8; }
+.rm-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.rm-col li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.rm-col li b { display: block; color: var(--ink); font-weight: 600; margin-bottom: 0.15rem; }
+@media (max-width: 52rem) { .roadmap { grid-template-columns: 1fr; } }
+
 /* ---------- Site footer ---------- */
 
 .site-footer {

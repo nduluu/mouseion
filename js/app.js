@@ -322,6 +322,7 @@
     terms: document.getElementById("terms"),
     app: document.getElementById("app"),
     legal: document.getElementById("legal"),
+    roadmap: document.getElementById("roadmap"),
   };
 
   // Routes that share a section: author and category pages use "browse".

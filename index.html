@@ -21,7 +21,7 @@
     })();
   </script>
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=42">
+  <link rel="stylesheet" href="css/style.css?v=43">
   <script>
     // Some browsers (private windows, embedded previews) refuse localStorage.
     // Fall back to an in-memory store so the site still works, just without
@@ -318,6 +318,44 @@
       <section id="app" class="page" hidden>
         <h1 class="page-title" data-i18n="app">App</h1>
       </section>
+      <section id="roadmap" class="page page-wide" hidden>
+        <h1 class="page-title" data-i18n="roadmap">Roadmap</h1>
+        <div class="roadmap">
+          <div class="rm-col rm-done">
+            <h2><span class="rm-dot"></span><span data-i18n="rmDone">Done</span></h2>
+            <ul lang="en" dir="ltr">
+              <li><b>Parallel reader</b>The original next to its translations, matched line by line.</li>
+              <li><b>Public domain by country</b>Each edition shows where it is free to read, and from when.</li>
+              <li><b>Printed page numbers</b>Cite by the page of the printed book and open its scan.</li>
+              <li><b>Page-by-page view</b>Read like a book instead of scrolling.</li>
+              <li><b>Cite button</b>Ready-made citation styles, links to passages, your own format.</li>
+              <li><b>Downloads</b>PDF, EPUB and plain text of any book of a work.</li>
+              <li><b>A web address for every passage</b>e.g. /iliad/ita-monti/1/7-10</li>
+              <li><b>Interface in 169 languages</b>Drafts, to be reviewed by native speakers.</li>
+            </ul>
+          </div>
+          <div class="rm-col rm-now">
+            <h2><span class="rm-dot"></span><span data-i18n="rmNow">In progress</span></h2>
+            <ul lang="en" dir="ltr">
+              <li><b>Iliad and Odyssey</b>More translations, in more languages and scripts.</li>
+              <li><b>Turning scans into text</b>First books: Portuguese (1874), Croatian (1883), Arabic (1904).</li>
+              <li><b>Translation review</b>Native speakers checking the interface languages.</li>
+            </ul>
+          </div>
+          <div class="rm-col rm-next">
+            <h2><span class="rm-dot"></span><span data-i18n="rmNext">Planned</span></h2>
+            <ul lang="en" dir="ltr">
+              <li><b>More works</b>Aeneid, Metamorphoses, Divine Comedy, Hesiod.</li>
+              <li><b>World classics</b>Bhagavad Gita, Dhammapada, Tao Te Ching, Analects, Qur'an.</li>
+              <li><b>Text versions</b>Corrections without breaking citations: every link names its version.</li>
+              <li><b>Work pages in every language</b>Manuscript history and author pages, translated.</li>
+              <li><b>Legal review</b>Public-domain rules checked country by country.</li>
+              <li><b>Partners</b>Libraries, universities and museums linked to the texts.</li>
+              <li><b>Printed editions</b>Parallel-text books on demand.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
       <section id="legal" class="page" hidden>
         <h1 class="page-title" data-i18n="legal">Legal</h1>
         <div class="legal-text">
@@ -361,6 +399,7 @@
         <a href="#/terms" data-i18n="termsOfUse">Terms of Use</a>
         <a href="#/app" data-i18n="app">App</a>
         <a href="#/legal" data-i18n="legal">Legal</a>
+        <a href="#/roadmap" data-i18n="roadmap">Roadmap</a>
       </nav>
     </footer>
   </div>
@@ -371,7 +410,7 @@
     // Interface text: the picker's phrases in every language, English (the
     // fallback), and the visitor's own language. One small file each, built
     // from js/i18n.js by tools/build_i18n.js (which also sets this version).
-    var I18N_V = "69932f3972";
+    var I18N_V = "18aef8f758";
     (function () {
       var l = null;
       try { l = localStorage.getItem("mouseion.lang"); } catch (e) {}
@@ -388,6 +427,6 @@
   <script src="js/cite.js?v=4"></script>
   <script src="js/search.js?v=25"></script>
   <script src="js/browse.js?v=5"></script>
-  <script src="js/app.js?v=31"></script>
+  <script src="js/app.js?v=32"></script>
 </body>
 </html>
