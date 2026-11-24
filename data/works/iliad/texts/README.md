@@ -29,7 +29,15 @@ Each book is one file (`01.json` … `24.json`):
 | `cat-roure/` | Iliada, trans. Conrad Roure, Barcelona 1879 (prose) | [ca.wikisource](https://ca.wikisource.org/wiki/Iliada), via Wikimedia's HTML dump |
 
 Wikisource transcriptions are licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/);
-these folders are adaptations (converted with `tools/import_wikisource.py`; notes,
-page numbers and editors' summaries removed) shared under the same licence.
+these folders are adaptations (converted with `tools/import_wikisource.py`; notes
+and editors' summaries removed) shared under the same licence.
+
+Monti's files record the pages of the printed edition the transcription was
+made from (Milano, Società Tipografica de' Classici Italiani, 1825, 4th edition,
+2 vols.): `"pages": [[first line, printed page, scan image, volume], …]`.
+Books 1–12 are in vol. I (pp. 1–311), books 13–24 in vol. II (pp. 1–323).
+The scan image number opens that page on it.wikisource
+(`work.json` → `text.pages.scan`). The other Wikisource texts don't record
+pages yet.
 Alignment: Segalá by passage (it prints the Greek line numbers), Gnedich by line,
 Monti, Leconte de Lisle and Roure by book only.

@@ -523,7 +523,11 @@
         "format": "verse",
         "align": "book",
         "source": "Wikisource, transcription of the 4th edition (1825), revised by the translator (CC BY-SA 4.0)",
-        "sourceUrl": "https://it.wikisource.org/wiki/Iliade_%28Monti%29"
+        "sourceUrl": "https://it.wikisource.org/wiki/Iliade_%28Monti%29",
+        "pages": {
+          "edition": "Milano, Società Tipografica de' Classici Italiani, 1825, quarta edizione, 2 voll.",
+          "scan": "https://it.wikisource.org/wiki/Pagina:Iliade_(Monti).djvu/{scan}"
+        }
       },
       "wikidata": "Q3796407",
       "sources": {

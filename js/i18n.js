@@ -745,17 +745,17 @@ Object.assign(I18N.ru, {
 // Printed page numbers (reader toggle, margin marks, downloads).
 (() => {
   const S = {
-    en: { pageNumbers: "Page numbers", pageAbbr: "p.", pageScan: "Open the scan of printed page {page}",
+    en: { volAbbr: "vol.", pageNumbers: "Page numbers", pageAbbr: "p.", pageScan: "Open the scan of {page}",
       dlPagesNote: "Page numbers in square brackets, e.g. [p. 12], are those of the printed edition ({edition}); cite this edition by page and line." },
-    de: { pageNumbers: "Seitenzahlen", pageAbbr: "S.", pageScan: "Scan der gedruckten Seite {page} öffnen",
+    de: { volAbbr: "Bd.", pageNumbers: "Seitenzahlen", pageAbbr: "S.", pageScan: "Scan von {page} öffnen",
       dlPagesNote: "Seitenzahlen in eckigen Klammern, z. B. [S. 12], sind die der gedruckten Ausgabe ({edition}); zitieren Sie diese Ausgabe nach Seite und Vers." },
-    fr: { pageNumbers: "Numéros de page", pageAbbr: "p.", pageScan: "Ouvrir le scan de la page imprimée {page}",
+    fr: { volAbbr: "t.", pageNumbers: "Numéros de page", pageAbbr: "p.", pageScan: "Ouvrir le scan : {page}",
       dlPagesNote: "Les numéros de page entre crochets, p. ex. [p. 12], sont ceux de l’édition imprimée ({edition}) ; citez cette édition par page et par vers." },
-    it: { pageNumbers: "Numeri di pagina", pageAbbr: "p.", pageScan: "Apri la scansione della pagina stampata {page}",
+    it: { volAbbr: "vol.", pageNumbers: "Numeri di pagina", pageAbbr: "p.", pageScan: "Apri la scansione: {page}",
       dlPagesNote: "I numeri di pagina tra parentesi quadre, p. es. [p. 12], sono quelli dell’edizione a stampa ({edition}); citate questa edizione per pagina e verso." },
-    es: { pageNumbers: "Números de página", pageAbbr: "p.", pageScan: "Abrir el escaneo de la página impresa {page}",
+    es: { volAbbr: "vol.", pageNumbers: "Números de página", pageAbbr: "p.", pageScan: "Abrir el escaneo: {page}",
       dlPagesNote: "Los números de página entre corchetes, p. ej. [p. 12], son los de la edición impresa ({edition}); cite esta edición por página y verso." },
-    ru: { pageNumbers: "Номера страниц", pageAbbr: "с.", pageScan: "Открыть скан печатной страницы {page}",
+    ru: { volAbbr: "т.", pageNumbers: "Номера страниц", pageAbbr: "с.", pageScan: "Открыть скан: {page}",
       dlPagesNote: "Номера страниц в квадратных скобках, например [с. 12], соответствуют печатному изданию ({edition}); цитируйте это издание по странице и стиху." },
   };
   for (const l in S) Object.assign(I18N[l], S[l]);

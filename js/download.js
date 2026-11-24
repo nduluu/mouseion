@@ -144,7 +144,7 @@ const Download = (() => {
   // ---------- the document ----------
 
   async function collect(id, only) {
-    const { work, t, pick, lang, langName, resolvePane, bookLabel, bookData } = W();
+    const { work, t, pick, lang, langName, resolvePane, bookLabel, bookData, pageLabel } = W();
     const w = work();
     const p = resolvePane(id);
     const ed = p.ed;
@@ -153,7 +153,7 @@ const Download = (() => {
     for (const n of numbers) {
       const d = await bookData(ed, n);
       books.push({ n, label: bookLabel(n), lines: d.lines || null, passages: d.passages || null,
-        pages: new Map((d.pages || []).map(([line, label]) => [line, label])) });
+        pages: new Map((d.pages || []).map(([line, label, , vol]) => [line, pageLabel(String(label).replace(/^\[(.*)\]$/, "$1"), vol)])) });
     }
     const creators = (ed.creators || []).map((c) => c.name + (c.died ? " (†" + c.died + ")" : "")).join(", ");
     const country = Rights.countryName(Rights.country(), lang());
@@ -173,7 +173,7 @@ const Download = (() => {
       credit: digital.charAt(0).toUpperCase() + digital.slice(1) + " " + ed.text.source + ".",
       licence: t("dlLicence"),
       pagesNote: ed.text.pages ? t("dlPagesNote", { edition: ed.text.pages.edition }) : "",
-      page: (label) => "[" + t("pageAbbr") + "\u00a0" + String(label).replace(/^\[(.*)\]$/, "$1") + "]",
+      page: (label) => "[" + label + "]",
       pd: t("pdIn", { country }),
       from: t("dlFromMouseion", { date: today }),
       books,

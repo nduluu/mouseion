@@ -454,19 +454,20 @@ const Work = (() => {
   // linking to the scan of that page where the source offers one.
   function pageStarts(p) {
     const m = new Map();
-    if (p.data && p.data.pages) for (const [n, label, scan] of p.data.pages) m.set(n, { label, scan });
+    if (p.data && p.data.pages) for (const [n, label, scan, vol] of p.data.pages) m.set(n, { label: pageLabel(label, vol), scan });
     return m;
   }
 
-  function pageLabel(label) {
-    return t("pageAbbr") + "\u00a0" + label;
+  // "p. 12", or "vol. II, p. 12" for an edition in several volumes.
+  function pageLabel(label, vol) {
+    return (vol ? t("volAbbr") + "\u00a0" + vol + ", " : "") + t("pageAbbr") + "\u00a0" + label;
   }
 
   function markPage(line, p, pg) {
     if (!pg) return;
     line.classList.add("page-start");
     const tpl = p.ed && p.ed.text && p.ed.text.pages && p.ed.text.pages.scan;
-    const mark = el(tpl && pg.scan ? "a" : "span", "pb", pageLabel(pg.label));
+    const mark = el(tpl && pg.scan ? "a" : "span", "pb", pg.label);
     if (mark.tagName === "A") {
       mark.href = tpl.replace("{scan}", pg.scan);
       mark.target = "_blank";
@@ -1034,6 +1035,7 @@ const Work = (() => {
     book: () => state.book,
     panes: () => state.panes.slice(),
     t, pick, lang, langName, status, resolvePane, shortName, optionLabel,
+    pageLabel,
     bookLabel: (n) => t("book") + " " + n + " · " + (work.bookLetters || BOOK_LETTERS)[n - 1],
     bookData: (ed, n) => getJSON(base() + ed.text.path + "/" + String(n).padStart(2, "0") + ".json"),
   };

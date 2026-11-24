@@ -7,7 +7,10 @@ Usage:
 Output formats (one file per book, 01.json … 24.json):
   verse:  {"book": 1, "lines": [[1, "…"], …], "breaks": [1, 8, 22, …]}
           lines numbered from 1 in the translation's own count; "breaks" are
-          the lines that start a new paragraph (stanza).
+          the lines that start a new paragraph (stanza). Where the transcription
+          is linked to scans of a printed edition, "pages": [[first line,
+          printed page, scan image(, volume)], …] records where each printed
+          page begins (from the page markers Wikisource puts in the text).
   prose:  {"book": 1, "passages": [{"from": 1, "text": "…"}, …]}
           "from" is the line of the ORIGINAL where the passage starts.
 """
@@ -36,6 +39,8 @@ SOURCES = {
         "host": "it.wikisource.org", "format": "verse",
         "page": lambda b: f"Iliade (Monti)/Libro {ROMAN[b]}",
         "out": "data/works/iliad/texts/ita-monti",
+        # Milano 1825, two volumes in one scan: images from 326 on are vol. II.
+        "volumes": [(1, "I"), (326, "II")],
     },
     "gnedich": {
         "host": "ru.wikisource.org", "format": "verse",
@@ -83,6 +88,8 @@ class VerseParser(HTMLParser):
         self.cur = []
         self.lines = []       # list of strings; "" = paragraph break
         self.marks = []       # (line number printed in the source, index in self.lines)
+        self.pages = []       # [printed page, scan image, index of the first line on it]
+        self.page_label = False
 
     def handle_starttag(self, tag, attrs):
         if tag in VOID:
@@ -91,6 +98,12 @@ class VerseParser(HTMLParser):
             return
         a = dict(attrs)
         cls = (a.get("class") or "").split()
+        if "numeropagina" in cls and (a.get("data-pagenum") or "").isdigit():
+            # A printed page starts here. If a line is half collected, the
+            # page starts with the next line.
+            at = len(self.lines) + (1 if "".join(self.cur).strip() else 0)
+            self.pages.append([None, int(a["data-pagenum"]), at])
+            self.page_label = True
         entering_skip = _skip(attrs) or tag in ("sup", "style", "script")
         if entering_skip and self.depth_poem and ("numeroriga" in cls or "linenum" in cls):
             self._pending_mark = True
@@ -117,6 +130,9 @@ class VerseParser(HTMLParser):
             self._end_line()
 
     def handle_data(self, data):
+        if self.page_label and re.fullmatch(r"\s*[0-9ivxlcIVXLC]+\s*", data):
+            self.pages[-1][0] = data.strip()   # the printed number: "[p. <a>12</a>]"
+            self.page_label = False
         if not self.depth_poem:
             return
         if self.skip:
@@ -137,7 +153,7 @@ class VerseParser(HTMLParser):
             self.lines.append("")
 
 
-def verse(html_text):
+def verse(html_text, volumes=None):
     p = VerseParser()
     p.feed(html_text)
     p._end_line()
@@ -161,7 +177,22 @@ def verse(html_text):
             j += 1
         if j in index_to_n and index_to_n[j] != printed:
             mismatches.append((printed, index_to_n[j]))
-    return {"lines": lines, "breaks": breaks}, mismatches
+    pages = []
+    ordered = sorted(index_to_n)
+    for label, scan, at in p.pages:
+        first = next((index_to_n[i] for i in ordered if i >= at), None)
+        if first is None or label is None:
+            continue
+        if pages and pages[-1][0] == first:
+            pages.pop()      # two markers before the same line: the later counts
+        entry = [first, label, scan]
+        if volumes:
+            entry.append([v for start, v in volumes if scan >= start][-1])
+        pages.append(entry)
+    out = {"lines": lines, "breaks": breaks}
+    if pages:
+        out["pages"] = pages
+    return out, mismatches
 
 
 class ProseParser(HTMLParser):
@@ -263,8 +294,12 @@ def run(name):
         h, _ = parse(cfg["host"], title)
         h = re.sub(r"<style[^>]*>.*?</style>", "", h, flags=re.S)
         if cfg["format"] == "verse":
-            data, mism = verse(h)
+            data, mism = verse(h, cfg.get("volumes"))
             n = len(data["lines"])
+            if data.get("pages"):
+                pg = data["pages"]
+                vol = (pg[0][3] + " ") if len(pg[0]) > 3 else ""
+                mism.append(f"pages {vol}{pg[0][1]}–{pg[-1][1]}")
             note = f"  ({len(mism)} line-number mismatches, first: {mism[:3]})" if mism else ""
             print(f"{name} book {b:2d}: {n} lines{note}", flush=True)
         elif cfg["format"] == "plain":
