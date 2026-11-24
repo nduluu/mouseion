@@ -579,7 +579,11 @@
         "format": "prose",
         "align": "book",
         "source": "Wikisource, transcription of the Paris 1866 edition (Alphonse Lemerre) (CC BY-SA 4.0)",
-        "sourceUrl": "https://fr.wikisource.org/wiki/Iliade_%28trad._Leconte_de_Lisle%29"
+        "sourceUrl": "https://fr.wikisource.org/wiki/Iliade_%28trad._Leconte_de_Lisle%29",
+        "pages": {
+          "edition": "Paris, A. Lemerre, 1866",
+          "scan": "https://fr.wikisource.org/wiki/Page:Hom%C3%A8re_-_Iliade,_trad._Leconte_de_Lisle.djvu/{scan}"
+        }
       },
       "wikidata": "Q21666067",
       "sources": {
@@ -624,7 +628,11 @@
         "format": "prose",
         "align": "passages",
         "source": "Wikisource, transcription of the 1908 Barcelona edition (Montaner y Simón) (CC BY-SA 4.0)",
-        "sourceUrl": "https://es.wikisource.org/wiki/La_Il%C3%ADada_%28Luis_Segal%C3%A1_y_Estalella%29"
+        "sourceUrl": "https://es.wikisource.org/wiki/La_Il%C3%ADada_%28Luis_Segal%C3%A1_y_Estalella%29",
+        "pages": {
+          "edition": "Barcelona, Montaner y Simón, 1908",
+          "scan": "https://es.wikisource.org/wiki/P%C3%A1gina:La_Il%C3%ADada_(Luis_Segal%C3%A1_y_Estalella).djvu/{scan}"
+        }
       },
       "wikidata": "Q32845498",
       "sources": {
@@ -741,7 +749,11 @@
         "format": "prose",
         "align": "book",
         "source": "Wikisource, transcription of the Barcelona 1879 edition (CC BY-SA 4.0)",
-        "sourceUrl": "https://ca.wikisource.org/wiki/Iliada"
+        "sourceUrl": "https://ca.wikisource.org/wiki/Iliada",
+        "pages": {
+          "edition": "Barcelona, 1879",
+          "scan": "https://ca.wikisource.org/wiki/P%C3%A0gina:Iliada_(1879).djvu/{scan}"
+        }
       }
     },
     {

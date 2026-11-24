@@ -37,7 +37,18 @@ made from (Milano, Società Tipografica de' Classici Italiani, 1825, 4th edition
 2 vols.): `"pages": [[first line, printed page, scan image, volume], …]`.
 Books 1–12 are in vol. I (pp. 1–311), books 13–24 in vol. II (pp. 1–323).
 The scan image number opens that page on it.wikisource
-(`work.json` → `text.pages.scan`). The other Wikisource texts don't record
-pages yet.
+(`work.json` → `text.pages.scan`).
+
+The prose translations record their printed pages per passage:
+`"pages": [[character offset in the passage text, printed page, scan image], …]`,
+a break that splits a word being moved to the end of that word.
+Leconte de Lisle: Paris, Lemerre, 1866, pp. 1–465. Segalá: Barcelona, Montaner
+y Simón, 1908, pp. 9–391 (full-page illustrations have no text, so no mark;
+the Wikisource transcription is not yet proofread). Roure: Barcelona 1879,
+pp. 3–335 (the page a book opens on is worked out from the next page, as its
+marker carries an anchor instead of a number).
+
+Gnedich's transcription on ru.wikisource is not linked to scans, so it has no
+page numbers.
 Alignment: Segalá by passage (it prints the Greek line numbers), Gnedich by line,
 Monti, Leconte de Lisle and Roure by book only.

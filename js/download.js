@@ -152,8 +152,10 @@ const Download = (() => {
     const books = [];
     for (const n of numbers) {
       const d = await bookData(ed, n);
-      books.push({ n, label: bookLabel(n), lines: d.lines || null, passages: d.passages || null,
-        pages: new Map((d.pages || []).map(([line, label, , vol]) => [line, pageLabel(String(label).replace(/^\[(.*)\]$/, "$1"), vol)])) });
+      books.push({ n, label: bookLabel(n), lines: d.lines || null,
+        pages: new Map((d.pages || []).map(([line, label, , vol]) => [line, pageLabel(String(label).replace(/^\[(.*)\]$/, "$1"), vol)])),
+        // prose: the page marks put into the text, "[p. 12]" where each page begins
+        passages: d.passages ? d.passages.map((ps) => ({ ...ps, text: withPageMarks(ps, pageLabel) })) : null });
     }
     const creators = (ed.creators || []).map((c) => c.name + (c.died ? " (†" + c.died + ")" : "")).join(", ");
     const country = Rights.countryName(Rights.country(), lang());
@@ -182,7 +184,16 @@ const Download = (() => {
     };
   }
 
-  function metaLines(doc) {
+  function withPageMarks(ps, pageLabel) {
+    let text = ps.text;
+    for (const [off, label, , vol] of (ps.pages || []).slice().reverse()) {
+      const mark = "[" + pageLabel(String(label), vol) + "]";
+      text = text.slice(0, off) + mark + (off < text.length && text[off] !== "\n" ? " " : "") + text.slice(off);
+    }
+    return text;
+  }
+
+    function metaLines(doc) {
     return [
       doc.workTitle + (doc.originalTitle && doc.originalTitle !== doc.workTitle ? " (" + doc.originalTitle + ")" : ""),
       doc.title + (doc.creators ? " — " + doc.creators : "") + (doc.date ? ", " + doc.date : ""),

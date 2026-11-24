@@ -1434,3 +1434,24 @@ a.pb:hover, a.pb:focus-visible { color: var(--ink); border-color: var(--ink); }
   }
   .pager .btn { min-width: 3rem; }
 }
+
+/* A printed page that begins inside a prose paragraph. */
+.pb-inline {
+  display: inline-block;
+  margin: 0 0.3em;
+  padding: 0 0.35rem;
+  font-size: 0.68rem;
+  line-height: 1.35;
+  vertical-align: 0.15em;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.trans p > .pb-inline:first-child { margin-left: 0; }
+a.pb-inline:hover, a.pb-inline:focus-visible { color: var(--ink); border-color: var(--ink); }
+.reader.no-pages .pb-inline { display: none; }

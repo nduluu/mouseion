@@ -499,11 +499,46 @@ const Work = (() => {
     return div;
   }
 
-  function passageBlock(texts, l) {
+  // Prose: each passage's paragraphs. A printed page that begins inside a
+  // paragraph gets a small inline "p. 12" mark at that point (passage
+  // "pages": [[character offset, page, scan image(, volume)], …]). The text
+  // itself sits in .pt spans, so marking names on selection leaves the
+  // page marks alone.
+  function passageBlock(items, l, p) {
     const div = el("div", "trans");
     div.lang = l;
-    for (const text of texts) for (const para of text.split("\n\n")) div.appendChild(el("p", null, para));
+    for (const item of items) {
+      const marks = (item.pages || []).slice();
+      let base = 0;
+      for (const para of item.text.split("\n\n")) {
+        const node = el("p");
+        let pos = 0;
+        while (marks.length && marks[0][0] <= base + para.length) {
+          const [off, label, scan, vol] = marks.shift();
+          const at = Math.max(0, off - base);
+          if (at > pos) node.appendChild(el("span", "pt", para.slice(pos, at)));
+          pos = at;
+          node.appendChild(inlinePage(p, label, scan, vol));
+        }
+        if (pos < para.length || !node.childNodes.length) node.appendChild(el("span", "pt", para.slice(pos)));
+        div.appendChild(node);
+        base += para.length + 2;
+      }
+    }
     return div;
+  }
+
+  function inlinePage(p, label, scan, vol) {
+    const tpl = p && p.ed && p.ed.text && p.ed.text.pages && p.ed.text.pages.scan;
+    const text = pageLabel(label, vol);
+    const mark = el(tpl && scan ? "a" : "span", "pb-inline", text);
+    if (mark.tagName === "A") {
+      mark.href = tpl.replace("{scan}", scan);
+      mark.target = "_blank";
+      mark.rel = "noopener";
+      mark.title = t("pageScan", { page: text });
+    }
+    return mark;
   }
 
   // A pane's content between original lines [from, end); or all of it.
@@ -511,7 +546,7 @@ const Work = (() => {
     const inRange = ([n]) => n >= from && n < end;
     if (data.passages) {
       const ps = data.passages.filter((x) => x.from >= from && x.from < end);
-      return ps.length ? passageBlock(ps.map((x) => x.text), p.lang) : null;
+      return ps.length ? passageBlock(ps, p.lang, p) : null;
     }
     const lines = data.lines.filter(inRange);
     if (!lines.length) return null;
@@ -583,14 +618,14 @@ const Work = (() => {
       }
       const ps = p.data.passages;
       if (ps.every((x) => x.from == null)) {
-        const block = passageBlock(ps.map((x) => x.text), p.lang);
+        const block = passageBlock(ps, p.lang, p);
         block.dataset.col = col;
         place(block, col, 2, last + 2);
         return;
       }
       ps.forEach((x, i) => {
         const to = i + 1 < ps.length ? ps[i + 1].from - 1 : last;
-        const block = passageBlock([x.text], p.lang);
+        const block = passageBlock([x], p.lang, p);
         block.classList.add("passage");
         block.dataset.col = col;
         block.dataset.from = x.from;
@@ -675,7 +710,7 @@ const Work = (() => {
       const overlaps = from <= hi && to >= lo;
       if (overlaps) { node.classList.add("linked"); marked.push(node); }
       if (keys.size && from <= hi + NEAR && to >= lo - NEAR) {
-        for (const target of node.matches(".line") ? [node.querySelector(".lt")] : node.querySelectorAll("p")) markNames(target, keys);
+        for (const target of node.matches(".line") ? [node.querySelector(".lt")] : node.querySelectorAll("p .pt")) markNames(target, keys);
       }
     }
   }

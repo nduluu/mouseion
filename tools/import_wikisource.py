@@ -13,6 +13,9 @@ Output formats (one file per book, 01.json … 24.json):
           page begins (from the page markers Wikisource puts in the text).
   prose:  {"book": 1, "passages": [{"from": 1, "text": "…"}, …]}
           "from" is the line of the ORIGINAL where the passage starts.
+          With scans, a passage may carry "pages": [[offset, printed page,
+          scan image], …]: the printed page that begins at that character of
+          its text (moved past a word the page break splits, "sacer|dote").
 """
 import html
 import json
@@ -195,6 +198,67 @@ def verse(html_text, volumes=None):
     return out, mismatches
 
 
+# Page markers inside collected prose (private-use characters, never in the texts).
+PB_OPEN, PB_SEP, PB_CLOSE = "\ue000", "\ue002", "\ue001"
+PB_RE = re.compile("\ue000[^\ue001]*\ue001")
+
+
+def finish_pages(data):
+    """Take the page markers out of each passage's text and record them as
+    "pages": [[offset, printed page, scan image], …]. A break inside a word
+    moves to the end of that word. A marker whose id is not a page number
+    (an anchor such as "Cant_I") gets its number from the next marker:
+    printed page = scan image - (that marker's scan image - its page)."""
+    found = []
+    for ps in data["passages"]:
+        text, out, marks = ps["text"], [], []
+        pos = 0
+        for m in PB_RE.finditer(text):
+            out.append(text[pos:m.start()])
+            label, scan = m.group()[1:-1].split(PB_SEP)
+            marks.append([sum(len(x) for x in out), label, int(scan)])
+            pos = m.end()
+        out.append(text[pos:])
+        clean = "".join(out)
+        if clean != clean.strip() or "  " in clean:
+            # a marker between two spaces leaves a double space
+            shift = []
+            fixed = ""
+            for i, ch in enumerate(clean):
+                if ch == " " and (fixed.endswith(" ") or fixed.endswith("\n") or not fixed):
+                    shift.append(i)
+                    continue
+                fixed += ch
+            for mk in marks:
+                mk[0] -= sum(1 for i in shift if i < mk[0])
+            clean = fixed.rstrip()
+        pages = []
+        for off, label, scan in marks:
+            off = min(off, len(clean))
+            if 0 < off < len(clean) and clean[off - 1].isalnum() and clean[off].isalnum():
+                while off < len(clean) and not clean[off].isspace():
+                    off += 1
+                while off < len(clean) and clean[off] == " ":
+                    off += 1
+            if pages and pages[-1][0] == off:
+                pages.pop()
+            pages.append([off, label, scan])
+            found.append(pages[-1])
+        ps["text"] = clean
+        if pages:
+            ps["pages"] = pages
+    for i, pg in enumerate(found):
+        if not re.fullmatch(r"[0-9]+|[ivxlcdm]+|[IVXLCDM]+", pg[1]):
+            nxt = next((q for q in found[i + 1:] if q[1].isdigit()), None)
+            pg[1] = str(pg[2] - (nxt[2] - int(nxt[1]))) if nxt else None
+    for ps in data["passages"]:
+        if "pages" in ps:
+            ps["pages"] = [q for q in ps["pages"] if q[1]]
+            if not ps["pages"]:
+                del ps["pages"]
+    return data
+
+
 class ProseParser(HTMLParser):
     """Paragraphs marked with the original's line number, e.g.
     <span title="I:1" id="I:1">1</span> Canta, oh diosa …"""
@@ -208,11 +272,20 @@ class ProseParser(HTMLParser):
         self.in_marker = False
         self.cur = []
         self.paras = []   # (from or None, text)
+        self.pending = []  # page markers met outside a paragraph
 
     def handle_starttag(self, tag, attrs):
         if tag in VOID:
             return
         a = dict(attrs)
+        cls = (a.get("class") or "").split()
+        if tag == "span" and "pagenum" in cls:
+            # <span class="pagenum" id="12" title="Page:Book.djvu/18">: printed
+            # page 12 begins here. Kept in the text as a marker, read out later.
+            m = re.search(r"/(\d+)$", a.get("title") or "")
+            if m:
+                mark = PB_OPEN + (a.get("id") or "") + PB_SEP + m.group(1) + PB_CLOSE
+                (self.cur if self.in_p else self.pending).append(mark)
         is_marker = tag == "span" and re.fullmatch(r"[IVXL]+:\d+", a.get("title") or "")
         skip = (_skip(attrs) or tag in ("sup", "style", "script")) and not is_marker
         self.stack.append((tag, skip, bool(is_marker)))
@@ -245,8 +318,14 @@ class ProseParser(HTMLParser):
 
     def _end_para(self):
         s = re.sub(r"\s+", " ", "".join(self.cur)).strip()
-        if s:
-            self.paras.append((self.marker, s))
+        marks = PB_RE.findall(s)
+        if not re.search(r"\w", PB_RE.sub("", s).replace("_", "")):
+            # Nothing but page markers (a page that starts before a heading):
+            # they belong to the next paragraph with text.
+            self.pending.extend(marks)
+        elif s:
+            self.paras.append((self.marker, "".join(self.pending) + s))
+            self.pending = []
         self.cur = []
         self.marker = None
 
@@ -255,13 +334,18 @@ def prose(html_text):
     p = ProseParser()
     p.feed(html_text)
     passages = []
+    carry = ""
     for frm, text in p.paras:
         if frm is not None:
-            passages.append({"from": frm, "text": text})
+            passages.append({"from": frm, "text": carry + text})
+            carry = ""
         elif passages:  # unmarked paragraph continues the previous passage
             passages[-1]["text"] += "\n\n" + text
-        # text before the first marker (titles, captions) is dropped
-    return {"passages": passages}
+        else:
+            # text before the first marker (titles, captions) is dropped, but
+            # not the page it starts on
+            carry += "".join(PB_RE.findall(text))
+    return finish_pages({"passages": passages})
 
 
 class PlainParser(ProseParser):
@@ -280,8 +364,8 @@ def plain(html_text):
     Decorative rules ("______", "* * *") are dropped."""
     p = PlainParser()
     p.feed(html_text)
-    paras = [text for _, text in p.paras if re.search(r"\w", text.replace("_", ""))]
-    return {"passages": [{"from": None, "text": text} for text in paras]}
+    paras = [text for _, text in p.paras if re.search(r"\w", PB_RE.sub("", text).replace("_", ""))]
+    return finish_pages({"passages": [{"from": None, "text": text} for text in paras]})
 
 
 def run(name):
