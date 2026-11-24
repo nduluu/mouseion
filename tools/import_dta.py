@@ -5,8 +5,10 @@ Usage:
   python3 -I tools/import_dta.py SOURCE.TEI-P5.xml OUT_DIR [ORIGINAL_DIR]
 
 Books are the <div>s whose heading names a "Gesang" (Erster Gesang …).
-Lines end at <lb/>; a new <p> starts a new paragraph. Running headers (<fw>),
-page breaks (<pb>) and footnotes are dropped; printers' errors marked
+Lines end at <lb/>; a new <p> starts a new paragraph. Running headers (<fw>)
+and footnotes are dropped. Page breaks (<pb n="12" facs="#f0018"/>) are kept as
+"pages": [[first line, printed page, scan image], …], so readers can cite the
+printed book by page and open the scan of that page on the DTA site; printers' errors marked
 <choice><sic/><corr/></choice> keep the correction. The line numbers printed
 in the margin (<note place="right">5</note>) are used to check the count.
 If ORIGINAL_DIR is given, each book's line count is compared with the original.
@@ -57,6 +59,7 @@ class Collector:
         self.lines = []      # strings; "" marks a paragraph break
         self.cur = []
         self.marks = []      # (printed number, index of the line it ends)
+        self.pages = []      # (printed page, scan number, index of the first line on it)
 
     def end_line(self):
         s = re.sub(r"\s+", " ", "".join(self.cur)).strip()
@@ -71,7 +74,11 @@ class Collector:
 
     def walk(self, el):
         name = local(el.tag)
-        if name in ("fw", "pb", "head", "milestone"):
+        if name == "pb":
+            self.pages.append(page_of(el) + (len(self.lines),))
+            self.tail(el)
+            return
+        if name in ("fw", "head", "milestone"):
             self.tail(el)
             return
         if name == "note":
@@ -104,7 +111,13 @@ class Collector:
             self.cur.append(el.tail)
 
 
-def convert(div):
+def page_of(pb):
+    """(printed page or None, scan image number) of a <pb/>."""
+    m = re.search(r"\d+", pb.get("facs", ""))
+    return (pb.get("n"), int(m.group()) if m else None)
+
+
+def convert(div, start_page=None):
     c = Collector()
     for child in div:
         c.walk(child)
@@ -133,20 +146,38 @@ def convert(div):
         lines.append([n, s])
     # Places where the printed numbers disagree with a plain count.
     mismatches = [(p, counted.get(i)) for p, i in c.marks if counted.get(i) not in (p, None)]
-    return {"lines": lines, "breaks": breaks}, mismatches
+    # Each page starts at the first line after its <pb/>; the page the book's
+    # heading stands on (the last <pb/> before the book) covers the opening lines.
+    pages = []
+    marks = ([start_page + (0,)] if start_page else []) + c.pages
+    for label, facs, at in marks:
+        first = next((index_to_n[i] for i in sorted(index_to_n) if i >= at), None)
+        if first is None or label is None:
+            continue
+        if pages and pages[-1][0] == first:
+            pages.pop()      # two breaks before the same line: the later one counts
+        pages.append([first, label, facs])
+    out = {"lines": lines, "breaks": breaks}
+    if pages:
+        out["pages"] = pages
+    return out, mismatches
 
 
 def main(src, out, orig_dir=None):
     root = ET.parse(src).getroot()
     body = root.find(f".//{TEI}body")
-    found = {}
-    for div in body.iter(TEI + "div"):
-        b = book_number(div)
-        if b and b not in found:
-            found[b] = div
+    found, start = {}, {}
+    last_pb = None
+    for el in body.iter():          # document order: remember the page each book starts on
+        if el.tag == TEI + "pb":
+            last_pb = page_of(el)
+        elif el.tag == TEI + "div":
+            b = book_number(el)
+            if b and b not in found:
+                found[b], start[b] = el, last_pb
     os.makedirs(out, exist_ok=True)
     for b in sorted(found):
-        data, mism = convert(found[b])
+        data, mism = convert(found[b], start[b])
         note = ""
         if orig_dir:
             with open(os.path.join(orig_dir, f"{b:02d}.json"), encoding="utf-8") as f:
@@ -154,7 +185,9 @@ def main(src, out, orig_dir=None):
             if data["lines"][-1][0] != last:
                 data["lineCounts"] = {"translation": data["lines"][-1][0], "original": last}
             note = f" (original {last})"
-        print(f"book {b:2d}: {len(data['lines'])} lines, last numbered {data['lines'][-1][0]}{note}"
+        pg = data.get("pages") or [[0, "?"]]
+        print(f"book {b:2d}: {len(data['lines'])} lines, last numbered {data['lines'][-1][0]}{note}, "
+              f"pp. {pg[0][1]}–{pg[-1][1]}"
               + (f"; {len(mism)} printed-number mismatches, first {mism[:3]}" if mism else ""))
         with open(os.path.join(out, f"{b:02d}.json"), "w", encoding="utf-8") as f:
             json.dump({"book": b, **data}, f, ensure_ascii=False, separators=(",", ":"))

@@ -259,9 +259,9 @@ const Work = (() => {
 
   function loadPrefs() {
     try {
-      return { layout: "columns", size: 0, numbers: true, ...JSON.parse(localStorage.getItem(PREFS_KEY) || "{}") };
+      return { layout: "columns", size: 0, numbers: true, pages: true, ...JSON.parse(localStorage.getItem(PREFS_KEY) || "{}") };
     } catch (e) {
-      return { layout: "columns", size: 0, numbers: true };
+      return { layout: "columns", size: 0, numbers: true, pages: true };
     }
   }
 
@@ -399,6 +399,9 @@ const Work = (() => {
       b.setAttribute("aria-pressed", String(b.dataset.layout === prefs.layout));
     });
     $("toggle-numbers").checked = prefs.numbers;
+    $("toggle-pages").checked = prefs.pages;
+    // The page switch only matters when a text on screen records printed pages.
+    $("toggle-pages-wrap").hidden = !state.panes.map(resolvePane).some((p) => p && p.ed && p.ed.text && p.ed.text.pages);
   }
 
   // Add a pane: the next text not yet shown (readable first).
@@ -446,15 +449,44 @@ const Work = (() => {
     return getJSON(base() + ed.text.path + "/" + String(state.book).padStart(2, "0") + ".json");
   }
 
-  function linesBlock(lines, l, cls, col) {
+  // Printed page breaks: data.pages is [[first line, page, scan image], …].
+  // The line a page starts on gets a small "p. 12" mark at its top edge,
+  // linking to the scan of that page where the source offers one.
+  function pageStarts(p) {
+    const m = new Map();
+    if (p.data && p.data.pages) for (const [n, label, scan] of p.data.pages) m.set(n, { label, scan });
+    return m;
+  }
+
+  function pageLabel(label) {
+    return t("pageAbbr") + "\u00a0" + label;
+  }
+
+  function markPage(line, p, pg) {
+    if (!pg) return;
+    line.classList.add("page-start");
+    const tpl = p.ed && p.ed.text && p.ed.text.pages && p.ed.text.pages.scan;
+    const mark = el(tpl && pg.scan ? "a" : "span", "pb", pageLabel(pg.label));
+    if (mark.tagName === "A") {
+      mark.href = tpl.replace("{scan}", pg.scan);
+      mark.target = "_blank";
+      mark.rel = "noopener";
+      mark.title = t("pageScan", { page: pg.label });
+    }
+    line.appendChild(mark);
+  }
+
+  function linesBlock(lines, l, cls, col, p) {
     const div = el("div", cls || "orig");
     div.lang = l;
+    const pages = p ? pageStarts(p) : new Map();
     for (const [n, text] of lines) {
       const line = el("div", "line");
       line.dataset.n = n;
       line.dataset.col = col;
       line.appendChild(el("span", "ln", n % 5 === 0 ? String(n) : ""));
       line.appendChild(el("span", "lt", text));
+      markPage(line, p, pages.get(n));
       div.appendChild(line);
     }
     return div;
@@ -476,7 +508,7 @@ const Work = (() => {
     }
     const lines = data.lines.filter(inRange);
     if (!lines.length) return null;
-    return linesBlock(lines, p.lang, p.kind === "orig" ? "orig" : "trans verse", p.col);
+    return linesBlock(lines, p.lang, p.kind === "orig" ? "orig" : "trans verse", p.col, p);
   }
 
   // Where rows break: the first text with passages or stanza breaks sets the
@@ -529,6 +561,7 @@ const Work = (() => {
 
       if (p.data.lines) {
         const cls = p.kind === "orig" ? "line orig" : "line trans verse";
+        const pages = pageStarts(p);
         for (const [n, text] of p.data.lines) {
           const line = el("div", cls);
           line.lang = p.lang;
@@ -536,6 +569,7 @@ const Work = (() => {
           line.dataset.col = col;
           line.appendChild(el("span", "ln", n % 5 === 0 ? String(n) : ""));
           line.appendChild(el("span", "lt", text));
+          markPage(line, p, pages.get(n));
           place(line, col, n + 1);
         }
         return;
@@ -661,7 +695,7 @@ const Work = (() => {
     if (token !== renderToken) return; // a newer render started meanwhile
     reader.textContent = "";
     reader.removeAttribute("aria-busy");
-    reader.className = "reader " + prefs.layout + (prefs.numbers ? "" : " no-numbers");
+    reader.className = "reader " + prefs.layout + (prefs.numbers ? "" : " no-numbers") + (prefs.pages ? "" : " no-pages");
     reader.style.setProperty("--panes", panes.length);
     reader.style.setProperty("--reader-scale", String(1 + prefs.size * 0.12));
 
@@ -969,6 +1003,11 @@ const Work = (() => {
       prefs.numbers = e.target.checked;
       savePrefs();
       $("reader").classList.toggle("no-numbers", !prefs.numbers);
+    });
+    $("toggle-pages").addEventListener("change", (e) => {
+      prefs.pages = e.target.checked;
+      savePrefs();
+      $("reader").classList.toggle("no-pages", !prefs.pages);
     });
     $("add-pane").addEventListener("click", () => addPane());
     let selTimer;

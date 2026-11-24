@@ -9,3 +9,10 @@
 All files here are adaptations (converted with `tools/import_perseus.py` and
 `tools/import_dta.py`) shared under CC BY-SA 4.0. Voss's lines are numbered by
 the margin numbers printed in his edition, which follow the Greek line numbers.
+
+Voss's files also record the pages of the printed 1781 edition:
+`"pages": [[first line, printed page, scan image], …]`, taken from the DTA's
+`<pb n="…" facs="#f…"/>` page breaks. Unnumbered pages keep the DTA's square
+brackets (`"[9]"`). The scan image number opens that page on the DTA site
+(`work.json` → `text.pages.scan`), so a citation by page can be checked against
+the original print.

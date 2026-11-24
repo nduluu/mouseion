@@ -353,7 +353,11 @@
         "format": "verse",
         "align": "lines",
         "source": "Deutsches Textarchiv, Berlin-Brandenburgische Akademie der Wissenschaften (CC BY-SA 4.0)",
-        "sourceUrl": "https://www.deutschestextarchiv.de/book/show/voss_oduessee_1781"
+        "sourceUrl": "https://www.deutschestextarchiv.de/book/show/voss_oduessee_1781",
+        "pages": {
+          "edition": "Hamburg 1781",
+          "scan": "https://www.deutschestextarchiv.de/book/view/voss_oduessee_1781?p={scan}"
+        }
       }
     },
     {

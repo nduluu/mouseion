@@ -152,7 +152,8 @@ const Download = (() => {
     const books = [];
     for (const n of numbers) {
       const d = await bookData(ed, n);
-      books.push({ n, label: bookLabel(n), lines: d.lines || null, passages: d.passages || null });
+      books.push({ n, label: bookLabel(n), lines: d.lines || null, passages: d.passages || null,
+        pages: new Map((d.pages || []).map(([line, label]) => [line, label])) });
     }
     const creators = (ed.creators || []).map((c) => c.name + (c.died ? " (†" + c.died + ")" : "")).join(", ");
     const country = Rights.countryName(Rights.country(), lang());
@@ -171,6 +172,8 @@ const Download = (() => {
       sourceUrl: ed.text.sourceUrl,
       credit: digital.charAt(0).toUpperCase() + digital.slice(1) + " " + ed.text.source + ".",
       licence: t("dlLicence"),
+      pagesNote: ed.text.pages ? t("dlPagesNote", { edition: ed.text.pages.edition }) : "",
+      page: (label) => "[" + t("pageAbbr") + "\u00a0" + String(label).replace(/^\[(.*)\]$/, "$1") + "]",
       pd: t("pdIn", { country }),
       from: t("dlFromMouseion", { date: today }),
       books,
@@ -188,6 +191,7 @@ const Download = (() => {
       doc.credit,
       doc.sourceUrl,
       doc.licence,
+      ...(doc.pagesNote ? [doc.pagesNote] : []),
       doc.pd,
       doc.from,
     ];
@@ -200,7 +204,10 @@ const Download = (() => {
     for (const b of doc.books) {
       out.push("", "=".repeat(40), b.label, "=".repeat(40), "");
       if (b.lines) {
-        for (const [n, text] of b.lines) out.push((n % 5 === 0 ? String(n) : "").padStart(5) + "  " + text);
+        for (const [n, text] of b.lines) {
+          if (b.pages.has(n)) out.push(" ".repeat(7) + doc.page(b.pages.get(n)));
+          out.push((n % 5 === 0 ? String(n) : "").padStart(5) + "  " + text);
+        }
       } else {
         for (const ps of b.passages) {
           const paras = ps.text.split("\n\n");
@@ -213,10 +220,11 @@ const Download = (() => {
 
   // ---------- HTML of the text (for print and EPUB) ----------
 
-  function bookHtml(b) {
+  function bookHtml(b, doc) {
     let h = "<h2>" + esc(b.label) + "</h2>\n";
     if (b.lines) {
       for (const [n, text] of b.lines) {
+        if (b.pages.has(n)) h += '<p class="pgb">' + esc(doc.page(b.pages.get(n))) + "</p>\n";
         h += '<p class="l"><span class="n">' + (n % 5 === 0 ? n : "") + "</span>" + esc(text) + "</p>\n";
       }
     } else {
@@ -236,7 +244,7 @@ const Download = (() => {
       '<p class="ed">' + esc(doc.title) + "</p>\n" +
       (doc.creators ? '<p class="by">' + esc(doc.creators) + (doc.date ? ", " + esc(doc.date) : "") + "</p>\n" : "") +
       '<div class="credits"><p>' + esc(doc.credit) + "<br/>" + esc(doc.sourceUrl) + "</p><p>" + esc(doc.licence) +
-      "</p><p>" + esc(doc.pd) + "</p><p>" + esc(doc.from) + "</p></div>\n";
+      (doc.pagesNote ? "</p><p>" + esc(doc.pagesNote) : "") + "</p><p>" + esc(doc.pd) + "</p><p>" + esc(doc.from) + "</p></div>\n";
   }
 
   // ---------- print / PDF ----------
@@ -266,7 +274,7 @@ const Download = (() => {
     a.className = "print-doc";
     a.lang = doc.lang;
     a.innerHTML = '<section class="title-page">' + titleHtml(doc) + "</section>" +
-      doc.books.map((b) => '<section class="book">' + bookHtml(b) + "</section>").join("");
+      doc.books.map((b) => '<section class="book">' + bookHtml(b, doc) + "</section>").join("");
     doPrint();
   }
 
@@ -297,9 +305,9 @@ const Download = (() => {
       "<head><meta charset=\"UTF-8\"/><title>" + esc(title) + '</title><link rel="stylesheet" href="style.css"/></head>\n<body>\n' + body + "</body>\n</html>\n";
     files.push(["mimetype", "application/epub+zip"]);
     files.push(["META-INF/container.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<container version="1.0" xmlns="urn:oasis:names:tc:opendocument:xmlns:container"><rootfiles><rootfile full-path="OEBPS/content.opf" media-type="application/oebps-package+xml"/></rootfiles></container>\n']);
-    files.push(["OEBPS/style.css", "body{font-family:serif;line-height:1.5}h1,h2{text-align:center}p{margin:0 0 .8em}p.l{margin:0;padding-left:3em;text-indent:-3em}.n{display:inline-block;width:3em;text-indent:0;font-size:.7em;color:#888}.ref{font-size:.7em;color:#888}.credits{margin-top:3em;font-size:.8em}.orig-title,.ed,.by{text-align:center}\n"]);
+    files.push(["OEBPS/style.css", "body{font-family:serif;line-height:1.5}h1,h2{text-align:center}p{margin:0 0 .8em}p.l{margin:0;padding-left:3em;text-indent:-3em}.n{display:inline-block;width:3em;text-indent:0;font-size:.7em;color:#888}.ref{font-size:.7em;color:#888}p.pgb{margin:.4em 0 .2em;text-align:right;font-size:.7em;color:#888}.credits{margin-top:3em;font-size:.8em}.orig-title,.ed,.by{text-align:center}\n"]);
     files.push(["OEBPS/title.xhtml", xhtml(doc.workTitle, titleHtml(doc))]);
-    doc.books.forEach((b, i) => files.push(["OEBPS/book" + (i + 1) + ".xhtml", xhtml(b.label, bookHtml(b))]));
+    doc.books.forEach((b, i) => files.push(["OEBPS/book" + (i + 1) + ".xhtml", xhtml(b.label, bookHtml(b, doc))]));
     const nav = '<nav epub:type="toc"><h1>' + esc(doc.workTitle) + "</h1><ol>" +
       doc.books.map((b, i) => '<li><a href="book' + (i + 1) + '.xhtml">' + esc(b.label) + "</a></li>").join("") + "</ol></nav>\n";
     files.push(["OEBPS/nav.xhtml", xhtml(doc.workTitle, nav)]);
