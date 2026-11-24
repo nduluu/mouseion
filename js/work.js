@@ -460,7 +460,7 @@ const Work = (() => {
   // linking to the scan of that page where the source offers one.
   function pageStarts(p) {
     const m = new Map();
-    if (p.data && p.data.pages) for (const [n, label, scan, vol] of p.data.pages) m.set(n, { label: pageLabel(label, vol), scan });
+    if (p.data && p.data.pages) for (const [n, label, scan, vol] of p.data.pages) m.set(n, { label: pageLabel(label, vol), page: label, vol, scan });
     return m;
   }
 
@@ -474,6 +474,8 @@ const Work = (() => {
     line.classList.add("page-start");
     const tpl = p.ed && p.ed.text && p.ed.text.pages && p.ed.text.pages.scan;
     const mark = el(tpl && pg.scan ? "a" : "span", "pb", pg.label);
+    mark.dataset.page = pg.page;
+    if (pg.vol) mark.dataset.vol = pg.vol;
     if (mark.tagName === "A") {
       mark.href = tpl.replace("{scan}", pg.scan);
       mark.target = "_blank";
@@ -507,6 +509,7 @@ const Work = (() => {
   function passageBlock(items, l, p) {
     const div = el("div", "trans");
     div.lang = l;
+    if (p && p.col != null) div.dataset.col = p.col;
     for (const item of items) {
       const marks = (item.pages || []).slice();
       let base = 0;
@@ -532,6 +535,8 @@ const Work = (() => {
     const tpl = p && p.ed && p.ed.text && p.ed.text.pages && p.ed.text.pages.scan;
     const text = pageLabel(label, vol);
     const mark = el(tpl && scan ? "a" : "span", "pb-inline", text);
+    mark.dataset.page = label;
+    if (vol) mark.dataset.vol = vol;
     if (mark.tagName === "A") {
       mark.href = tpl.replace("{scan}", scan);
       mark.target = "_blank";
@@ -1134,7 +1139,131 @@ const Work = (() => {
     return w;
   }
 
-  async function render(id) {
+  // ---------- Links to a passage ----------
+  // #/work/iliad?text=t:monti&book=1&line=7&to=10, or &page=12&vol=II for
+  // prose without line numbers. The text is added to the reader if needed,
+  // the passage scrolled to (or its page shown) and highlighted for a moment.
+  function readTarget(params) {
+    if (!params || !params.get("book")) return null;
+    const book = Number(params.get("book"));
+    if (!(book >= 1 && book <= 24)) return null;
+    const text = params.get("text");
+    const p = text && resolvePane(text);
+    return {
+      book,
+      text: p && p.st === "read" ? text : null,
+      line: Number(params.get("line")) || null,
+      to: Number(params.get("to")) || null,
+      page: params.get("page"),
+      vol: params.get("vol"),
+    };
+  }
+
+  function applyTarget(tg) {
+    state.book = tg.book;
+    if (tg.text && !state.panes.includes(tg.text)) {
+      state.panes.splice(Math.min(1, state.panes.length), 0, tg.text);
+      state.panes = state.panes.slice(0, MAX_PANES);
+    }
+  }
+
+  function colOf(n) {
+    const e = n && (n.nodeType === 1 ? n : n.parentElement);
+    const c = e && e.closest("[data-col]");
+    return c ? Number(c.dataset.col) : null;
+  }
+
+  function revealTarget(tg) {
+    const reader = $("reader");
+    const col = tg.text ? state.panes.indexOf(tg.text) : 0;
+    const inCol = (sel) => [...reader.querySelectorAll(sel)].filter((n) => colOf(n) === col);
+    let nodes = [];
+    if (tg.line) {
+      const to = Math.max(tg.line, tg.to || tg.line);
+      nodes = inCol(".line").filter((n) => +n.dataset.n >= tg.line && +n.dataset.n <= to);
+      if (!nodes.length) {
+        const ps = inCol("[data-from]").filter((n) => +n.dataset.from <= tg.line);
+        if (ps.length) nodes = [ps[ps.length - 1]];
+      }
+    }
+    if (!nodes.length && tg.page) {
+      const m = inCol(".pb, .pb-inline").find((x) => x.dataset.page === tg.page && (!tg.vol || x.dataset.vol === tg.vol));
+      if (m) nodes = [m.closest(".line") || m.closest("p") || m];
+    }
+    if (!nodes.length) return;
+    for (const n of nodes) n.classList.add("cited");
+    setTimeout(() => nodes.forEach((n) => n.classList.remove("cited")), 4000);
+    if (paged()) {
+      showPage(pageOf({ node: nodes[0] }));
+      $("reader").scrollIntoView({ block: "start" });
+    } else {
+      nodes[0].scrollIntoView({ block: "center" });
+    }
+  }
+
+  // Where a point of the text is: its line (or passage) and printed page.
+  function pageAt(col, node, offset) {
+    const reader = $("reader");
+    const el0 = node.nodeType === 1 ? node : node.parentElement;
+    const lineEl = el0.closest(".line");
+    let found = null;
+    for (const m of reader.querySelectorAll(".pb, .pb-inline")) {
+      if (colOf(m) !== col) continue;
+      let before;
+      const ml = m.closest(".line");
+      if (ml && lineEl) before = +ml.dataset.n <= +lineEl.dataset.n;
+      else {
+        const r = document.createRange();
+        r.setStartBefore(ml || m);
+        before = r.comparePoint(node, offset) >= 0;
+      }
+      if (before) found = m;
+    }
+    return found ? { page: found.dataset.page, vol: found.dataset.vol || null } : null;
+  }
+
+  function pointInfo(col, node, offset) {
+    const e = node.nodeType === 1 ? node : node.parentElement;
+    const line = e.closest(".line");
+    const passage = e.closest("[data-from]");
+    return {
+      line: line ? Number(line.dataset.n) : null,
+      from: passage ? Number(passage.dataset.from) : null,
+      page: pageAt(col, node, offset),
+    };
+  }
+
+  // The first line or paragraph of a text that is in view.
+  function visibleStart(col) {
+    const reader = $("reader");
+    const top = Math.max(reader.getBoundingClientRect().top, 0);
+    for (const n of reader.querySelectorAll(".line, .trans p")) {
+      if (colOf(n) !== col) continue;
+      const r = n.getBoundingClientRect();
+      if (r.height && r.top >= top - 2) return n;
+    }
+    return null;
+  }
+
+  // For the Cite dialog: the passage selected (a Range in the reader), or
+  // else what is at the top of the view, in the text of column col.
+  function locate(range, col) {
+    if (range) {
+      const c = colOf(range.startContainer);
+      if (c != null && (col == null || c === col)) {
+        const a = pointInfo(c, range.startContainer, range.startOffset);
+        const b = pointInfo(c, range.endContainer, range.endOffset);
+        return { col: c, selected: true, start: a, end: b };
+      }
+    }
+    if (col == null) col = state.panes.findIndex((id) => { const p = resolvePane(id); return p && p.st === "read"; });
+    const n = col >= 0 && visibleStart(col);
+    if (!n) return { col, selected: false, start: null, end: null };
+    const a = pointInfo(col, n, 0);
+    return { col, selected: false, start: a, end: a };
+  }
+
+  async function render(id, params) {
     const page = $("work");
     try {
       const [raw, tr] = await Promise.all([
@@ -1150,6 +1279,8 @@ const Work = (() => {
       state = { workId: id, panes: [], book: 1, selected: "omega" };
       choosePanes();
     }
+    const target = readTarget(params);
+    if (target) applyTarget(target);
     renderHeader();
     renderPaneBar();
     fillBookSelect();
@@ -1157,6 +1288,7 @@ const Work = (() => {
     renderStemma();
     renderDetail();
     await renderReader();
+    if (target) revealTarget(target);
   }
 
   function rerender() {
@@ -1271,7 +1403,8 @@ const Work = (() => {
     book: () => state.book,
     panes: () => state.panes.slice(),
     t, pick, lang, langName, status, resolvePane, shortName, optionLabel,
-    pageLabel,
+    pageLabel, locate,
+    reader: () => $("reader"),
     bookLabel: (n) => t("book") + " " + n + " · " + (work.bookLetters || BOOK_LETTERS)[n - 1],
     bookData: (ed, n) => getJSON(base() + ed.text.path + "/" + String(n).padStart(2, "0") + ".json"),
   };

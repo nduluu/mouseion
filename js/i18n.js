@@ -779,3 +779,40 @@ Object.assign(I18N.ru, {
   };
   for (const l in S) Object.assign(I18N[l], S[l]);
 })();
+
+// Cite dialog.
+(() => {
+  const S = {
+    en: { citeLinesShort: "ll.", cite: "Cite", citeTitle: "Cite this passage", citePassage: "Passage", citeLines: "Lines", citeLineFrom: "First line",
+      citeLineTo: "Last line (optional)", citeStyle: "Citation style", styleShort: "Short", citeLink: "Link to this passage",
+      copyLink: "Copy link", copy: "Copy reference", copied: "Copied.", copyFailed: "Couldn’t copy. Select the text and copy it yourself.",
+      close: "Close", citeHint: "Tip: select words in the reader first to cite exactly that passage.",
+      citeFromSelection: "From the text you selected.", citeEdBy: "ed.", citeTransBy: "trans." },
+    de: { citeLinesShort: "V.", cite: "Zitieren", citeTitle: "Diese Stelle zitieren", citePassage: "Stelle", citeLines: "Verse", citeLineFrom: "Erster Vers",
+      citeLineTo: "Letzter Vers (optional)", citeStyle: "Zitierstil", styleShort: "Kurz", citeLink: "Link zu dieser Stelle",
+      copyLink: "Link kopieren", copy: "Zitat kopieren", copied: "Kopiert.", copyFailed: "Kopieren nicht möglich. Bitte den Text markieren und selbst kopieren.",
+      close: "Schließen", citeHint: "Tipp: Markieren Sie zuerst Wörter im Text, um genau diese Stelle zu zitieren.",
+      citeFromSelection: "Aus dem markierten Text.", citeEdBy: "hrsg. von", citeTransBy: "übers. von" },
+    fr: { citeLinesShort: "v.", cite: "Citer", citeTitle: "Citer ce passage", citePassage: "Passage", citeLines: "Vers", citeLineFrom: "Premier vers",
+      citeLineTo: "Dernier vers (facultatif)", citeStyle: "Style de citation", styleShort: "Court", citeLink: "Lien vers ce passage",
+      copyLink: "Copier le lien", copy: "Copier la référence", copied: "Copié.", copyFailed: "Copie impossible. Sélectionnez le texte et copiez-le vous-même.",
+      close: "Fermer", citeHint: "Astuce : sélectionnez d’abord des mots dans le texte pour citer exactement ce passage.",
+      citeFromSelection: "D’après le texte sélectionné.", citeEdBy: "éd.", citeTransBy: "trad." },
+    it: { citeLinesShort: "vv.", cite: "Cita", citeTitle: "Cita questo passo", citePassage: "Passo", citeLines: "Versi", citeLineFrom: "Primo verso",
+      citeLineTo: "Ultimo verso (facoltativo)", citeStyle: "Stile di citazione", styleShort: "Breve", citeLink: "Link a questo passo",
+      copyLink: "Copia il link", copy: "Copia la citazione", copied: "Copiato.", copyFailed: "Impossibile copiare. Seleziona il testo e copialo tu.",
+      close: "Chiudi", citeHint: "Suggerimento: seleziona prima delle parole nel testo per citare esattamente quel passo.",
+      citeFromSelection: "Dal testo selezionato.", citeEdBy: "a cura di", citeTransBy: "trad." },
+    es: { citeLinesShort: "vv.", cite: "Citar", citeTitle: "Citar este pasaje", citePassage: "Pasaje", citeLines: "Versos", citeLineFrom: "Primer verso",
+      citeLineTo: "Último verso (opcional)", citeStyle: "Estilo de cita", styleShort: "Breve", citeLink: "Enlace a este pasaje",
+      copyLink: "Copiar enlace", copy: "Copiar la referencia", copied: "Copiado.", copyFailed: "No se pudo copiar. Selecciona el texto y cópialo tú.",
+      close: "Cerrar", citeHint: "Consejo: selecciona primero palabras en el texto para citar exactamente ese pasaje.",
+      citeFromSelection: "Según el texto seleccionado.", citeEdBy: "ed.", citeTransBy: "trad." },
+    ru: { citeLinesShort: "ст.", cite: "Цитировать", citeTitle: "Цитировать этот отрывок", citePassage: "Отрывок", citeLines: "Стихи", citeLineFrom: "Первый стих",
+      citeLineTo: "Последний стих (необязательно)", citeStyle: "Стиль цитирования", styleShort: "Кратко", citeLink: "Ссылка на этот отрывок",
+      copyLink: "Копировать ссылку", copy: "Копировать ссылку на источник", copied: "Скопировано.", copyFailed: "Не удалось скопировать. Выделите текст и скопируйте его сами.",
+      close: "Закрыть", citeHint: "Совет: сначала выделите слова в тексте, чтобы процитировать именно этот отрывок.",
+      citeFromSelection: "По выделенному тексту.", citeEdBy: "под ред.", citeTransBy: "пер." },
+  };
+  for (const l in S) Object.assign(I18N[l], S[l]);
+})();

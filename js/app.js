@@ -298,7 +298,7 @@
     if (name === "account") renderAccount();
     if (name === "home" && window.TimeCal) TimeCal.onShow();
     if (name === "search" && window.Search) Search.run(params.get("q"));
-    if (name === "work" && window.Work) Work.render(args[0]);
+    if (name === "work" && window.Work) Work.render(args[0], params);
     window.scrollTo(0, 0);
   }
 

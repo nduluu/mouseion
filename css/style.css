@@ -1455,3 +1455,30 @@ a.pb:hover, a.pb:focus-visible { color: var(--ink); border-color: var(--ink); }
 .trans p > .pb-inline:first-child { margin-left: 0; }
 a.pb-inline:hover, a.pb-inline:focus-visible { color: var(--ink); border-color: var(--ink); }
 .reader.no-pages .pb-inline { display: none; }
+
+/* ---------- Cite dialog ---------- */
+.cite-dialog { width: min(40rem, calc(100vw - 2rem)); }
+.cite-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; }
+.cite-book { font-weight: 500; }
+.cite-lines { display: inline-flex; align-items: center; gap: 0.2rem; }
+.cite-lines[hidden] { display: none; }
+.cite-lines input { width: 5.5rem; font: inherit; padding: 0.35rem 0.5rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--paper); color: var(--ink); }
+.cite-hint { margin: 0.2rem 0 0; }
+.cite-styles { margin: 0 0 0.6rem; flex-wrap: wrap; }
+.cite-out {
+  padding: 0.8rem 0.9rem;
+  margin: 0 0 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background: color-mix(in srgb, var(--ink) 4%, var(--paper));
+  font-size: 0.92rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  user-select: all;
+  -webkit-user-select: all;
+}
+.cite-out.is-code pre { margin: 0; font-size: 0.8rem; white-space: pre-wrap; }
+.cite-link input { font: inherit; font-size: 0.85rem; padding: 0.4rem 0.55rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--paper); color: var(--muted); width: 100%; box-sizing: border-box; }
+.cite-dialog .dl-actions { flex-wrap: wrap; }
+/* A passage opened from a link is highlighted for a moment. */
+.cited { background: color-mix(in srgb, #f2c94c 35%, transparent); transition: background 1.2s; }
