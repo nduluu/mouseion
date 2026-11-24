@@ -42,7 +42,10 @@ const M = (() => {
       name = new Intl.DisplayNames([lang(), "en"], { type: "language" }).of(code);
     } catch (e) { /* use fallback */ }
     if (name && name !== code) return name;
-    return EXTRA_LANGS[code] ? pick(EXTRA_LANGS[code]) : code;
+    if (EXTRA_LANGS[code]) return pick(EXTRA_LANGS[code]);
+    // The browser has no name for some languages (e.g. Santali, N'Ko): use the endonym from the language list.
+    const known = typeof LANGUAGES !== "undefined" && LANGUAGES.find((l) => l.c === code);
+    return known ? known.n : code;
   }
 
   // ---------- the catalogue (built by tools/build_catalog.py) ----------
