@@ -1,8 +1,8 @@
 // The six category pages behind the home buttons, plus author pages.
-//   #/authors                 all authors
-//   #/author/<id>             one author: names, dates, works
-//   #/browse/<cat>            terms of a category (era, genre, field, religion, language)
-//   #/browse/<cat>/<term>     the works filed under one term
+//   /authors                 all authors
+//   /author/<id>             one author: names, dates, works
+//   /browse/<cat>            terms of a category (era, genre, field, religion, language)
+//   /browse/<cat>/<term>     the works filed under one term
 const Browse = (() => {
   const { t, pick, el, langName, catalog, termName, workCard, authorCard } = M;
 

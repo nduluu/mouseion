@@ -3,6 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Where the site lives on its server; "/" at the root of a domain. -->
+  <meta name="mouseion-root" content="/">
+  <!-- Styles, scripts and data are read from the site's root, whatever page
+       address is open (/iliad/ita-monti/1/7). Keep in step with the line above. -->
+  <base href="/">
+  <script>
+    // Plain addresses (/iliad/ita-monti/1/7) when the site is opened directly
+    // over http(s); "#/…" addresses inside an embedded preview, whose server
+    // can't answer them. There files are read next to the page instead.
+    (function () {
+      var m = document.querySelector('meta[name="mouseion-root"]');
+      var root = (m && m.content) || "/";
+      var path = window.top === window && /^https?:$/.test(location.protocol);
+      window.MOUSEION_ROUTING = { mode: path ? "path" : "hash", root: root };
+      if (!path) document.querySelector("base").href = location.href.split("#")[0];
+    })();
+  </script>
   <title>Mouseion</title>
   <link rel="stylesheet" href="css/style.css?v=37">
   <script>
@@ -341,17 +358,18 @@
     </footer>
   </div>
 
+  <script src="js/router.js?v=2"></script>
   <script src="js/languages.js?v=21"></script>
   <script src="js/i18n.js?v=36"></script>
   <script src="js/timecal.js?v=20"></script>
   <script src="js/mapviewer.js?v=20"></script>
   <script src="js/common.js?v=3"></script>
   <script src="js/rights.js?v=21"></script>
-  <script src="js/work.js?v=36"></script>
+  <script src="js/work.js?v=37"></script>
   <script src="js/download.js?v=4"></script>
-  <script src="js/cite.js?v=2"></script>
-  <script src="js/search.js?v=23"></script>
+  <script src="js/cite.js?v=3"></script>
+  <script src="js/search.js?v=24"></script>
   <script src="js/browse.js?v=4"></script>
-  <script src="js/app.js?v=27"></script>
+  <script src="js/app.js?v=28"></script>
 </body>
 </html>

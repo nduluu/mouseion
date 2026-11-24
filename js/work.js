@@ -1144,10 +1144,17 @@ const Work = (() => {
   // prose without line numbers. The text is added to the reader if needed,
   // the passage scrolled to (or its page shown) and highlighted for a moment.
   function readTarget(params) {
-    if (!params || !params.get("book")) return null;
-    const book = Number(params.get("book"));
+    if (!params || !(params.get("book") || params.get("slug"))) return null;
+    const book = Number(params.get("book") || 1);
     if (!(book >= 1 && book <= 24)) return null;
-    const text = params.get("text");
+    let text = params.get("text");
+    const slug = params.get("slug");
+    if (slug) {
+      // A text named by its folder (texts/ita-monti → "ita-monti").
+      const hit = [...work.nodes.map((n) => ["o:" + n.id, n]), ...work.translations.map((x) => ["t:" + x.id, x])]
+        .find(([, e]) => e.text && e.text.path && e.text.path.split("/").pop() === slug);
+      text = hit ? hit[0] : null;
+    }
     const p = text && resolvePane(text);
     return {
       book,
@@ -1156,7 +1163,18 @@ const Work = (() => {
       to: Number(params.get("to")) || null,
       page: params.get("page"),
       vol: params.get("vol"),
+      slug: text ? resolvePane(text).ed.text.path.split("/").pop() : null,
     };
+  }
+
+  // The canonical address of a target, e.g. /iliad/ita-monti/1/7-10.
+  function targetRoute(tg) {
+    let r = "/" + work.id;
+    if (!tg || !tg.slug) return r;
+    r += "/" + tg.slug + "/" + tg.book;
+    if (tg.line) r += "/" + tg.line + (tg.to && tg.to !== tg.line ? "-" + tg.to : "");
+    else if (tg.page) r += "/" + (tg.vol ? tg.vol + "-" : "") + "p" + encodeURIComponent(tg.page);
+    return r;
   }
 
   function applyTarget(tg) {
@@ -1281,6 +1299,9 @@ const Work = (() => {
     }
     const target = readTarget(params);
     if (target) applyTarget(target);
+    // Show the canonical address (an old "?text=…" link becomes /iliad/ita-monti/1/7).
+    Router.go(target ? targetRoute(target) : "/" + work.id, true);
+    document.title = (pick(work.titles) || work.id) + " — Mouseion";
     renderHeader();
     renderPaneBar();
     fillBookSelect();
@@ -1384,10 +1405,13 @@ const Work = (() => {
       clearTimeout(selTimer);
       selTimer = setTimeout(syncSelection, 120);
     });
-    $("ed-book").addEventListener("change", (e) => { state.book = Number(e.target.value); renderReader(); });
+    // Once the reader moves on, the address no longer names a passage.
+    const leavePassage = () => { if (work) Router.go("/" + work.id, true); };
+    $("ed-book").addEventListener("change", (e) => { state.book = Number(e.target.value); leavePassage(); renderReader(); });
     const step = (d) => {
       state.book = Math.min(24, Math.max(1, state.book + d));
       $("ed-book").value = state.book;
+      leavePassage();
       renderReader();
       $("reader-panel").scrollIntoView({ block: "start" });
     };

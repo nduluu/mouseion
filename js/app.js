@@ -294,6 +294,7 @@
     let name = ALIASES[route] || route;
     if (!VIEWS[name]) name = route = "home";
     for (const v in VIEWS) VIEWS[v].hidden = v !== name;
+    document.title = "Mouseion"; // a work page sets its own title
     if (name === "browse" && window.Browse) Browse.render(route, args);
     if (name === "account") renderAccount();
     if (name === "home" && window.TimeCal) TimeCal.onShow();
@@ -302,18 +303,35 @@
     window.scrollTo(0, 0);
   }
 
-  // Hashes look like "#/view", "#/view/arg" or "#/view?key=value"
-  // (e.g. "#/work/iliad", "#/search?q=homer").
+  // Routes (see js/router.js): "/view", "/view/arg", "/view?key=value", or a
+  // work: "/iliad[/text[/book[/lines or pPage]]]", e.g. "/iliad/ita-monti/1/7-10".
   function routeFromHash() {
-    const [path, query] = location.hash.replace(/^#\/?/, "").split("?");
-    const [name, ...args] = path.split("/");
-    if (name === "work" && !args[0]) return showView("home");
-    showView(VIEWS[name] || ALIASES[name] ? name : "home", new URLSearchParams(query || ""), args);
+    const [path, query] = Router.current().split("?");
+    let segs = path.split("/").filter(Boolean);
+    try { segs = segs.map(decodeURIComponent); } catch (e) { /* keep as is */ }
+    const params = new URLSearchParams(query || "");
+    if (!segs.length) return showView("home", params, []);
+    const [name, ...args] = segs;
+    if (name === "work") return args[0] ? showView("work", params, args) : showView("home", params, []);
+    if (VIEWS[name] || ALIASES[name]) return showView(name, params, args);
+    // Anything else names a work.
+    const [text, book, ref] = args;
+    if (text) params.set("slug", text);
+    if (book) params.set("book", book);
+    let m;
+    if (ref && (m = ref.match(/^(\d+)(?:-(\d+))?$/))) {
+      params.set("line", m[1]);
+      if (m[2]) params.set("to", m[2]);
+    } else if (ref && (m = ref.match(/^(?:([IVXLC]+)-)?p(.+)$/i))) {
+      params.set("page", m[2]);
+      if (m[1]) params.set("vol", m[1].toUpperCase());
+    }
+    showView("work", params, [name]);
   }
 
-  window.addEventListener("hashchange", routeFromHash);
-  accountBtn.addEventListener("click", () => { location.hash = "#/account"; });
-  document.getElementById("back-btn").addEventListener("click", () => { location.hash = "#/home"; });
+  Router.onChange(routeFromHash);
+  accountBtn.addEventListener("click", () => Router.go("/account"));
+  document.getElementById("back-btn").addEventListener("click", () => Router.go("/"));
 
   // Missing name or email: a message in the visitor's language under the
   // box, and the box outlined in red, until it is filled in.

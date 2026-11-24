@@ -97,17 +97,14 @@ const Cite = (() => {
     };
   }
 
+  // The passage's permanent address: /iliad/ita-monti/1/8-10, or
+  // /iliad/fra-leconte/1/p5 (II-p12 with a volume) for prose without lines.
   function link(f) {
-    const q = new URLSearchParams({ text: f.p.id, book: String(f.book) });
-    if (f.lineFrom) {
-      q.set("line", String(f.lineFrom));
-      if (f.lineTo && f.lineTo !== f.lineFrom) q.set("to", String(f.lineTo));
-    } else if (f.pageFrom) {
-      q.set("page", f.pageFrom.page);
-      if (f.pageFrom.vol) q.set("vol", f.pageFrom.vol);
-    }
-    const base = location.href.split("#")[0];
-    return base + "#/work/" + W().work().id + "?" + q.toString();
+    const slug = f.ed.text.path.split("/").pop();
+    let r = "/" + W().work().id + "/" + slug + "/" + f.book;
+    if (f.lineFrom) r += "/" + f.lineFrom + (f.lineTo && f.lineTo !== f.lineFrom ? "-" + f.lineTo : "");
+    else if (f.pageFrom) r += "/" + (f.pageFrom.vol ? f.pageFrom.vol + "-" : "") + "p" + encodeURIComponent(f.pageFrom.page);
+    return Router.absolute(r);
   }
 
   // "1.7–10": book and line(s) in the original's numbering.

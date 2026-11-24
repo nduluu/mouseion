@@ -45,9 +45,7 @@ const Search = (() => {
   function go(q) {
     q = (q || "").trim();
     if (!q) return;
-    const hash = "#/search?q=" + encodeURIComponent(q);
-    if (location.hash === hash) run(q); // same address: no hashchange, so re-run here
-    else location.hash = hash;
+    Router.go("/search?q=" + encodeURIComponent(q));
   }
 
   function init() {
