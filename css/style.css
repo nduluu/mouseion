@@ -507,7 +507,7 @@ html[dir="rtl"] .map-track { animation-direction: reverse; }
   font-size: 0.9rem;
   font-family: inherit;
   color: var(--ink);
-  background: var(--paper);
+  background-color: var(--paper);
   border: 1px solid var(--line);
   border-radius: 0.5rem;
 }
@@ -744,7 +744,7 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
   font-size: 0.9rem;
   font-family: inherit;
   color: var(--ink);
-  background: var(--paper);
+  background-color: var(--paper);
   border: 1px solid var(--line);
   border-radius: 0.5rem;
 }
@@ -903,7 +903,7 @@ html[dir="rtl"] .nav-btn { transform: scaleX(-1); }
   font-size: 0.9rem;
   font-family: inherit;
   color: var(--ink);
-  background: var(--paper);
+  background-color: var(--paper);
   border: 1px solid var(--line);
   border-radius: 0.5rem;
 }
@@ -1289,7 +1289,7 @@ mark.echo { background: #ffe58a; color: #1a1a1a; border-radius: 3px; padding: 0 
 .dl-title { margin: 0 0 1rem; font-size: 1.15rem; font-weight: 500; }
 .dl-field { border: 0; margin: 0 0 1rem; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
 .dl-legend { font-size: 0.8rem; color: var(--muted); padding: 0; margin-bottom: 0.2rem; }
-.dl-field select { font: inherit; padding: 0.45rem 0.6rem; border: 1px solid var(--line); border-radius: 0.5rem; background: var(--paper); color: var(--ink); }
+.dl-field select { font: inherit; padding: 0.45rem 0.6rem; border: 1px solid var(--line); border-radius: 0.5rem; background-color: var(--paper); color: var(--ink); }
 .dl-choice { display: flex; gap: 0.55rem; align-items: flex-start; line-height: 1.4; cursor: pointer; }
 .dl-choice input { margin-top: 0.25rem; }
 .dl-choice:has(input:disabled) { opacity: 0.45; cursor: default; }
@@ -1321,3 +1321,23 @@ mark.echo { background: #ffe58a; color: #1a1a1a; border-radius: 3px; padding: 0 
   .print-view .linked { background: none; }
   .print-view .credit { font-size: 8pt; color: #333; margin-top: 0.5cm; }
 }
+
+/* ---------- Drop-down menus ----------
+   One arrow for every <select>: the browser's own sits flush against the
+   right edge (and differs between Safari, Chrome and Firefox). This draws a
+   small chevron in the text colour, inset from the edge. */
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    right 1rem center,
+    right calc(1rem - 5px) center;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.2rem !important;
+  cursor: pointer;
+}
+select::-ms-expand { display: none; }
