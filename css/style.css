@@ -1514,3 +1514,25 @@ a.pb-inline:hover, a.pb-inline:focus-visible { color: var(--ink); border-color: 
 /* Signed in, the account page holds the citation format: give it room. */
 #account .card:has(#signed-in:not([hidden])) { max-width: 36rem; }
 .cite-settings .setting select { min-width: 0; max-width: 65%; }
+
+/* Close button of the language picker (when a language is already chosen). */
+.gate-close {
+  position: fixed;
+  top: 1rem;
+  inset-inline-end: 1rem;
+  z-index: 11;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  font: inherit;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.gate-close[hidden] { display: none; }
+.gate-close:hover, .gate-close:focus-visible { color: var(--ink); border-color: var(--ink); }

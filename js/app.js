@@ -230,16 +230,33 @@
     routeFromHash();
   }
 
+  const gateClose = document.getElementById("gate-close");
+
   function openGate() {
     langSearch.value = "";
+    // Changing language during a visit can be cancelled; the first choice can't.
+    gateClose.hidden = !localStorage.getItem(LANG_KEY);
     gate.hidden = false; // show first so the container width is measurable
     renderLangList("");
     langSearch.focus();
     startCycle();
   }
 
+  // Keep the current language and return to the page.
+  function closeGate() {
+    if (gateClose.hidden || gate.hidden) return;
+    stopCycle();
+    gate.hidden = true;
+    langBtn.focus();
+  }
+
   langSearch.addEventListener("input", () => renderLangList(langSearch.value));
   langBtn.addEventListener("click", openGate);
+  gateClose.addEventListener("click", closeGate);
+  document.addEventListener("keydown", (e) => {
+    // In the search box, Escape first clears what was typed.
+    if (e.key === "Escape" && !gate.hidden && !(e.target === langSearch && langSearch.value)) closeGate();
+  });
 
   // Re-flow the family columns when the width changes.
   let resizeTimer;

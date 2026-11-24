@@ -21,7 +21,7 @@
     })();
   </script>
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=40">
+  <link rel="stylesheet" href="css/style.css?v=41">
   <script>
     // Some browsers (private windows, embedded previews) refuse localStorage.
     // Fall back to an in-memory store so the site still works, just without
@@ -56,6 +56,8 @@
 
   <!-- Language gate: shown before the site on first visit -->
   <div id="language-gate" class="gate" hidden>
+    <!-- Shown when a language is already chosen: keep it and go back. -->
+    <button type="button" id="gate-close" class="gate-close" data-i18n-aria="close" data-i18n-title="close" aria-label="Close" title="Close" hidden><span aria-hidden="true">×</span></button>
     <div class="gate-inner">
       <svg class="logo gate-logo" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="4" fill="currentColor"/></svg>
       <p class="gate-title" id="gate-title" data-i18n="chooseLanguage">Choose your language</p>
@@ -382,6 +384,6 @@
   <script src="js/cite.js?v=4"></script>
   <script src="js/search.js?v=25"></script>
   <script src="js/browse.js?v=5"></script>
-  <script src="js/app.js?v=30"></script>
+  <script src="js/app.js?v=31"></script>
 </body>
 </html>
