@@ -485,6 +485,14 @@ const Work = (() => {
     line.appendChild(mark);
   }
 
+  // A line of text. dir="auto" lets each text run in its own direction (Greek
+  // left to right even when the page is Arabic, and the other way round).
+  function textSpan(text) {
+    const span = el("span", "lt", text);
+    span.dir = "auto";
+    return span;
+  }
+
   function linesBlock(lines, l, cls, col, p) {
     const div = el("div", cls || "orig");
     div.lang = l;
@@ -494,7 +502,7 @@ const Work = (() => {
       line.dataset.n = n;
       line.dataset.col = col;
       line.appendChild(el("span", "ln", n % 5 === 0 ? String(n) : ""));
-      line.appendChild(el("span", "lt", text));
+      line.appendChild(textSpan(text));
       markPage(line, p, pages.get(n));
       div.appendChild(line);
     }
@@ -515,6 +523,7 @@ const Work = (() => {
       let base = 0;
       for (const para of item.text.split("\n\n")) {
         const node = el("p");
+        node.dir = "auto"; // the text keeps its own direction on a right-to-left page
         let pos = 0;
         while (marks.length && marks[0][0] <= base + para.length) {
           const [off, label, scan, vol] = marks.shift();
@@ -615,7 +624,7 @@ const Work = (() => {
           line.dataset.n = n;
           line.dataset.col = col;
           line.appendChild(el("span", "ln", n % 5 === 0 ? String(n) : ""));
-          line.appendChild(el("span", "lt", text));
+          line.appendChild(textSpan(text));
           markPage(line, p, pages.get(n));
           place(line, col, n + 1);
         }
