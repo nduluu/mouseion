@@ -2,19 +2,8 @@
 // language or spelling the visitor uses ("Iliad", "Ilias", "Илиада", "Ἰλιάς",
 // "Homer", "Omero"...); editions and translations live inside the work's page.
 const Search = (() => {
-  const { t, el, catalog, workCard, authorCard } = M;
+  const { t, el, searchCatalog, workCard, authorCard } = M;
   let els = null;
-
-  // Lower-case, strip accents and breathings (so "ilias" finds "Ἰλιάς"),
-  // and treat final sigma like sigma.
-  function norm(s) {
-    return s.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase().replace(/ς/g, "σ");
-  }
-
-  function matchesAll(strings, q) {
-    const hay = norm(strings.join(" "));
-    return norm(q).split(/\s+/).filter(Boolean).every((word) => hay.includes(word));
-  }
 
   async function run(q) {
     q = (q || "").trim();
@@ -26,9 +15,7 @@ const Search = (() => {
     }
     let works = [], authors = [];
     try {
-      const cat = await catalog();
-      authors = cat.authors.filter((a) => matchesAll(Object.values(a.names), q));
-      works = cat.works.filter((w) => matchesAll([...Object.values(w.titles), ...Object.values(w.author)], q));
+      ({ works, authors } = await searchCatalog(q));
     } catch (e) {
       console.error(e);
     }

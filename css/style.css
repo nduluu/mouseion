@@ -1482,3 +1482,12 @@ a.pb-inline:hover, a.pb-inline:focus-visible { color: var(--ink); border-color: 
 .cite-dialog .dl-actions { flex-wrap: wrap; }
 /* A passage opened from a link is highlighted for a moment. */
 .cited { background: color-mix(in srgb, #f2c94c 35%, transparent); transition: background 1.2s; }
+
+/* Authors page: one letter at a time. */
+.letters { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 1rem; }
+.letters .letter {
+  min-width: 2rem; padding: 0.25rem 0.5rem; text-align: center;
+  border: 1px solid var(--line); border-radius: 0.5rem; color: var(--ink); text-decoration: none;
+}
+.letters .letter:hover { border-color: var(--ink); }
+.letters .letter.current { background: var(--ink); color: var(--paper); border-color: var(--ink); }

@@ -208,9 +208,22 @@
     cycleTimer = null;
   }
 
-  function selectLanguage(code) {
+  // A language's interface text is its own small file (i18n/<code>.js),
+  // fetched when the language is chosen.
+  function loadLanguage(code) {
+    if (!code || (window.I18N_LOADED || {})[code]) return Promise.resolve();
+    return new Promise((resolve) => {
+      const s = document.createElement("script");
+      s.src = "i18n/" + code + ".js?v=" + (window.I18N_V || "");
+      s.onload = s.onerror = () => resolve(); // missing file: English is the fallback
+      document.head.appendChild(s);
+    });
+  }
+
+  async function selectLanguage(code) {
     stopCycle();
     localStorage.setItem(LANG_KEY, code);
+    await loadLanguage(code);
     applyLanguage(code);
     gate.hidden = true;
     site.hidden = false;
@@ -393,9 +406,12 @@
 
   const saved = localStorage.getItem(LANG_KEY);
   if (saved && byCode[saved]) {
-    applyLanguage(saved);
-    site.hidden = false;
-    routeFromHash();
+    // Normally already loaded by the page itself; fetched here if not.
+    loadLanguage(saved).then(() => {
+      applyLanguage(saved);
+      site.hidden = false;
+      routeFromHash();
+    });
   } else {
     openGate();
   }

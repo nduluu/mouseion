@@ -231,7 +231,7 @@ const Work = (() => {
     box.textContent = "";
     const c = work.classification || {};
     let taxonomy = {};
-    try { taxonomy = (await M.catalog()).taxonomy; } catch (e) { /* names fall back to ids */ }
+    try { taxonomy = (await M.catalogIndex()).taxonomy; } catch (e) { /* names fall back to ids */ }
     const add = (cat, id) => {
       const a = el("a", "chip", M.termName(cat, id, taxonomy));
       a.href = `#/browse/${cat}/${id}`;

@@ -1,3 +1,5 @@
+// MASTER COPY of the interface text. Visitors load one small file per language
+// (i18n/<code>.js); after changing this file run: node tools/build_i18n.js
 // UI translations for every language in languages.js (same order).
 // Translations for smaller languages are best-effort drafts — review by native
 // speakers recommended before production use.
