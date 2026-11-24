@@ -1,4 +1,4 @@
-// Built by tools/build_i18n.js from js/i18n.js; edit that file, not this one.
+// Built by tools/build_i18n.js from js/i18n.js and i18n-src/; edit those, not this file.
 (function (G) {
   var I = (window.I18N = window.I18N || {});
   for (var c in G) I[c] = Object.assign(G[c], I[c] || {});

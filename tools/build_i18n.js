@@ -5,7 +5,7 @@
 //   i18n/gate.js      "Choose your language" in every language (the picker)
 //   i18n/en.js        English, the fallback for anything not yet translated
 //   i18n/<code>.js    their own language
-// Run after changing js/i18n.js:   node tools/build_i18n.js
+// Run after changing js/i18n.js or i18n-src/*.json:   node tools/build_i18n.js
 // It also updates the version in index.html, so browsers fetch the new files.
 const fs = require("fs");
 const path = require("path");
@@ -19,12 +19,31 @@ vm.createContext(ctx);
 vm.runInContext(src + "\n;this.__I18N = I18N;", ctx);
 const I18N = ctx.__I18N;
 
+// Further translations, one file per language (i18n-src/<code>.json), easy to
+// hand to a native speaker for review. They add to (and override) js/i18n.js.
+// Each phrase must keep the slots of the English one ({country}, {n} …).
+const SRC = path.join(ROOT, "i18n-src");
+const slots = (s) => (String(s).match(/\{\w+\}/g) || []).sort().join(" ");
+let problems = 0;
+if (fs.existsSync(SRC)) {
+  for (const f of fs.readdirSync(SRC).filter((x) => x.endsWith(".json")).sort()) {
+    const code = f.slice(0, -5);
+    const extra = JSON.parse(fs.readFileSync(path.join(SRC, f), "utf8"));
+    for (const [k, v] of Object.entries(extra)) {
+      if (!(k in I18N.en)) { console.error(f + ": unknown key " + k); problems++; continue; }
+      if (slots(v) !== slots(I18N.en[k])) { console.error(f + ": " + k + " has slots [" + slots(v) + "], English has [" + slots(I18N.en[k]) + "]"); problems++; }
+    }
+    I18N[code] = Object.assign(I18N[code] || {}, extra);
+  }
+}
+if (problems) process.exit(1);
+
 const OUT = path.join(ROOT, "i18n");
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT);
 
 const GATE_KEYS = ["chooseLanguage", "searchLanguages"];
-const header = "// Built by tools/build_i18n.js from js/i18n.js; edit that file, not this one.\n";
+const header = "// Built by tools/build_i18n.js from js/i18n.js and i18n-src/; edit those, not this file.\n";
 const hash = crypto.createHash("sha1");
 let total = 0;
 
@@ -61,6 +80,9 @@ if (updated === html && !html.includes('var I18N_V = "' + version + '";')) {
 }
 fs.writeFileSync(indexPath, updated);
 
+const enKeys = Object.keys(I18N.en);
+const complete = Object.keys(I18N).filter((c) => enKeys.every((k) => k in I18N[c]));
+console.log("complete (" + complete.length + "): " + complete.sort().join(" "));
 const sizes = Object.keys(I18N).map((c) => fs.statSync(path.join(OUT, c + ".js")).size);
 console.log(Object.keys(I18N).length + " languages -> i18n/ (" + Math.round(total / 1024) + " KB in all; one language " +
   Math.round(Math.min(...sizes) / 1024) + "–" + Math.round(Math.max(...sizes) / 1024) + " KB; gate.js " +

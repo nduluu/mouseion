@@ -1,96 +1,98 @@
 {
-  "era": [
-    {
-      "id": "archaic-greece",
-      "range": {
-        "en": "c. 800–480 BCE",
-        "de": "ca. 800–480 v. Chr.",
-        "fr": "v. 800–480 av. J.-C.",
-        "it": "ca. 800–480 a.C.",
-        "es": "h. 800–480 a. C.",
-        "ru": "ок. 800–480 гг. до н. э."
-      },
-      "names": {
-        "en": "Archaic Greece",
-        "de": "Archaisches Griechenland",
-        "fr": "Grèce archaïque",
-        "it": "Grecia arcaica",
-        "es": "Grecia arcaica",
-        "pt": "Grécia Arcaica",
-        "ru": "Архаическая Греция",
-        "el": "Αρχαϊκή Ελλάδα",
-        "nl": "Archaïsch Griekenland"
-      }
-    }
-  ],
-  "genre": [
-    {
-      "id": "epic",
-      "names": {
-        "en": "Epic poetry",
-        "de": "Epos",
-        "fr": "Poésie épique",
-        "it": "Poesia epica",
-        "es": "Poesía épica",
-        "pt": "Poesia épica",
-        "ru": "Эпическая поэзия",
-        "el": "Επική ποίηση",
-        "nl": "Epische poëzie"
-      }
-    }
-  ],
-  "field": [
-    {
-      "id": "literature",
-      "names": {
-        "en": "Literature",
-        "de": "Literatur",
-        "fr": "Littérature",
-        "it": "Letteratura",
-        "es": "Literatura",
-        "pt": "Literatura",
-        "ru": "Литература",
-        "el": "Λογοτεχνία",
-        "nl": "Literatuur"
-      }
-    },
-    {
-      "id": "classics",
-      "names": {
-        "en": "Classical studies",
-        "de": "Altertumswissenschaft",
-        "fr": "Études classiques",
-        "it": "Studi classici",
-        "es": "Estudios clásicos",
-        "pt": "Estudos clássicos",
-        "ru": "Классическая филология",
-        "el": "Κλασικές σπουδές",
-        "nl": "Klassieke oudheid"
-      }
-    }
-  ],
-  "religion": [
-    {
-      "id": "greek-religion",
-      "names": {
-        "en": "Ancient Greek religion and mythology",
-        "de": "Antike griechische Religion und Mythologie",
-        "fr": "Religion et mythologie grecques antiques",
-        "it": "Religione e mitologia greca antica",
-        "es": "Religión y mitología griegas antiguas",
-        "pt": "Religião e mitologia gregas antigas",
-        "ru": "Древнегреческая религия и мифология",
-        "el": "Αρχαία ελληνική θρησκεία και μυθολογία",
-        "nl": "Oud-Griekse religie en mythologie"
-      },
-      "note": {
-        "en": "Works that are a primary source for a tradition's gods, myths and practices.",
-        "de": "Werke, die eine Primärquelle für die Götter, Mythen und Bräuche einer Tradition sind.",
-        "fr": "Œuvres qui sont une source première sur les dieux, les mythes et les pratiques d’une tradition.",
-        "it": "Opere che sono una fonte primaria per gli dèi, i miti e le pratiche di una tradizione.",
-        "es": "Obras que son fuente primaria sobre los dioses, mitos y prácticas de una tradición.",
-        "ru": "Произведения, служащие первоисточником о богах, мифах и обрядах традиции."
-      }
-    }
-  ]
+ "era": [
+  {
+   "id": "archaic-greece",
+   "range": {
+    "en": "c. 800–480 BCE",
+    "de": "ca. 800–480 v. Chr.",
+    "fr": "v. 800–480 av. J.-C.",
+    "it": "ca. 800–480 a.C.",
+    "es": "h. 800–480 a. C.",
+    "ru": "ок. 800–480 гг. до н. э.",
+    "el": "περ. 800–480 π.Χ."
+   },
+   "names": {
+    "en": "Archaic Greece",
+    "de": "Archaisches Griechenland",
+    "fr": "Grèce archaïque",
+    "it": "Grecia arcaica",
+    "es": "Grecia arcaica",
+    "pt": "Grécia Arcaica",
+    "ru": "Архаическая Греция",
+    "el": "Αρχαϊκή Ελλάδα",
+    "nl": "Archaïsch Griekenland"
+   }
+  }
+ ],
+ "genre": [
+  {
+   "id": "epic",
+   "names": {
+    "en": "Epic poetry",
+    "de": "Epos",
+    "fr": "Poésie épique",
+    "it": "Poesia epica",
+    "es": "Poesía épica",
+    "pt": "Poesia épica",
+    "ru": "Эпическая поэзия",
+    "el": "Επική ποίηση",
+    "nl": "Epische poëzie"
+   }
+  }
+ ],
+ "field": [
+  {
+   "id": "literature",
+   "names": {
+    "en": "Literature",
+    "de": "Literatur",
+    "fr": "Littérature",
+    "it": "Letteratura",
+    "es": "Literatura",
+    "pt": "Literatura",
+    "ru": "Литература",
+    "el": "Λογοτεχνία",
+    "nl": "Literatuur"
+   }
+  },
+  {
+   "id": "classics",
+   "names": {
+    "en": "Classical studies",
+    "de": "Altertumswissenschaft",
+    "fr": "Études classiques",
+    "it": "Studi classici",
+    "es": "Estudios clásicos",
+    "pt": "Estudos clássicos",
+    "ru": "Классическая филология",
+    "el": "Κλασικές σπουδές",
+    "nl": "Klassieke oudheid"
+   }
+  }
+ ],
+ "religion": [
+  {
+   "id": "greek-religion",
+   "names": {
+    "en": "Ancient Greek religion and mythology",
+    "de": "Antike griechische Religion und Mythologie",
+    "fr": "Religion et mythologie grecques antiques",
+    "it": "Religione e mitologia greca antica",
+    "es": "Religión y mitología griegas antiguas",
+    "pt": "Religião e mitologia gregas antigas",
+    "ru": "Древнегреческая религия и мифология",
+    "el": "Αρχαία ελληνική θρησκεία και μυθολογία",
+    "nl": "Oud-Griekse religie en mythologie"
+   },
+   "note": {
+    "en": "Works that are a primary source for a tradition's gods, myths and practices.",
+    "de": "Werke, die eine Primärquelle für die Götter, Mythen und Bräuche einer Tradition sind.",
+    "fr": "Œuvres qui sont une source première sur les dieux, les mythes et les pratiques d’une tradition.",
+    "it": "Opere che sono una fonte primaria per gli dèi, i miti e le pratiche di una tradizione.",
+    "es": "Obras que son fuente primaria sobre los dioses, mitos y prácticas de una tradición.",
+    "ru": "Произведения, служащие первоисточником о богах, мифах и обрядах традиции.",
+    "el": "Έργα που αποτελούν πρωτογενή πηγή για τους θεούς, τους μύθους και τις πρακτικές μιας παράδοσης."
+   }
+  }
+ ]
 }
