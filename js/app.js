@@ -273,6 +273,13 @@
     if (user) {
       accDisplay.textContent = user.name;
       themeSelect.value = user.theme || "system";
+      // The personal citation format (js/cite.js).
+      if (window.Cite) {
+        Cite.renderSettings(document.getElementById("cite-settings"), user, (patch) => {
+          const now = getUser();
+          if (now) localStorage.setItem(USER_KEY, JSON.stringify(Object.assign(now, patch)));
+        });
+      }
     }
   }
 

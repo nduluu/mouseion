@@ -191,7 +191,83 @@ const Cite = (() => {
     return s;
   }
 
+  // ---------- a personal format (set in the account settings) ----------
+  //
+  // A template with fields in braces, e.g.
+  //   {author}: *{title}*.[ Übers. von {translator}.] {edition}[, Bd. {volume}][, S. {pages}].
+  // *Stars* make italics; a part in [square brackets] appears only when all
+  // the fields in it have a value (a page number, a translator …).
+
+  const FIELDS = ["author", "work", "title", "translator", "editor", "edition", "year", "book", "lines", "ref",
+    "volume", "pages", "source", "url", "accessed"];
+
+  function fieldValues(f, url, today) {
+    const pages = f.pageFrom
+      ? plainPage(f.pageFrom.page) + (f.pageTo && f.pageTo.page !== f.pageFrom.page ? dash + plainPage(f.pageTo.page) : "")
+      : "";
+    return {
+      author: f.authorLocal || f.author,
+      work: f.workLocal || f.workEn,
+      title: f.title,
+      translator: f.orig ? "" : f.people.join(", "),
+      editor: f.orig ? f.people.join(", ") : "",
+      edition: f.edition || f.date || "",
+      year: yearOf(f),
+      book: String(f.book),
+      lines: f.lineFrom ? range(f.lineFrom, f.lineTo) : "",
+      ref: canon(f),
+      volume: (f.pageFrom && f.pageFrom.vol) || "",
+      pages,
+      source: f.source || "",
+      url,
+      accessed: today.local,
+    };
+  }
+
+  function fill(template, values) {
+    const render = (s) => esc(s).replace(/\{(\w+)\}/g, (m, k) => (k in values ? esc(values[k] || "") : m));
+    let html = "";
+    let i = 0;
+    const re = /\[([^[\]]*)\]/g;
+    let m;
+    while ((m = re.exec(template))) {
+      html += render(template.slice(i, m.index));
+      const keys = [...m[1].matchAll(/\{(\w+)\}/g)].map((x) => x[1]).filter((k) => k in values);
+      if (!keys.length) html += render(m[0]); // ordinary brackets
+      else if (keys.every((k) => values[k])) html += render(m[1]);
+      i = re.lastIndex;
+    }
+    html += render(template.slice(i));
+    return html.replace(/\*([^*\n]+)\*/g, "<i>$1</i>").replace(/\n/g, "<br>").replace(/ {2,}/g, " ").trim();
+  }
+
+  // Starting points for a personal format. Common conventions, to be
+  // adjusted to what a university or journal asks for.
+  const PRESETS = {
+    chicago: "{author}, *{title}*[, trans. {translator}][, ed. {editor}] ({edition})[, vol. {volume}][, {pages}], bk. {book}[, ll. {lines}], {url}.",
+    mla: "{author}. *{title}*.[ Translated by {translator},][ Edited by {editor},] {edition}.[ Vol. {volume},][ p. {pages},] bk. {book}[, ll. {lines}]. *Mouseion*, {url}. Accessed {accessed}.",
+    apa: "{author}. ({year}). *{title}*[ ({translator}, Trans.)][ ({editor}, Ed.)]. Mouseion. {url}",
+    harvard: "{author} ({year}) *{title}*.[ Translated by {translator}.][ Edited by {editor}.] {edition}.[ Vol. {volume},][ p. {pages}.] Available at: {url} (Accessed: {accessed}).",
+    de: "{author}: *{title}*.[ Übers. von {translator}.][ Hrsg. von {editor}.] {edition}[, Bd. {volume}][, S. {pages}] ({ref}). Online: Mouseion, {url} (Zugriff: {accessed}).",
+    blank: "",
+  };
+
+  function userFormat() {
+    try {
+      const u = JSON.parse(localStorage.getItem("mouseion.user") || "null");
+      return u && u.citation && u.citation.template ? u.citation : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function mine(f, url, today) {
+    const c = userFormat();
+    return c ? fill(c.template, fieldValues(f, url, today)) : "";
+  }
+
   const STYLES = [
+    ["mine", "styleMine", mine],
     ["short", "styleShort", short],
     ["chicago", null, chicago],
     ["mla", null, mla],
@@ -229,7 +305,7 @@ const Cite = (() => {
   // ---------- the dialog ----------
 
   let dialog = null;
-  let style = "short";
+  let style = null; // the style last chosen during this visit
 
   async function open(range) {
     const api = W();
@@ -291,14 +367,23 @@ const Cite = (() => {
     const styles = el("div", "seg cite-styles");
     styles.setAttribute("role", "group");
     styles.setAttribute("aria-label", t("citeStyle"));
+    const own = userFormat();
+    if (!style || (style === "mine" && !own)) style = own && own.first ? "mine" : "short";
     for (const [key, label] of STYLES) {
+      if (key === "mine" && !own) continue;
       const b = el("button", null, label ? t(label) : key === "bibtex" ? "BibTeX" : key === "mla" ? "MLA" : "Chicago");
       b.type = "button";
       b.dataset.style = key;
       styles.appendChild(b);
     }
     form.appendChild(styles);
+    // Where to set up one's own format.
+    const signedIn = !!localStorage.getItem("mouseion.user");
+    const mineLink = el("a", "cite-mine-link", t(own ? "citeEditMine" : signedIn ? "citeMakeMine" : "citeSignInMine"));
+    mineLink.href = "#/account";
+    mineLink.addEventListener("click", () => dialog && dialog.close());
 
+    form.appendChild(mineLink);
     const out = el("div", "cite-out");
     out.id = "cite-out";
     out.setAttribute("aria-live", "polite");
@@ -422,6 +507,120 @@ const Cite = (() => {
     open(r);
   });
 
-  return { open };
+  // ---------- the settings box in the account page ----------
+
+  // Two sample passages for the preview: a translation with volume and page,
+  // and the original.
+  function samples() {
+    const { pick } = M;
+    const author = { en: "Homer", de: "Homer", fr: "Homère", it: "Omero", es: "Homero", ru: "Гомер" };
+    const work = { en: "Iliad", de: "Ilias", fr: "Iliade", it: "Iliade", es: "Ilíada", ru: "Илиада" };
+    const base = { author: "Homer", authorLocal: pick(author), workEn: "Iliad", workLocal: pick(work), book: 1 };
+    return [
+      ["citeSampleTrans", { ...base, orig: false, title: "Iliade", people: ["Vincenzo Monti"],
+        edition: "Milano, Società Tipografica de' Classici Italiani, 1825", date: "1825", lineFrom: 8, lineTo: 10,
+        lineKind: "lines", pageFrom: { page: "2", vol: "I" }, pageTo: { page: "2", vol: "I" },
+        source: "Wikisource (CC BY-SA 4.0)" }, "/iliad/ita-monti/1/8-10"],
+      ["citeSampleOrig", { ...base, orig: true, title: "Homeri Opera (Oxford Classical Texts)",
+        people: ["David B. Monro", "Thomas W. Allen"], edition: "", date: "1902; 3rd edition 1920", lineFrom: 1, lineTo: 7,
+        lineKind: "lines", pageFrom: null, pageTo: null, source: "Perseus Digital Library (CC BY-SA 4.0)" },
+        "/iliad/grc-monro-allen/1/1-7"],
+    ];
+  }
+
+  // Fills the box (#cite-settings) for the signed-in user; changes are saved
+  // with the account as they are typed (save merges them into the account).
+  function renderSettings(box, user, save) {
+    const { t } = M;
+    box.textContent = "";
+    const c = user.citation || { template: "", first: true };
+    box.appendChild(el("h3", "settings-title", t("myCitation")));
+    box.appendChild(el("p", "settings-note", t("myCitationIntro")));
+
+    const startRow = el("label", "setting");
+    startRow.appendChild(el("span", null, t("citeStartFrom")));
+    const start = el("select");
+    start.appendChild(el("option", null, dash));
+    start.firstChild.value = "";
+    for (const [key, label] of [["chicago", "Chicago"], ["mla", "MLA"], ["apa", "APA"], ["harvard", "Harvard"],
+      ["de", t("citePresetDe")], ["blank", t("citeBlank")]]) {
+      const o = el("option", null, label);
+      o.value = key;
+      start.appendChild(o);
+    }
+    startRow.appendChild(start);
+    box.appendChild(startRow);
+
+    const area = el("textarea", "cite-template");
+    area.id = "cite-template";
+    area.rows = 4;
+    area.spellcheck = false;
+    area.value = c.template || "";
+    area.setAttribute("aria-label", t("myCitation"));
+    box.appendChild(area);
+
+    box.appendChild(el("p", "settings-note", t("citeFieldsHelp")));
+    const chips = el("div", "cite-fields");
+    for (const k of FIELDS) {
+      const b = el("button", "cite-field", "{" + k + "}");
+      b.type = "button";
+      b.title = t("cf_" + k);
+      b.addEventListener("click", () => {
+        const a = area.selectionStart, z = area.selectionEnd;
+        area.setRangeText("{" + k + "}", a, z, "end");
+        area.focus();
+        changed();
+      });
+      chips.appendChild(b);
+    }
+    box.appendChild(chips);
+    box.appendChild(el("p", "settings-note", t("citeSyntax")));
+
+    const prev = el("div", "cite-previews");
+    box.appendChild(el("h4", "settings-sub", t("citePreview")));
+    box.appendChild(prev);
+
+    const firstRow = el("label", "check");
+    const first = el("input");
+    first.type = "checkbox";
+    first.checked = c.first !== false;
+    firstRow.append(first, el("span", null, " " + t("citeUseFirst")));
+    box.appendChild(firstRow);
+    const status = el("p", "dl-status");
+    box.appendChild(status);
+
+    const today = new Date();
+    const dates = { local: new Intl.DateTimeFormat(M.lang(), { dateStyle: "long" }).format(today) };
+    function preview() {
+      prev.textContent = "";
+      for (const [label, f, route] of samples()) {
+        prev.appendChild(el("p", "cite-sample-label", t(label)));
+        const out = el("div", "cite-out");
+        out.innerHTML = area.value.trim() ? fill(area.value, fieldValues(f, Router.absolute(route), dates)) : dash;
+        prev.appendChild(out);
+      }
+    }
+    let timer;
+    function changed() {
+      preview();
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        save({ citation: { template: area.value, first: first.checked } });
+        status.textContent = t("saved");
+      }, 400);
+    }
+    start.addEventListener("change", () => {
+      if (!start.value) return;
+      area.value = PRESETS[start.value];
+      start.value = "";
+      changed();
+      area.focus();
+    });
+    area.addEventListener("input", changed);
+    first.addEventListener("change", changed);
+    preview();
+  }
+
+  return { open, renderSettings, fill };
 })();
 window.Cite = Cite;

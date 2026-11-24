@@ -21,7 +21,7 @@
     })();
   </script>
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=38">
+  <link rel="stylesheet" href="css/style.css?v=40">
   <script>
     // Some browsers (private windows, embedded previews) refuse localStorage.
     // Fall back to an in-memory store so the site still works, just without
@@ -291,6 +291,7 @@
                 <option value="dark" data-i18n="themeDark">Dark</option>
               </select>
             </label>
+            <div id="cite-settings" class="cite-settings"></div>
             <button id="signout-btn" class="btn" data-i18n="signOut">Sign out</button>
           </div>
 
@@ -364,7 +365,7 @@
     // Interface text: the picker's phrases in every language, English (the
     // fallback), and the visitor's own language. One small file each, built
     // from js/i18n.js by tools/build_i18n.js (which also sets this version).
-    var I18N_V = "b876ed096f";
+    var I18N_V = "871b9ca404";
     (function () {
       var l = null;
       try { l = localStorage.getItem("mouseion.lang"); } catch (e) {}
@@ -376,11 +377,11 @@
   <script src="js/mapviewer.js?v=20"></script>
   <script src="js/common.js?v=4"></script>
   <script src="js/rights.js?v=21"></script>
-  <script src="js/work.js?v=38"></script>
+  <script src="js/work.js?v=40"></script>
   <script src="js/download.js?v=4"></script>
-  <script src="js/cite.js?v=3"></script>
+  <script src="js/cite.js?v=4"></script>
   <script src="js/search.js?v=25"></script>
   <script src="js/browse.js?v=5"></script>
-  <script src="js/app.js?v=29"></script>
+  <script src="js/app.js?v=30"></script>
 </body>
 </html>

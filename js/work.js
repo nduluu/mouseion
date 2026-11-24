@@ -1185,6 +1185,10 @@ const Work = (() => {
     }
   }
 
+  // The passage a link opened, while the address still names it: the Cite
+  // window proposes it when nothing is selected.
+  let lastTarget = null;
+
   function colOf(n) {
     const e = n && (n.nodeType === 1 ? n : n.parentElement);
     const c = e && e.closest("[data-col]");
@@ -1196,6 +1200,7 @@ const Work = (() => {
     const col = tg.text ? state.panes.indexOf(tg.text) : 0;
     const inCol = (sel) => [...reader.querySelectorAll(sel)].filter((n) => colOf(n) === col);
     let nodes = [];
+    let point = null;
     if (tg.line) {
       const to = Math.max(tg.line, tg.to || tg.line);
       nodes = inCol(".line").filter((n) => +n.dataset.n >= tg.line && +n.dataset.n <= to);
@@ -1206,9 +1211,13 @@ const Work = (() => {
     }
     if (!nodes.length && tg.page) {
       const m = inCol(".pb, .pb-inline").find((x) => x.dataset.page === tg.page && (!tg.vol || x.dataset.vol === tg.vol));
-      if (m) nodes = [m.closest(".line") || m.closest("p") || m];
+      if (m) {
+        nodes = [m.closest(".line") || m.closest("p") || m];
+        point = m; // the page starts at its mark, not where the paragraph starts
+      }
     }
     if (!nodes.length) return;
+    lastTarget = { route: Router.current(), col, nodes, point };
     for (const n of nodes) n.classList.add("cited");
     setTimeout(() => nodes.forEach((n) => n.classList.remove("cited")), 4000);
     if (paged()) {
@@ -1273,6 +1282,12 @@ const Work = (() => {
         const b = pointInfo(c, range.endContainer, range.endOffset);
         return { col: c, selected: true, start: a, end: b };
       }
+    }
+    const tg = lastTarget;
+    if (tg && tg.route === Router.current() && (col == null || col === tg.col) && tg.nodes[0].isConnected) {
+      const a = pointInfo(tg.col, tg.point || tg.nodes[0], 0);
+      const z = tg.point || tg.nodes[tg.nodes.length - 1];
+      return { col: tg.col, selected: false, start: a, end: pointInfo(tg.col, z, 0) };
     }
     if (col == null) col = state.panes.findIndex((id) => { const p = resolvePane(id); return p && p.st === "read"; });
     const n = col >= 0 && visibleStart(col);

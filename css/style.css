@@ -1491,3 +1491,26 @@ a.pb-inline:hover, a.pb-inline:focus-visible { color: var(--ink); border-color: 
 }
 .letters .letter:hover { border-color: var(--ink); }
 .letters .letter.current { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+/* ---------- Account: personal citation format ---------- */
+.cite-settings { margin: 1.5rem 0 1rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+.settings-title { margin: 0 0 0.4rem; font-size: 1rem; font-weight: 600; }
+.settings-sub { margin: 0.8rem 0 0.3rem; font-size: 0.85rem; font-weight: 600; }
+.settings-note { margin: 0.2rem 0 0.6rem; font-size: 0.82rem; color: var(--muted); line-height: 1.45; }
+.cite-template {
+  width: 100%; box-sizing: border-box; margin: 0.4rem 0 0.4rem; padding: 0.6rem 0.7rem;
+  font: 0.85rem/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 0.5rem; resize: vertical;
+}
+.cite-fields { display: flex; flex-wrap: wrap; gap: 0.3rem; margin: 0 0 0.4rem; }
+.cite-field {
+  font: 0.75rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; padding: 0.2rem 0.45rem;
+  color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+}
+.cite-field:hover, .cite-field:focus-visible { border-color: var(--ink); }
+.cite-sample-label { margin: 0.5rem 0 0.25rem; font-size: 0.75rem; color: var(--muted); }
+.cite-previews .cite-out { margin-bottom: 0.4rem; }
+.cite-mine-link { display: inline-block; margin: 0 0 0.6rem; font-size: 0.8rem; color: var(--muted); }
+/* Signed in, the account page holds the citation format: give it room. */
+#account .card:has(#signed-in:not([hidden])) { max-width: 36rem; }
+.cite-settings .setting select { min-width: 0; max-width: 65%; }
