@@ -932,6 +932,7 @@ const Work = (() => {
     const on = paged();
     reader.classList.toggle("paged", on);
     $("pager").hidden = !on;
+    $("page-close").hidden = !on;
     $("side-prev").hidden = !on;
     $("side-next").hidden = !on;
     if (!on) {
@@ -1386,6 +1387,19 @@ const Work = (() => {
         if (paged()) $("reader").scrollIntoView({ block: "start" });
       });
     });
+    // Leaving page view: back to scrolling, at the text that was on the page.
+    const exitPages = () => {
+      if (!paged()) return;
+      const anchor = pager.anchor && pager.anchor.node;
+      prefs.view = "scroll";
+      savePrefs();
+      renderPaneBar();
+      setupPages();
+      if (anchor && anchor.isConnected) anchor.scrollIntoView({ block: "start" });
+      $("view-scroll-btn").focus({ preventScroll: true });
+    };
+    $("page-exit").addEventListener("click", exitPages);
+    $("page-close").addEventListener("click", exitPages);
     $("page-prev").addEventListener("click", () => turnPage(-1));
     $("page-next").addEventListener("click", () => turnPage(1));
     $("side-prev").addEventListener("click", () => turnPage(-1));
@@ -1395,6 +1409,12 @@ const Work = (() => {
       if (!paged() || $("work").hidden || e.altKey || e.ctrlKey || e.metaKey) return;
       if (e.target.closest && e.target.closest("input, select, textarea, [contenteditable], dialog, #stemma")) return;
       if (document.querySelector("dialog[open]")) return;
+      if (e.key === "Escape") {
+        if (!document.getElementById("language-gate").hidden) return;
+        e.preventDefault();
+        exitPages();
+        return;
+      }
       const d = { ArrowRight: 1, PageDown: 1, ArrowLeft: -1, PageUp: -1 }[e.key];
       if (!d) return;
       e.preventDefault();

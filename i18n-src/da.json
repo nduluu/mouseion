@@ -157,5 +157,6 @@
  "cf_pages": "Side(r) i den trykte udgave",
  "cf_source": "Digital kilde og licens",
  "cf_url": "Link til stedet",
- "cf_accessed": "Dato for adgang (i dag)"
+ "cf_accessed": "Dato for adgang (i dag)",
+ "exitPages": "Forlad sidevisningen"
 }

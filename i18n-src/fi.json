@@ -157,5 +157,6 @@
  "cf_pages": "Painetun laitoksen sivu(t)",
  "cf_source": "Digitaalinen lähde ja lisenssi",
  "cf_url": "Linkki kohtaan",
- "cf_accessed": "Käyttöpäivä (tänään)"
+ "cf_accessed": "Käyttöpäivä (tänään)",
+ "exitPages": "Poistu sivunäkymästä"
 }

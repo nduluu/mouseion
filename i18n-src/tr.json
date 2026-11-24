@@ -157,5 +157,6 @@
  "cf_pages": "Basılı baskının sayfa(lar)ı",
  "cf_source": "Dijital kaynak ve lisans",
  "cf_url": "Pasajın bağlantısı",
- "cf_accessed": "Erişim tarihi (bugün)"
+ "cf_accessed": "Erişim tarihi (bugün)",
+ "exitPages": "Sayfa görünümünden çık"
 }

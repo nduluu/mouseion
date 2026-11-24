@@ -157,5 +157,6 @@
  "cf_pages": "刊本のページ",
  "cf_source": "デジタル出典とライセンス",
  "cf_url": "箇所へのリンク",
- "cf_accessed": "閲覧日（今日）"
+ "cf_accessed": "閲覧日（今日）",
+ "exitPages": "ページ表示を終了"
 }

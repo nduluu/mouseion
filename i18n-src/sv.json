@@ -157,5 +157,6 @@
  "cf_pages": "Sida/sidor i den tryckta utgåvan",
  "cf_source": "Digital källa och licens",
  "cf_url": "Länk till stället",
- "cf_accessed": "Datum för åtkomst (i dag)"
+ "cf_accessed": "Datum för åtkomst (i dag)",
+ "exitPages": "Lämna sidvisningen"
 }

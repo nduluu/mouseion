@@ -157,5 +157,6 @@
  "cf_pages": "인쇄본의 쪽",
  "cf_source": "디지털 출처와 라이선스",
  "cf_url": "구절 링크",
- "cf_accessed": "접속 날짜(오늘)"
+ "cf_accessed": "접속 날짜(오늘)",
+ "exitPages": "쪽 단위 보기 종료"
 }

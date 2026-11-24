@@ -157,5 +157,6 @@
  "cf_pages": "Halaman edisi cetak",
  "cf_source": "Sumber digital dan lisensi",
  "cf_url": "Tautan ke bagian",
- "cf_accessed": "Tanggal akses (hari ini)"
+ "cf_accessed": "Tanggal akses (hari ini)",
+ "exitPages": "Keluar dari tampilan per halaman"
 }

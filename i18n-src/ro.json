@@ -157,5 +157,6 @@
  "cf_pages": "Pagina/paginile ediției tipărite",
  "cf_source": "Sursa digitală și licența",
  "cf_url": "Link către pasaj",
- "cf_accessed": "Data accesării (azi)"
+ "cf_accessed": "Data accesării (azi)",
+ "exitPages": "Ieșiți din vizualizarea pe pagini"
 }

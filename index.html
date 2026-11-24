@@ -21,7 +21,7 @@
     })();
   </script>
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=41">
+  <link rel="stylesheet" href="css/style.css?v=42">
   <script>
     // Some browsers (private windows, embedded previews) refuse localStorage.
     // Fall back to an in-memory store so the site still works, just without
@@ -219,7 +219,7 @@
                 <button type="button" data-layout="stacked" data-i18n="layoutStacked">One under another</button>
               </div>
               <div class="seg" role="group" data-i18n-aria="viewMode" aria-label="Reading view">
-                <button type="button" data-view="scroll" data-i18n="viewScroll">Scrolling</button>
+                <button type="button" id="view-scroll-btn" data-view="scroll" data-i18n="viewScroll">Scrolling</button>
                 <button type="button" data-view="pages" data-i18n="viewPages">Page by page</button>
               </div>
               <div class="seg" role="group" data-i18n-aria="textSize" aria-label="Text size">
@@ -236,12 +236,16 @@
           <div id="pane-bar" class="pane-bar"></div>
           <div class="reader-wrap">
             <div id="reader" class="reader"></div>
+            <button type="button" id="page-close" class="page-close" data-i18n-aria="exitPages" data-i18n-title="exitPages" aria-label="Exit page view" title="Exit page view" hidden><span aria-hidden="true">×</span></button>
             <button type="button" id="side-prev" class="side-turn prev" data-i18n-aria="prevPage" data-i18n-title="prevPage" aria-label="Previous page" title="Previous page" hidden><span aria-hidden="true">‹</span></button>
             <button type="button" id="side-next" class="side-turn next" data-i18n-aria="nextPage" data-i18n-title="nextPage" aria-label="Next page" title="Next page" hidden><span aria-hidden="true">›</span></button>
           </div>
           <div id="pager" class="pager" hidden>
             <button type="button" id="page-prev" class="btn"><span aria-hidden="true">‹</span> <span id="page-prev-label" data-i18n="prevPage">Previous page</span></button>
-            <span id="page-count" class="page-count" aria-live="polite"></span>
+            <div class="pager-mid">
+              <span id="page-count" class="page-count" aria-live="polite"></span>
+              <button type="button" id="page-exit" class="pager-exit"><span aria-hidden="true">×</span> <span data-i18n="exitPages">Exit page view</span></button>
+            </div>
             <button type="button" id="page-next" class="btn"><span id="page-next-label" data-i18n="nextPage">Next page</span> <span aria-hidden="true">›</span></button>
           </div>
           <p id="reader-credit" class="credit"></p>
@@ -367,7 +371,7 @@
     // Interface text: the picker's phrases in every language, English (the
     // fallback), and the visitor's own language. One small file each, built
     // from js/i18n.js by tools/build_i18n.js (which also sets this version).
-    var I18N_V = "fabbc7c2e5";
+    var I18N_V = "c9f22f20e7";
     (function () {
       var l = null;
       try { l = localStorage.getItem("mouseion.lang"); } catch (e) {}
@@ -379,7 +383,7 @@
   <script src="js/mapviewer.js?v=20"></script>
   <script src="js/common.js?v=4"></script>
   <script src="js/rights.js?v=21"></script>
-  <script src="js/work.js?v=41"></script>
+  <script src="js/work.js?v=43"></script>
   <script src="js/download.js?v=4"></script>
   <script src="js/cite.js?v=4"></script>
   <script src="js/search.js?v=25"></script>

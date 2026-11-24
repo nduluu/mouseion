@@ -157,5 +157,6 @@
  "cf_pages": "Pagina('s) van de gedrukte editie",
  "cf_source": "Digitale bron en licentie",
  "cf_url": "Link naar de passage",
- "cf_accessed": "Datum van raadpleging (vandaag)"
+ "cf_accessed": "Datum van raadpleging (vandaag)",
+ "exitPages": "Paginaweergave verlaten"
 }

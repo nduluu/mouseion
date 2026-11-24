@@ -157,5 +157,6 @@
  "cf_pages": "Pàgina/pàgines de l’edició impresa",
  "cf_source": "Font digital i llicència",
  "cf_url": "Enllaç al passatge",
- "cf_accessed": "Data de consulta (avui)"
+ "cf_accessed": "Data de consulta (avui)",
+ "exitPages": "Surt de la vista per pàgines"
 }

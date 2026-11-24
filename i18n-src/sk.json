@@ -157,5 +157,6 @@
  "cf_pages": "Strana/strany tlačeného vydania",
  "cf_source": "Digitálny zdroj a licencia",
  "cf_url": "Odkaz na pasáž",
- "cf_accessed": "Dátum prístupu (dnes)"
+ "cf_accessed": "Dátum prístupu (dnes)",
+ "exitPages": "Ukončiť zobrazenie po stranách"
 }

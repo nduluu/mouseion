@@ -157,5 +157,6 @@
  "cf_pages": "Trang của ấn bản in",
  "cf_source": "Nguồn số và giấy phép",
  "cf_url": "Liên kết đến đoạn",
- "cf_accessed": "Ngày truy cập (hôm nay)"
+ "cf_accessed": "Ngày truy cập (hôm nay)",
+ "exitPages": "Thoát chế độ từng trang"
 }

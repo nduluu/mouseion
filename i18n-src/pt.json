@@ -157,5 +157,6 @@
  "cf_pages": "Página(s) da edição impressa",
  "cf_source": "Fonte digital e licença",
  "cf_url": "Ligação para a passagem",
- "cf_accessed": "Data de acesso (hoje)"
+ "cf_accessed": "Data de acesso (hoje)",
+ "exitPages": "Sair da vista por página"
 }

@@ -157,5 +157,6 @@
  "cf_pages": "Strona/strony wydania drukowanego",
  "cf_source": "Źródło cyfrowe i licencja",
  "cf_url": "Link do fragmentu",
- "cf_accessed": "Data dostępu (dzisiaj)"
+ "cf_accessed": "Data dostępu (dzisiaj)",
+ "exitPages": "Zamknij widok stron"
 }

@@ -892,3 +892,9 @@ Object.assign(I18N.ru, {
   };
   for (const l in S) keys.forEach((k, i) => { I18N[l][k] = S[l][i]; });
 })();
+
+// Leaving page view.
+(() => {
+  const S = {"en": "Exit page view", "de": "Seitenansicht verlassen", "fr": "Quitter la vue par page", "it": "Esci dalla vista per pagina", "es": "Salir de la vista por páginas", "ru": "Выйти из постраничного режима"};
+  for (const l in S) I18N[l].exitPages = S[l];
+})();

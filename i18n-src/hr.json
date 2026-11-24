@@ -157,5 +157,6 @@
  "cf_pages": "Stranica/stranice tiskanog izdanja",
  "cf_source": "Digitalni izvor i licencija",
  "cf_url": "Poveznica na odlomak",
- "cf_accessed": "Datum pristupa (danas)"
+ "cf_accessed": "Datum pristupa (danas)",
+ "exitPages": "Izađi iz prikaza po stranicama"
 }

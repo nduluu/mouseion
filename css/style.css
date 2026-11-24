@@ -1536,3 +1536,19 @@ a.pb-inline:hover, a.pb-inline:focus-visible { color: var(--ink); border-color: 
 }
 .gate-close[hidden] { display: none; }
 .gate-close:hover, .gate-close:focus-visible { color: var(--ink); border-color: var(--ink); }
+
+/* Leaving page view: a link under the page count and a × at the page's corner. */
+.pager-mid { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+.pager-exit {
+  font: inherit; font-size: 0.8rem; color: var(--muted); background: none; border: 0; padding: 0.15rem 0.4rem;
+  text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; white-space: nowrap;
+}
+.pager-exit:hover, .pager-exit:focus-visible { color: var(--ink); }
+.page-close {
+  position: absolute; top: -0.9rem; inset-inline-end: -0.9rem; z-index: 3;
+  width: 2rem; height: 2rem; display: grid; place-items: center;
+  font: inherit; font-size: 1.2rem; line-height: 1; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+}
+.page-close[hidden] { display: none; }
+.page-close:hover, .page-close:focus-visible { color: var(--ink); border-color: var(--ink); }

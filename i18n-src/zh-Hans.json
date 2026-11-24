@@ -157,5 +157,6 @@
  "cf_pages": "印刷版本的页码",
  "cf_source": "数字来源和许可协议",
  "cf_url": "段落链接",
- "cf_accessed": "访问日期（今天）"
+ "cf_accessed": "访问日期（今天）",
+ "exitPages": "退出逐页视图"
 }

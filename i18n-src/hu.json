@@ -157,5 +157,6 @@
  "cf_pages": "A nyomtatott kiadás oldala/oldalai",
  "cf_source": "Digitális forrás és licenc",
  "cf_url": "Hivatkozás a szöveghelyre",
- "cf_accessed": "Megtekintés dátuma (ma)"
+ "cf_accessed": "Megtekintés dátuma (ma)",
+ "exitPages": "Kilépés az oldalnézetből"
 }
