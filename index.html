@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=33">
+  <link rel="stylesheet" href="css/style.css?v=35">
   <script>
     // Some browsers (private windows, embedded previews) refuse localStorage.
     // Fall back to an in-memory store so the site still works, just without
@@ -214,7 +214,11 @@
             </div>
           </div>
           <div id="pane-bar" class="pane-bar"></div>
-          <div id="reader" class="reader"></div>
+          <div class="reader-wrap">
+            <div id="reader" class="reader"></div>
+            <button type="button" id="side-prev" class="side-turn prev" data-i18n-aria="prevPage" data-i18n-title="prevPage" aria-label="Previous page" title="Previous page" hidden><span aria-hidden="true">‹</span></button>
+            <button type="button" id="side-next" class="side-turn next" data-i18n-aria="nextPage" data-i18n-title="nextPage" aria-label="Next page" title="Next page" hidden><span aria-hidden="true">›</span></button>
+          </div>
           <div id="pager" class="pager" hidden>
             <button type="button" id="page-prev" class="btn"><span aria-hidden="true">‹</span> <span id="page-prev-label" data-i18n="prevPage">Previous page</span></button>
             <span id="page-count" class="page-count" aria-live="polite"></span>
@@ -342,7 +346,7 @@
   <script src="js/mapviewer.js?v=20"></script>
   <script src="js/common.js?v=3"></script>
   <script src="js/rights.js?v=21"></script>
-  <script src="js/work.js?v=33"></script>
+  <script src="js/work.js?v=34"></script>
   <script src="js/download.js?v=3"></script>
   <script src="js/search.js?v=23"></script>
   <script src="js/browse.js?v=4"></script>

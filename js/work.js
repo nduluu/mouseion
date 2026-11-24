@@ -831,6 +831,13 @@ const Work = (() => {
     $("page-next-label").textContent = last && state.book < 24 ? t("nextBook") : t("nextPage");
     $("page-prev").disabled = first && state.book <= 1;
     $("page-next").disabled = last && state.book >= 24;
+    // The buttons at the sides of the page do the same, labelled to match.
+    for (const [side, bottom] of [["side-prev", "page-prev"], ["side-next", "page-next"]]) {
+      const label = $(bottom + "-label").textContent;
+      $(side).disabled = $(bottom).disabled;
+      $(side).title = label;
+      $(side).setAttribute("aria-label", label);
+    }
     pager.anchor = pageAnchor();   // remembered while the layout is still the one measured
   }
 
@@ -876,6 +883,8 @@ const Work = (() => {
     const on = paged();
     reader.classList.toggle("paged", on);
     $("pager").hidden = !on;
+    $("side-prev").hidden = !on;
+    $("side-next").hidden = !on;
     if (!on) {
       reader.style.height = "";
       reader.style.clipPath = "";
@@ -1167,6 +1176,8 @@ const Work = (() => {
     });
     $("page-prev").addEventListener("click", () => turnPage(-1));
     $("page-next").addEventListener("click", () => turnPage(1));
+    $("side-prev").addEventListener("click", () => turnPage(-1));
+    $("side-next").addEventListener("click", () => turnPage(1));
     // Arrow keys and Page Up/Down turn pages (not while typing or in a menu).
     document.addEventListener("keydown", (e) => {
       if (!paged() || $("work").hidden || e.altKey || e.ctrlKey || e.metaKey) return;
