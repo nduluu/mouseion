@@ -4,13 +4,13 @@ Usage:
   ~/venvs/mouseion/bin/python pipeline/ocr_vision.py WORK_ID LANG [FIRST-LAST]
   ~/venvs/mouseion/bin/python pipeline/ocr_vision.py --languages     # what this Mac can read
 
-LANG is a locale such as pt-BR, hr-HR, ar-SA, el-GR, ru-RU, it-IT, zh-Hans, ja-JP.
+LANG is a locale from the --languages list, such as pt-BR, ar-SA, ru-RU, it-IT, zh-Hans, ja-JP.
 Output: $DRIVE/ocr/WORK_ID/vision/0001.txt …, one line of text per recognised line,
 ordered top to bottom (right to left is handled by the system for Arabic).
 
 Apple's recogniser is fast and good on clean modern print, but it knows only the languages
-the current macOS offers (about 26 in 2025) and no historical forms: no polytonic Greek,
-no Fraktur, no pre-1918 Russian letters. Check the output with cer.py before trusting it.
+the current macOS offers (18 on the project MacBook Air in November 2026: no Croatian,
+no Greek) and no historical forms: no polytonic Greek, no Fraktur, no pre-1918 Russian letters. Check the output with cer.py before trusting it.
 """
 import os
 import sys

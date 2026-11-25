@@ -177,7 +177,7 @@ s += [table([
     ["What it teaches", "The basic loop: pages → OCR → measure → proofread. Latin script with accents; long s possible; Google-scan artefacts",
      "Diacritics (č ć š ž đ); metadata that cannot be trusted (it claims 72 ppi)",
      "Right-to-left, connected script, vowel signs; separating verse from commentary; the catalogue says the language is Urdu (wrong)"],
-    ["Engines to compare", "Tesseract " + C("por") + " vs Apple Vision " + C("pt-BR"), "Tesseract " + C("hrv") + " vs Apple Vision " + C("hr-HR"),
+    ["Engines to compare", "Tesseract " + C("por") + " vs Apple Vision " + C("pt-BR"), "Tesseract " + C("hrv") + " (best) vs standard " + C("hrv") + " vs the Archive’s OCR (Apple Vision has no Croatian)",
      "Tesseract " + C("ara") + " vs Apple Vision " + C("ar-SA") + " vs a Kraken Arabic print model"],
 ], [26 * mm, 48 * mm, 48 * mm, 48 * mm])]
 s += [Spacer(1, 4), P("Already digital, so Track A, not OCR: Iakovos Polylas's Modern Greek Odyssey is on Project Gutenberg "
@@ -222,8 +222,8 @@ s += [table([
     ["Tool", "Best for", "Limits on this laptop"],
     ["<b>Tesseract 5</b> (tessdata_best models)", "The workhorse: over 100 languages and scripts, including Ancient Greek, Latin, Fraktur, Arabic, Hebrew, Syriac, "
      "Devanagari, Tamil, Tibetan, Ethiopic. Free, fast, predictable.", "None worth mentioning; run 3 pages at once."],
-    ["<b>Apple Vision</b> (built into macOS; via " + C("ocrmac") + ")", "Very fast and accurate on clean modern print in the languages Apple supports (about 26 in 2025: "
-     "major European languages, Russian, Ukrainian, Arabic, Chinese, Japanese, Korean, Thai, Vietnamese…).", "No historical forms, no polytonic Greek, no Fraktur. "
+    ["<b>Apple Vision</b> (built into macOS; via " + C("ocrmac") + ")", "Very fast and accurate on clean modern print in the languages Apple supports. On your Mac: Arabic, German, English, "
+     "Spanish, French, Italian, Portuguese, Russian, Ukrainian, Chinese, Cantonese, Japanese, Korean, Thai, Vietnamese.", "No Croatian, no Greek of any kind, no historical forms, no Fraktur. "
      "The list depends on the macOS version: " + C("ocr_vision.py --languages") + " shows it."],
     ["<b>Kraken</b>", "Historical print and difficult scripts; models for polytonic Greek and Arabic-script print in its public model repository; "
      "can be trained on your own corrected pages.", "Slower; CPU only. Fine overnight."],
@@ -263,18 +263,16 @@ cd ~
 git clone https://github.com/nduluu/mouseion.git
 cd mouseion
 git checkout claude/great-hamilton-d1yls8
-bash pipeline/setup_mac.sh      # 20-40 minutes; downloads about 2 GB
+bash pipeline/setup_mac.sh
 """)
-s += [P("It ends by printing four version numbers. If one is missing, copy the last 20 lines of output and send them to me.")]
-s += [P("<b>Evening 3: create the folders and test.</b>")]
+s += [P("The setup takes 20–40 minutes and downloads about 2 GB. It ends by printing four version numbers. If one is missing, copy the last 20 lines of output and send them to me.")]
+s += [P("<b>Evening 3: create the folders and test.</b> First, once: your Mac’s Terminal (zsh) does not treat " + C("#") + " as a comment unless told to, so a comment pasted with a command can break it. Run " + C("echo 'setopt interactivecomments' >> ~/.zshrc") + " and open a new Terminal window.")]
 s += block("""
 bash pipeline/make_dirs.sh
-# what Apple Vision can read on this Mac:
 ~/venvs/mouseion/bin/python pipeline/ocr_vision.py --languages
-# what Tesseract can read:
 tesseract --list-langs | head -40
 """)
-s += [P("Write both lists into a note: they decide which engine you can try for each language.")]
+s += [P("The first command shows what Apple Vision can read, the second what Tesseract can read. Write both lists into a note: they decide which engine you can try for each language. On the project MacBook Air M1 (25 November 2026) Vision listed 18: Arabic, German, English, Spanish, French, Italian, Japanese, Korean, Portuguese, Russian, Thai, Ukrainian, Vietnamese, Cantonese and Chinese, but no Croatian and no Greek.")]
 s += [P("<b>Evening 4: the work cards.</b> Copy " + C("pipeline/workcard.yaml") + " three times into "
         + C("/Volumes/Mouseion/cards/") + " (" + C("mendes-iliad.yaml") + ", " + C("maretic-iliad.yaml") + ", "
         + C("bustani-iliad.yaml") + ") and fill in what you know. Leave the rest empty.")]
@@ -318,7 +316,7 @@ s += [P("<b>Step 7: the night run.</b> Put the full job in the queue and start t
 s += block("""
 echo 'bash ~/mouseion/pipeline/ocr_tesseract.sh mendes-iliad por 4' \\
     > /Volumes/Mouseion/queue/01-mendes.sh
-bash ~/mouseion/pipeline/night.sh     # leave the Mac plugged in, lid open
+bash ~/mouseion/pipeline/night.sh
 """)
 s += [P("<b>Step 8: morning check (15 minutes).</b> Read the last lines of " + C("logs/night-<date>.log") + "; run "
         + C("charset.py ocr/mendes-iliad/tesseract --rare 3") + " and look up each rare character on its page.")]
@@ -329,7 +327,7 @@ s += [P("<b>Step 9: structure.</b> Send me the OCR folder (or tell me it is read
 # ---------------------------------------------------------------- 9 pilots 2,3
 s += [CondPageBreak(60 * mm), P("9. Weeks 3–4: pilots 2 and 3", h2)]
 s += [P("<b>Croatian 1883.</b> Same loop, but download the full-quality images: " + C("fetch_ia.sh homerova-iliada-1883 jp2") + ", then "
-        + C("pages.sh maretic-iliad …/Iliada_jp2.zip") + ". Compare " + C("hrv") + " and " + C("hr-HR") + ". Watch č/ć and đ: "
+        + C("pages.sh maretic-iliad …/Iliada_jp2.zip") + ". Apple Vision has no Croatian, so compare Tesseract " + C("hrv") + " from the best models with the standard " + C("hrv") + ", and with the Archive’s own OCR. Watch č/ć and đ: "
         "engines confuse them, and a CER of 2 % may hide many wrong names. Confirm the translator on the title page "
         "before anything is published.")]
 s += [P("<b>Arabic 1904.</b> The real test. 1.08 GB of images: download overnight. Before OCR, mark on the work card which pages "
@@ -339,7 +337,7 @@ s += block("""
 bash pipeline/ocr_tesseract.sh bustani-iliad ara 4 120-124
 ~/venvs/mouseion/bin/python pipeline/ocr_vision.py bustani-iliad ar-SA 120-124
 K=~/venvs/kraken/bin/kraken
-$K list | grep -i -E "arab|persian"      # pick a print model, then:
+$K list | grep -i -E "arab|persian"
 $K get <model-id>
 $K -i /Volumes/Mouseion/pages/bustani-iliad/0120.png out-0120.txt \\
    segment -bl ocr -m <model-file>
