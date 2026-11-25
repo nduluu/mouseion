@@ -273,9 +273,21 @@ bash pipeline/make_dirs.sh
 tesseract --list-langs | head -40
 """)
 s += [P("The first command shows what Apple Vision can read, the second what Tesseract can read. Write both lists into a note: they decide which engine you can try for each language. On the project MacBook Air M1 (25 November 2026) Vision listed 18: Arabic, German, English, Spanish, French, Italian, Japanese, Korean, Portuguese, Russian, Thai, Ukrainian, Vietnamese, Cantonese and Chinese, but no Croatian and no Greek.")]
-s += [P("<b>Evening 4: the work cards.</b> Copy " + C("pipeline/workcard.yaml") + " three times into "
-        + C("/Volumes/Mouseion/cards/") + " (" + C("mendes-iliad.yaml") + ", " + C("maretic-iliad.yaml") + ", "
-        + C("bustani-iliad.yaml") + ") and fill in what you know. Leave the rest empty.")]
+s += [P("<b>Evening 4: the work cards.</b> A work card is a small text file, one per book, that remembers everything "
+        "about that book: who translated it, why it is public domain, where the scan came from, which OCR engine worked best. "
+        "The cards for the three pilot books are already filled in with what is known (" + C("pipeline/cards/") + "). "
+        "Copy them to the drive, check them, and turn off TextEdit’s curly quotes, which would break a card when you edit it later:")]
+s += block("""
+cd ~/mouseion
+git pull
+cp pipeline/cards/*.yaml /Volumes/Mouseion/cards/
+~/venvs/mouseion/bin/python pipeline/check_cards.py
+""")
+s += [P("Each card should print <i>OK</i> and a list of fields that are still empty. That is correct: they are filled in "
+        "later, when you look at the book (week 2). To read a card, " + C("open -e /Volumes/Mouseion/cards/mendes-iliad.yaml") + ". "
+        "Before you edit one for the first time: in TextEdit, menu Edit → Substitutions, untick Smart Quotes and Smart Dashes. "
+        "Rules when editing: keep the space after each colon, keep the indentation (two spaces), put text in straight quotes "
+        "\"…\", and write \"\" for unknown. Run " + C("check_cards.py") + " after every edit.")]
 s += [P("<b>Evening 5: a Track A import, to see the whole road once.</b> Polylas's Modern Greek Odyssey from Project Gutenberg. "
         "Send me the four Gutenberg numbers (30613–30616) when you get here and I will extend the importer for Gutenberg "
         "texts. Then the result is checked like any other text: books, lines, characters.")]

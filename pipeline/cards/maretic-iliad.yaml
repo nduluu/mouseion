@@ -1,0 +1,42 @@
+# Work card. Empty fields ("") are filled in later, when you know the answer.
+id: maretic-iliad
+work: iliad
+kind: translation
+language: hr
+script: Latn
+title: "Iliada"
+translator: "probably Tomo Maretić: confirm on the title page"
+translator_died: ""
+published: 1883
+place_publisher: ""
+
+rights:
+  pd_reason: "if the translator is Maretić: died 1938, more than 70 years ago"
+  edition_notes: ""
+  checked_by: ""
+  checked_on: ""
+
+sources:
+  digital_text: "not searched yet"
+  scans: "https://archive.org/details/homerova-iliada-1883"
+  scan_quality: "full-quality page images (104 MB); the catalogue says 72 ppi, probably wrong"
+  scan_terms: ""
+
+layout:
+  columns: ""
+  verse: true
+  line_numbers_printed: ""
+  notes: ""
+  running_headers: ""
+
+ocr:
+  engine: ""
+  sample_pages: ""
+  cer_tesseract_best: ""
+  cer_tesseract_standard: ""
+  cer_archive: ""
+  chosen: ""
+
+status: queued
+log:
+  - "2026-11-25 card created"

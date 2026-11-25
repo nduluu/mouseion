@@ -1,0 +1,42 @@
+# Work card. Empty fields ("") are filled in later, when you know the answer.
+id: mendes-iliad
+work: iliad
+kind: translation
+language: pt
+script: Latn
+title: "Iliada de Homero: em verso portuguez"
+translator: "Manuel Odorico Mendes"
+translator_died: 1864
+published: 1874
+place_publisher: ""
+
+rights:
+  pd_reason: "translator died 1864, more than 70 years ago"
+  edition_notes: ""
+  checked_by: ""
+  checked_on: ""
+
+sources:
+  digital_text: "not searched yet"
+  scans: "https://archive.org/details/iliadadehomeroe00mendgoog"
+  scan_quality: "Google scan, 357 pages; no full-quality page images, PDF only"
+  scan_terms: "Google Books scan: Google asks for non-commercial use"
+
+layout:
+  columns: ""
+  verse: true
+  line_numbers_printed: ""
+  notes: ""
+  running_headers: ""
+
+ocr:
+  engine: ""
+  sample_pages: ""
+  cer_tesseract: ""
+  cer_vision: ""
+  cer_archive: ""
+  chosen: ""
+
+status: queued
+log:
+  - "2026-11-25 card created"

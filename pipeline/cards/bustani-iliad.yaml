@@ -1,0 +1,43 @@
+# Work card. Empty fields ("") are filled in later, when you know the answer.
+id: bustani-iliad
+work: iliad
+kind: translation
+language: ar
+script: Arab
+title: "إلياذة هوميروس معربة نظما وعليها شرح تاريخي أدبي"
+translator: "Sulaymān al-Bustānī"
+translator_died: 1925
+published: 1904
+place_publisher: ""
+
+rights:
+  pd_reason: "translator died 1925, more than 70 years ago"
+  edition_notes: "long historical commentary by the translator himself (also public domain)"
+  checked_by: ""
+  checked_on: ""
+
+sources:
+  digital_text: "not searched yet"
+  scans: "https://archive.org/details/20221225_20221225_1724"
+  scan_quality: "600 ppi page images (1.08 GB); the catalogue wrongly says the language is Urdu"
+  scan_terms: ""
+
+layout:
+  columns: ""
+  verse: true
+  line_numbers_printed: ""
+  notes: "verse with long notes underneath; at first only the verse goes into the reader"
+  running_headers: ""
+
+ocr:
+  engine: ""
+  sample_pages: ""
+  cer_tesseract: ""
+  cer_vision: ""
+  cer_kraken: ""
+  cer_archive: ""
+  chosen: ""
+
+status: queued
+log:
+  - "2026-11-25 card created"

@@ -15,5 +15,7 @@ The step-by-step guide is `docs/mouseion-pipeline-guide.pdf`.
 | `charset.py` | Lists every character in a text with its count, to catch wrong scripts and stray symbols. |
 | `night.sh` | Runs the queued jobs overnight while keeping the Mac awake. |
 | `workcard.yaml` | Template: one card per work, recording sources, rights and progress. |
+| `cards/` | Ready-made cards for the three pilot books (copy them to the drive). |
+| `check_cards.py` | Checks that every card on the drive can be read, and lists the fields still empty. |
 
 Everything writes to the external drive (default `/Volumes/Mouseion`; change it with `export MOUSEION_DRIVE=/Volumes/YourDrive`).

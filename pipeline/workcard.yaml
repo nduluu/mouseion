@@ -1,4 +1,5 @@
 # One card per work (copy to $DRIVE/cards/<work-id>.yaml). Fill it in as you go.
+# Ready-made cards for the pilot books are in pipeline/cards/. Check cards with pipeline/check_cards.py.
 id: mendes-iliad                 # short, lowercase, no spaces; becomes the folder name
 work: iliad                      # Mouseion work id (data/works/<id>)
 kind: translation                # original | translation | commentary
@@ -22,16 +23,16 @@ sources:
   scan_quality: ""               # e.g. "Google scan, 357 pp, some curved pages, no missing pages"
   scan_terms: "Google Books scan: non-commercial use requested by Google"
 
-layout:
-  columns: 1
+layout:                          # fill in after looking at the scan
+  columns: ""                    # 1, 2, or "facing pages"
   verse: true
-  line_numbers_printed: false
-  notes: "footnotes at the bottom of some pages"
-  running_headers: true
+  line_numbers_printed: ""       # true / false
+  notes: ""                      # footnotes? commentary? two languages?
+  running_headers: ""            # true / false
 
 ocr:
   engine: ""                     # tesseract por psm4 | vision pt-BR | kraken <model>
-  sample_pages: "20-24"
+  sample_pages: ""               # e.g. "40-44"
   cer_tesseract: ""
   cer_vision: ""
   chosen: ""
