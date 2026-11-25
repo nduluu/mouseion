@@ -159,11 +159,18 @@
 
   function crossfade(box, text, code, instant) {
     const lang = byCode[code];
+    // The outer span keeps the page's language, so its font (and with it the
+    // line's baseline) never changes; the text sits inside with its own lang
+    // and no line height. Safari picks a different system font per language,
+    // which otherwise moved the text up and down as the languages changed.
     const span = document.createElement("span");
     span.className = "xf";
-    span.textContent = text;
-    span.lang = code;
     span.dir = lang && lang.rtl ? "rtl" : "ltr";
+    const inner = document.createElement("span");
+    inner.className = "xt";
+    inner.textContent = text;
+    inner.lang = code;
+    span.appendChild(inner);
     const old = [...box.children];
     if (instant) {
       box.textContent = "";
