@@ -318,7 +318,8 @@ const Work = (() => {
   }
 
   // A <select> listing every text: originals first, then translations by
-  // language with the visitor's language first.
+  // language with the visitor's language first. Texts that cannot be read
+  // yet (not digitised, or not public domain here) are listed but greyed out.
   function textSelect(current) {
     const sel = el("select", "pane-select");
     sel.setAttribute("aria-label", t("chooseText"));
@@ -332,6 +333,7 @@ const Work = (() => {
     for (const ed of editions().filter((e) => e.lang === work.originalLanguage)) {
       const o = el("option", null, optionLabel(ed));
       o.value = "o:" + ed.id;
+      o.disabled = status(ed) !== "read" && o.value !== current;
       og.appendChild(o);
     }
     sel.appendChild(og);
@@ -345,6 +347,7 @@ const Work = (() => {
       for (const tr of work.translations.filter((x) => x.lang === l)) {
         const o = el("option", null, optionLabel(tr));
         o.value = "t:" + tr.id;
+        o.disabled = status(tr) !== "read" && o.value !== current;
         g.appendChild(o);
       }
       sel.appendChild(g);

@@ -100,11 +100,15 @@ const Cite = (() => {
   // The passage's permanent address: /iliad/ita-monti/1/8-10, or
   // /iliad/fra-leconte/1/p5 (II-p12 with a volume) for prose without lines.
   function link(f) {
+    return Router.absolute(routeOf(f));
+  }
+
+  function routeOf(f) {
     const slug = f.ed.text.path.split("/").pop();
     let r = "/" + W().work().id + "/" + slug + "/" + f.book;
     if (f.lineFrom) r += "/" + f.lineFrom + (f.lineTo && f.lineTo !== f.lineFrom ? "-" + f.lineTo : "");
     else if (f.pageFrom) r += "/" + (f.pageFrom.vol ? f.pageFrom.vol + "-" : "") + "p" + encodeURIComponent(f.pageFrom.page);
-    return Router.absolute(r);
+    return r;
   }
 
   // "1.7–10": book and line(s) in the original's numbering.
@@ -621,6 +625,32 @@ const Cite = (() => {
     preview();
   }
 
-  return { open, renderSettings, fill };
+  // For notes (js/notes.js): where a selected passage is, as a label
+  // ("Iliad · Monti, 1810 · 1.7–10"), the text's language and a permanent link.
+  async function passage(sel) {
+    const api = W();
+    if (!api || !api.work() || !sel) return null;
+    const loc = api.locate(sel, null);
+    if (loc.col == null || loc.col < 0 || !loc.selected) return null;
+    const id = api.panes()[loc.col];
+    const p = api.resolvePane(id);
+    if (!p || p.st !== "read") return null;
+    let data = null;
+    try { data = await api.bookData(p.ed, api.book()); } catch (e) { /* prose without data */ }
+    let lines = null;
+    if (data && data.lines && loc.start && loc.start.line) {
+      const a = loc.start.line;
+      const b = loc.end && loc.end.line && loc.end.line !== a ? loc.end.line : null;
+      lines = { from: a, to: b, pageFrom: pageForLine(data, a), pageTo: b ? pageForLine(data, b) : null };
+    }
+    const f = facts(id, loc, lines);
+    const w = api.work();
+    const title = (w.titles && api.pick(w.titles)) || w.id;
+    let where = canon(f);
+    if (!f.lineFrom && f.pageFrom) where += ", p. " + f.pageFrom.page;
+    return { route: routeOf(f), label: title + " · " + api.shortName(p) + " · " + where, lang: p.lang };
+  }
+
+  return { open, renderSettings, fill, passage };
 })();
 window.Cite = Cite;

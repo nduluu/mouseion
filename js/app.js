@@ -330,6 +330,7 @@
     app: document.getElementById("app"),
     legal: document.getElementById("legal"),
     roadmap: document.getElementById("roadmap"),
+    notes: document.getElementById("notes"),
   };
 
   // Routes that share a section: author and category pages use "browse".
@@ -342,6 +343,7 @@
     document.title = "Mouseion"; // a work page sets its own title
     if (name === "browse" && window.Browse) Browse.render(route, args);
     if (name === "account") renderAccount();
+    if (name === "notes" && window.Notes) Notes.renderPage();
     if (name === "home" && window.TimeCal) TimeCal.onShow();
     if (name === "search" && window.Search) Search.run(params.get("q"));
     if (name === "work" && window.Work) Work.render(args[0], params);

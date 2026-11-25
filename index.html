@@ -21,7 +21,7 @@
     })();
   </script>
   <title>Mouseion</title>
-  <link rel="stylesheet" href="css/style.css?v=45">
+  <link rel="stylesheet" href="css/style.css?v=46">
   <script>
     // Some browsers (private windows, embedded previews) refuse localStorage.
     // Fall back to an in-memory store so the site still works, just without
@@ -297,6 +297,7 @@
                 <option value="dark" data-i18n="themeDark">Dark</option>
               </select>
             </label>
+            <p class="acc-notes"><a href="#/notes" data-i18n="myNotes">My notes</a></p>
             <div id="cite-settings" class="cite-settings"></div>
             <button id="signout-btn" class="btn" data-i18n="signOut">Sign out</button>
           </div>
@@ -324,6 +325,10 @@
       </section>
       <section id="app" class="page" hidden>
         <h1 class="page-title" data-i18n="app">App</h1>
+      </section>
+      <section id="notes" class="page" hidden>
+        <h1 class="page-title" data-i18n="myNotes">My notes</h1>
+        <div id="notes-list" class="notes-list"></div>
       </section>
       <section id="roadmap" class="page page-wide" hidden>
         <h1 class="page-title" data-i18n="roadmap">Roadmap</h1>
@@ -418,7 +423,7 @@
     // Interface text: the picker's phrases in every language, English (the
     // fallback), and the visitor's own language. One small file each, built
     // from js/i18n.js by tools/build_i18n.js (which also sets this version).
-    var I18N_V = "18aef8f758";
+    var I18N_V = "719f3b5afc";
     (function () {
       var l = null;
       try { l = localStorage.getItem("mouseion.lang"); } catch (e) {}
@@ -430,11 +435,12 @@
   <script src="js/mapviewer.js?v=20"></script>
   <script src="js/common.js?v=5"></script>
   <script src="js/rights.js?v=21"></script>
-  <script src="js/work.js?v=43"></script>
+  <script src="js/work.js?v=44"></script>
   <script src="js/download.js?v=4"></script>
-  <script src="js/cite.js?v=4"></script>
+  <script src="js/cite.js?v=5"></script>
+  <script src="js/notes.js?v=1"></script>
   <script src="js/search.js?v=25"></script>
   <script src="js/browse.js?v=5"></script>
-  <script src="js/app.js?v=33"></script>
+  <script src="js/app.js?v=34"></script>
 </body>
 </html>
